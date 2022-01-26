@@ -15,3 +15,11 @@ void CEllipse::DrawMe(GUI* pGUI) const
 
 
 }
+
+void CEllipse::Save(ofstream& outFile)
+{
+}
+
+void CEllipse::Load(ifstream& inFile)
+{
+}

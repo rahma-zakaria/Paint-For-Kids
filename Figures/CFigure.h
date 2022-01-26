@@ -13,6 +13,8 @@ protected:
 	GfxInfo FigGfxInfo;	//Figure graphis info
 	
 	/// Add more parameters if needed.
+	string type;
+	static int nextID;
 
 public:
 	CFigure(GfxInfo FigureGfxInfo);
@@ -34,8 +36,10 @@ public:
 	//virtual void Resize() = 0;	//Resize the figure
 	//virtual void Move() = 0;		//Move the figure
 
-	//virtual void Save(ofstream &OutFile) = 0;	//Save the figure parameters to the file
-	//virtual void Load(ifstream &Infile) = 0;	//Load the figure parameters to the file
+	virtual void Save(ofstream &OutFile) = 0;	//Save the figure parameters to the file
+	virtual void Load(ifstream &Infile) = 0;	//Load the figure parameters to the file
+
+	void setnexID(int);
 
 	//virtual void PrintInfo(Output* pOut) = 0;	//print all figure info on the status bar
 };

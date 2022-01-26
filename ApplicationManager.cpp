@@ -2,6 +2,10 @@
 #include "Actions\ActionAddSquare.h"
 #include "Actions\AddElliAction.h"
 #include "Actions\AddHexaAction.h"
+#include "Actions\ActionSave.h"
+#include "Actions\ActionLoad.h"
+#include<iostream>
+#include <fstream>
 
 
 //Constructor
@@ -55,13 +59,22 @@ Action* ApplicationManager::CreateAction(ActionType ActType)
 			break;
 
 		case DRAW_ELPS:
-			
 			newAct = new AddElliAction(this);
 			break;
+
 		case DRAW_HEX:
-		
 			newAct = new AddHexaAction(this);
 			break;
+
+		case SAVE:
+			newAct = new ActionSave(this);
+			break;
+
+		case LOAD:
+			pGUI->PrintMessage("load");
+			//newAct = new ActionLoad(this);
+			break;
+
 		case EXIT:
 			///create ExitAction here
 			
@@ -129,3 +142,26 @@ ApplicationManager::~ApplicationManager()
 	delete pGUI;
 	
 }
+
+//==================================================================================//
+//							Save And Load Functions							//
+//==================================================================================//
+
+void ApplicationManager::SaveAll(ofstream& fileName)
+{
+	// DrawColor	FillColor	BkGrndColor
+	//fileName << to_string(DrawColor)<<"\t"<< to_string(FillColor)<< "\t" << to_string(BkGrndColor) << endl;
+	fileName << "blue" << "\t" << "white" << "\t" << "white" << endl;
+
+	// FigCount
+	fileName << to_string(FigCount) << endl;
+
+	for (int i = 0; i < FigCount; i++)
+	{
+		FigList[i]->Save(fileName);
+		printf("%d", i);
+	}
+}
+
+void ApplicationManager::LoadAll(ifstream& fileName)
+{}

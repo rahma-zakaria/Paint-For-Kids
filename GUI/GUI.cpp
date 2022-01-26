@@ -87,6 +87,8 @@ ActionType GUI::MapInputToActionType() const
 			case ITM_SQUR: return DRAW_SQUARE;
 			case ITM_ELPS: return DRAW_ELPS;
 			case ITM_Hexa: return DRAW_HEX;
+			case ITM_Save: return SAVE;			
+			case ITM_Load: return LOAD;
 			case ITM_EXIT: return EXIT;	
 			
 			default: return EMPTY;	//A click on empty place in desgin toolbar
@@ -153,6 +155,8 @@ void GUI::CreateDrawToolBar() const
 	MenuItemImages[ITM_SQUR] = "images\\MenuItems\\Menu_Sqr.jpg";
 	MenuItemImages[ITM_ELPS] = "images\\MenuItems\\Menu_Elps.jpg";
 	MenuItemImages[ITM_Hexa] = "images\\MenuItems\\hexa.png";
+	MenuItemImages[ITM_Save] = "images\\MenuItems\\Save.png";
+	MenuItemImages[ITM_Load] = "images\\MenuItems\\Load.jpg";
 	MenuItemImages[ITM_EXIT] = "images\\MenuItems\\Menu_Exit.jpg";
 
 	//TODO: Prepare images for each menu item and add it to the list

@@ -37,7 +37,11 @@ public:
 	void GUI::DrawElli(Point p1, Point p2, GfxInfo elliGfxInfo, bool selected) const; //Draw ellipse
 	void GUI::DrawHexa(Point p1, Point p2, GfxInfo elliGfxInfo, bool selected) const;
 	///TODO: Make similar functions for drawing all other figures.
-	
+	//----------------***********--------------***********--------------**********--------*******
+	// save load may be here
+
+
+
 	void PrintMessage(string msg) const;	//Print a message on Status bar
 
 	color getCrntDrawColor() const;	//get current drwawing color

@@ -129,6 +129,8 @@
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Actions\ActionLoad.cpp" />
+    <ClCompile Include="Actions\ActionSave.cpp" />
     <ClCompile Include="Actions\AddElliAction.cpp" />
     <ClCompile Include="Actions\AddHexaAction.cpp" />
     <ClCompile Include="CMUgraphicsLib\auxil.cpp" />
@@ -176,6 +178,8 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Actions\ActionLoad.h" />
+    <ClInclude Include="Actions\ActionSave.h" />
     <ClInclude Include="Actions\AddElliAction.h" />
     <ClInclude Include="Actions\AddHexaAction.h" />
     <ClInclude Include="CMUgraphicsLib\auxil.h" />

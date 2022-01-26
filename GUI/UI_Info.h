@@ -23,6 +23,8 @@ enum DrawMenuItem //The items of the Draw menu (you should add more items)
 	
 	//TODO: Add more items names here
 	ITM_Hexa,       //Hexa item in menue
+	ITM_Save,       //Save item in menue
+	ITM_Load,       //Load item in menue
 	ITM_EXIT,		//Exit item
 	
 	DRAW_ITM_COUNT		//no. of menu items ==> This should be the last line in this enum

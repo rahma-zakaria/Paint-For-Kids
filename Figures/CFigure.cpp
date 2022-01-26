@@ -4,7 +4,12 @@ CFigure::CFigure(GfxInfo FigureGfxInfo)
 { 
 	FigGfxInfo = FigureGfxInfo;	//Default status is non-filled.
 	Selected = false;
+	ID = nextID++;
 }
+
+int CFigure::nextID = 0;
+
+void CFigure::setnexID(int num) { nextID = num; }
 
 void CFigure::SetSelected(bool s)
 {	Selected = s; }

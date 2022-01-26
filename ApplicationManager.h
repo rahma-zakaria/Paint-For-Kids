@@ -37,6 +37,10 @@ public:
 	// -- Interface Management Functions	
 	GUI *GetGUI() const; //Return pointer to the interface
 	void UpdateInterface() const;	//Redraws all the drawing window	
+
+	// --Save And Load 
+	void SaveAll(ofstream& fileName);//Save all figures in figure list
+	void LoadAll(ifstream& fileName);//Load all figures in figure list
 };
 
 #endif

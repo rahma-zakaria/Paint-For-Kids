@@ -14,3 +14,11 @@ void CHexagon::DrawMe(GUI* pGUI) const
 
 
 }
+
+void CHexagon::Save(ofstream& outFile)
+{
+}
+
+void CHexagon::Load(ifstream& inFile)
+{
+}
