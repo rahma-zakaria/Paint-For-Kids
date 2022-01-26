@@ -3,10 +3,10 @@
 class CHexagon :public CFigure
 {
 private:
-	Point center, p;
+	Point center, point;
 
 public:
-	CHexagon(Point, GfxInfo FigureGfxInfo);
+	CHexagon(Point, Point, GfxInfo FigureGfxInfo);
 	virtual void DrawMe(GUI* pOut) const;
 	virtual void Save(ofstream& outFile);
 	virtual void Load(ifstream& inFile);

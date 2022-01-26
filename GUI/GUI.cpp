@@ -1,5 +1,6 @@
 #include "GUI.h"
-
+#define _USE_MATH_DEFINES
+#include <math.h>
 //constructor make necessary initializations
 GUI::GUI()
 {
@@ -240,7 +241,7 @@ void GUI::DrawSquare(Point P1, int length, GfxInfo RectGfxInfo, bool selected) c
 
 }
 
-void GUI::DrawElli(Point p1,Point p2, GfxInfo elliGfxInfo, bool selected) const
+void GUI::DrawElli(Point p1,Point p2,double startAngle,double  endAngle, GfxInfo elliGfxInfo, bool selected) const
 {
 	color DrawingClr;
 	if (selected)
@@ -261,12 +262,14 @@ void GUI::DrawElli(Point p1,Point p2, GfxInfo elliGfxInfo, bool selected) const
 		style = FRAME;
 
 
-	pWind->DrawEllipse(p1.x - p2.x, p1.y - p2.y, p1.x + p2.x, p1.y + p2.y, style);
+	pWind->DrawEllipse(p1.x, p1.y, p2.x, p1.y, style);
+	pWind->DrawArc(p1.x, p1.y, p2.x, p2.y, startAngle, endAngle,style);
 
 }
 
 void GUI::DrawHexa(Point P1, Point P2, GfxInfo hexaGfxInfo, bool selected) const
 {
+	int r = sqrt(pow((P1.x - P2.x), 2) + pow((P1.y - P2.y), 2));
 	color DrawingClr;
 	if (selected)
 		DrawingClr = UI.HighlightColor; //Figure should be drawn highlighted
@@ -282,7 +285,17 @@ void GUI::DrawHexa(Point P1, Point P2, GfxInfo hexaGfxInfo, bool selected) const
 	}
 	else
 		style = FRAME;
-	int HexaX[6] = { P1.x + P2.x, P1.x - P2.x, P1.x - 2 * P2.x, P1.x - P2.x ,P1.x + P2.x, P1.x + 2 * P2.x }, HexaY[6] = { P1.y - P2.y, P1.y - P2.y, P1.y, P1.y + P2.y,P1.y + P2.y,P1.y };
+
+	style = FRAME;
+	int n = 6;
+	int HexaX[6];
+	int HexaY[6];
+
+	for (int i = 0; i < n; i++) {
+		HexaX[i] = P1.x + r * cos(2 * M_PI * i / n);
+		HexaY[i] = P1.y + r * sin(2 * M_PI * i / n);
+	}
+	/*int HexaX[6] = {P1.x + P2.x, P1.x - P2.x, P1.x - 2 * P2.x, P1.x - P2.x ,P1.x + P2.x, P1.x + 2 * P2.x}, HexaY[6] = {P1.y - P2.y, P1.y - P2.y, P1.y, P1.y + P2.y,P1.y + P2.y,P1.y};*/
 
 	pWind->DrawPolygon(HexaX, HexaY, 6, style);
 

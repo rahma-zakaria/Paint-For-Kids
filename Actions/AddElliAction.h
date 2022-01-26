@@ -6,7 +6,7 @@ class AddElliAction :public Action
 {
 private:
 	// A Point For Ellipse Center
-	Point C;
+	Point P1, P2;
 	// Object of Graphical Struct
 	GfxInfo EllipseGfxInfo;
 

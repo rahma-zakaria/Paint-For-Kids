@@ -1,9 +1,13 @@
 #include "CEllipse.h"
 
-CEllipse::CEllipse(Point c, GfxInfo FigureGfxInfo) :CFigure(FigureGfxInfo)
+CEllipse::CEllipse(Point P1, Point P2,double an1,double an2, GfxInfo FigureGfxInfo) :CFigure(FigureGfxInfo)
 {
-	center = c;
-	P.x = 80; P.y = 30;
+	/*center = c;
+	P.x = 80; P.y = 30;*/
+	point1 = P1;
+	point2 = P2;
+	angele1 = an1;
+	angele2 = an2;
 
 }
 
@@ -11,7 +15,7 @@ CEllipse::CEllipse(Point c, GfxInfo FigureGfxInfo) :CFigure(FigureGfxInfo)
 void CEllipse::DrawMe(GUI* pGUI) const
 {
 	//Call Output::	
-	pGUI->DrawElli(center, P, FigGfxInfo, Selected);
+	pGUI->DrawElli(point1, point2, angele1, angele2, FigGfxInfo, Selected);
 
 
 }
