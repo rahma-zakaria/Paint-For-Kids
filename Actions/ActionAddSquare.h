@@ -7,9 +7,10 @@
 class ActionAddSquare: public Action
 {
 public:
+	// Constructor of AddEllipse Action Class
 	ActionAddSquare(ApplicationManager *pApp);
 	
-	//Add Square to the ApplicationManager
+	//Add Square to the ApplicationManager to Excute it
 	virtual void Execute() ;
 	
 };

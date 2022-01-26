@@ -1,5 +1,7 @@
 #include "ApplicationManager.h"
 #include "Actions\ActionAddSquare.h"
+#include "Actions\AddElliAction.h"
+#include "Actions\AddHexaAction.h"
 
 
 //Constructor
@@ -53,10 +55,13 @@ Action* ApplicationManager::CreateAction(ActionType ActType)
 			break;
 
 		case DRAW_ELPS:
-			///create AddLineAction here
-
+			
+			newAct = new AddElliAction(this);
 			break;
-
+		case DRAW_HEX:
+		
+			newAct = new AddHexaAction(this);
+			break;
 		case EXIT:
 			///create ExitAction here
 			

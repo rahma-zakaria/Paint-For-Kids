@@ -86,6 +86,7 @@ ActionType GUI::MapInputToActionType() const
 			{
 			case ITM_SQUR: return DRAW_SQUARE;
 			case ITM_ELPS: return DRAW_ELPS;
+			case ITM_Hexa: return DRAW_HEX;
 			case ITM_EXIT: return EXIT;	
 			
 			default: return EMPTY;	//A click on empty place in desgin toolbar
@@ -151,6 +152,7 @@ void GUI::CreateDrawToolBar() const
 	string MenuItemImages[DRAW_ITM_COUNT];
 	MenuItemImages[ITM_SQUR] = "images\\MenuItems\\Menu_Sqr.jpg";
 	MenuItemImages[ITM_ELPS] = "images\\MenuItems\\Menu_Elps.jpg";
+	MenuItemImages[ITM_Hexa] = "images\\MenuItems\\hexa.png";
 	MenuItemImages[ITM_EXIT] = "images\\MenuItems\\Menu_Exit.jpg";
 
 	//TODO: Prepare images for each menu item and add it to the list
@@ -230,10 +232,57 @@ void GUI::DrawSquare(Point P1, int length, GfxInfo RectGfxInfo, bool selected) c
 
 	
 	pWind->DrawRectangle(P1.x, P1.y, P1.x +length, P1.y+length, style);
-	pWind->DrawLine(P1.x, P1.y, P1.x + length, P1.y + length, style);
+	//pWind->DrawLine(P1.x, P1.y, P1.x + length, P1.y + length, style);
 
 }
 
+void GUI::DrawElli(Point p1,Point p2, GfxInfo elliGfxInfo, bool selected) const
+{
+	color DrawingClr;
+	if (selected)
+		DrawingClr = UI.HighlightColor; //Figure should be drawn highlighted
+	else
+		DrawingClr = elliGfxInfo.DrawClr;
+
+
+	pWind->SetPen(DrawingClr, elliGfxInfo.BorderWdth);	//Set Drawing color & width
+
+	drawstyle style;
+	if (elliGfxInfo.isFilled)
+	{
+		style = FILLED;
+		pWind->SetBrush(elliGfxInfo.FillClr);
+	}
+	else
+		style = FRAME;
+
+
+	pWind->DrawEllipse(p1.x - p2.x, p1.y - p2.y, p1.x + p2.x, p1.y + p2.y, style);
+
+}
+
+void GUI::DrawHexa(Point P1, Point P2, GfxInfo hexaGfxInfo, bool selected) const
+{
+	color DrawingClr;
+	if (selected)
+		DrawingClr = UI.HighlightColor; //Figure should be drawn highlighted
+	else
+		DrawingClr = hexaGfxInfo.DrawClr;
+
+	pWind->SetPen(DrawingClr, 3);
+	drawstyle style;
+	if (hexaGfxInfo.isFilled)
+	{
+		style = FILLED;
+		pWind->SetBrush(hexaGfxInfo.FillClr);
+	}
+	else
+		style = FRAME;
+	int HexaX[6] = { P1.x + P2.x, P1.x - P2.x, P1.x - 2 * P2.x, P1.x - P2.x ,P1.x + P2.x, P1.x + 2 * P2.x }, HexaY[6] = { P1.y - P2.y, P1.y - P2.y, P1.y, P1.y + P2.y,P1.y + P2.y,P1.y };
+
+	pWind->DrawPolygon(HexaX, HexaY, 6, style);
+
+}
 
 //////////////////////////////////////////////////////////////////////////////////////////
 GUI::~GUI()
