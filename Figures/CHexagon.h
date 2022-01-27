@@ -7,6 +7,7 @@ private:
 
 public:
 	CHexagon(Point, Point, GfxInfo FigureGfxInfo);
+	CHexagon();
 	virtual void DrawMe(GUI* pOut) const;
 	virtual void Save(ofstream& outFile);
 	virtual void Load(ifstream& inFile);

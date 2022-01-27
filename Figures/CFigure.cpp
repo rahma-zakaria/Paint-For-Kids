@@ -6,6 +6,12 @@ CFigure::CFigure(GfxInfo FigureGfxInfo)
 	Selected = false;
 	ID = nextID++;
 }
+CFigure::CFigure()
+{
+	//FigGfxInfo = NULL;	//Default status is non-filled.
+	Selected = false;
+	ID = nextID++;
+}
 
 int CFigure::nextID = 0;
 

@@ -5,15 +5,19 @@
 #include "Actions\ActionSave.h"
 #include "Actions\ActionLoad.h"
 #include "Actions\RezizeAction.h"
+#include "Figures\CSquare.h"
+#include "Figures\CHexagon.h"
+#include "Figures\CEllipse.h"
 #include<iostream>
 #include <fstream>
+#include <string>
 
 
 //Constructor
 ApplicationManager::ApplicationManager()
 {
 	//Create Input and output
-	pGUI = new GUI;	
+	pGUI = new GUI;
 	
 	FigCount = 0;
 		
@@ -74,8 +78,7 @@ Action* ApplicationManager::CreateAction(ActionType ActType)
 			break;
 
 		case LOAD:
-			pGUI->PrintMessage("load");
-			//newAct = new ActionLoad(this);
+			newAct = new ActionLoad(this);
 			break;
 
 		case EXIT:
@@ -167,4 +170,47 @@ void ApplicationManager::SaveAll(ofstream& fileName)
 }
 
 void ApplicationManager::LoadAll(ifstream& fileName)
-{}
+{
+	//GUI* pGUI = pManager->GetGUI();
+	ClearAllFig();
+	pGUI->ClearDrawArea();
+	int FigNumbers;
+	string draw, fill, back, FigureType;
+	CFigure* LoadedFig;
+
+	fileName >> draw >> fill >> back;
+	std::cout <<"draw : "<< draw << "  fill : " << fill << "  back : " << back;
+	fileName >> FigNumbers;
+	printf("\n%d", FigNumbers);
+
+	while (FigNumbers) {
+		fileName >> FigureType;
+		std::cout << FigureType << " ";
+		if (FigureType == "SQR") {
+			LoadedFig = new CSquare;
+			printf("New Square");
+		}
+		else if (FigureType == "ELPS") {
+			LoadedFig = new CEllipse;
+
+		}
+		else if (FigureType == "HEXA") {
+			LoadedFig = new CHexagon;
+
+		}
+		LoadedFig->Load(fileName);
+		AddFigure(LoadedFig);
+		FigNumbers--;
+	}
+
+}
+
+void ApplicationManager::ClearAllFig()
+{
+	for (int i = 0; i < FigCount; i++)
+	{
+		delete FigList[i];
+		FigList[i] = NULL;
+	}
+	FigCount = 0;
+}

@@ -41,6 +41,8 @@ public:
 	// --Save And Load 
 	void SaveAll(ofstream& fileName);//Save all figures in figure list
 	void LoadAll(ifstream& fileName);//Load all figures in figure list
+
+	void ClearAllFig();
 };
 
 #endif

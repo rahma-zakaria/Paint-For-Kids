@@ -18,6 +18,7 @@ protected:
 
 public:
 	CFigure(GfxInfo FigureGfxInfo);
+	CFigure();
 	void SetSelected(bool );	//select/unselect the figure
 	bool IsSelected() const;	//check whether fig is selected
 

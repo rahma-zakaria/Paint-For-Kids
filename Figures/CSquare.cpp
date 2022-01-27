@@ -7,8 +7,10 @@ CSquare::CSquare(Point P1, int len, GfxInfo FigureGfxInfo):CFigure(FigureGfxInfo
 {
 	TopLeftCorner = P1;
 	length = len;
-	type = "RECT";
+	type = "SQR";
 }
+
+CSquare::CSquare() {}
 	
 
 void CSquare::DrawMe(GUI* pGUI) const
@@ -37,5 +39,24 @@ void CSquare::Save(ofstream& outFile)
 
 void CSquare::Load(ifstream& inFile)
 {
+	string FigureColor;
+	string FigureFill;
+
+	//Get a Pointer to the Interface
+	inFile >> ID >> TopLeftCorner.x >> TopLeftCorner.y >> length;
+	std::cout << TopLeftCorner.x << " " << TopLeftCorner.y << " " << length << " ";
+	inFile >> FigureColor >> FigureFill;
+	std::cout << FigureColor << " " << FigureFill << endl;
+	//FigGfxInfo.DrawClr = FigureColor;
+	FigGfxInfo.DrawClr = RED;
+	FigGfxInfo.BorderWdth = UI.PenWidth;
+	if (FigureFill == "NO_FILL") {
+		FigGfxInfo.isFilled = false;
+	}
+	else {
+		//FigGfxInfo.FillClr = FigureFill;
+		FigGfxInfo.FillClr = YELLOW;
+		FigGfxInfo.isFilled = true;
+	}
 
 }

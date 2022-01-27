@@ -3,11 +3,10 @@
 class ActionLoad : public Action
 {
 private:
-
+	string filename;
 public:
 	ActionLoad(ApplicationManager* pApp);
+	virtual void ReadActionParameters();
 	virtual void Execute();
-	color ActionLoad::ConvertToColor(string s);
-
 };
 
