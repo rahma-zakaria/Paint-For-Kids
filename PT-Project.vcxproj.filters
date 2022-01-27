@@ -160,9 +160,6 @@
     <ClCompile Include="Actions\ActionSave.cpp">
       <Filter>Action Classes</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Project\Project Framework\Actions\ActionResize.cpp">
-      <Filter>Action Classes</Filter>
-    </ClCompile>
     <ClCompile Include="Actions\RezizeAction.cpp">
       <Filter>Action Classes</Filter>
     </ClCompile>
@@ -266,9 +263,6 @@
       <Filter>Action Classes</Filter>
     </ClInclude>
     <ClInclude Include="Actions\ActionSave.h">
-      <Filter>Action Classes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Project\Project Framework\Actions\ActionResize.h">
       <Filter>Action Classes</Filter>
     </ClInclude>
     <ClInclude Include="Actions\RezizeAction.h">

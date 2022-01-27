@@ -45,6 +45,7 @@ enum sizeMenueItems //The items of the Draw menu (you should add more items)
 	ITM_DUBBLE,       //Hexa item in menue
 	
 	ITEM_FOURTH,
+	ITM_BACK2,
 
 	SIZE_ITM_COUNT		//no. of menu items ==> This should be the last line in this enum
 

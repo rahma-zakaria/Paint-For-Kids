@@ -136,6 +136,13 @@ void GUI::CreateStatusBar() const
 	pWind->SetBrush(UI.StatusBarColor);
 	pWind->DrawRectangle(0, UI.height - UI.StatusBarHeight, UI.width, UI.height);
 }
+
+void GUI::CreateToolBar() const
+{
+	pWind->SetPen(WHITE, 1);
+	pWind->SetBrush(WHITE);
+	pWind->DrawRectangle(0, 0, UI.width, UI.ToolBarHeight);
+}
 //////////////////////////////////////////////////////////////////////////////////////////
 void GUI::ClearStatusBar() const
 {
@@ -181,6 +188,7 @@ void GUI::CreateDrawToolBar() const
 // new toolBar
 void GUI::CreateSizeToolBar() const
 {
+	CreateToolBar();
 	CreateStatusBar();
 	UI.InterfaceMode = MODE_SIZE;
 
@@ -192,6 +200,7 @@ void GUI::CreateSizeToolBar() const
 	MenuItemImages[ITM_HALF] = "images\\MenuItems\\LLduu.jpg";
 	MenuItemImages[ITM_DUBBLE] = "images\\MenuItems\\d-2.jpg";
 	MenuItemImages[ITEM_FOURTH] = "images\\MenuItems\\f.jpg";
+	MenuItemImages[ITM_BACK2] = "images\\MenuItems\\Menu_Back_2.jpg";
 	/*MenuItemImages[ITM_QURT] = "images\\MenuItems\\Menu_Sqr.jpg";
 	MenuItemImages[ITM_HALF] = "images\\MenuItems\\Menu_Sqr.jpg";
 	/*MenuItemImages[ITM_DUBBLE] = "images\\MenuItems\\Menu_Sqr.jpg";

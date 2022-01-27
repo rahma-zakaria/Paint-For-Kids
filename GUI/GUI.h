@@ -25,6 +25,7 @@ public:
 
 
 	/////////// Output Functoinality  ////////////////
+	void GUI::CreateToolBar() const;
 	void CreateDrawToolBar() const;	//creates Draw mode toolbar & menu
 	void CreateSizeToolBar() const; // create size toolBar & menue
 	void CreatePlayToolBar() const;	//creates Play mode toolbar & menu
