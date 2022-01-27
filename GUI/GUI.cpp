@@ -92,7 +92,7 @@ ActionType GUI::MapInputToActionType() const
 			case ITM_Hexa: return DRAW_HEX;
 			case ITM_Save: return SAVE;			
 			case ITM_Load: return LOAD;
-			case ITIM_RESIZE: return RESIZE;
+			case ITIM_RESIZE: return TO_SIZE;
 			case ITM_EXIT: return EXIT;	
 			
 			default: return EMPTY;	//A click on empty place in desgin toolbar
@@ -107,6 +107,26 @@ ActionType GUI::MapInputToActionType() const
 		
 		//[3] User clicks on the status bar
 		return STATUS;
+	}
+	else if (UI.InterfaceMode == MODE_SIZE)
+	{
+		//[1] If user clicks on the Toolbar
+		if (y >= 0 && y < UI.ToolBarHeight)
+		{
+			//Check whick Menu item was clicked
+			//==> This assumes that menu items are lined up horizontally <==
+			int ClickedItemOrder = (x / UI.MenuItemWidth);
+			//Divide x coord of the point clicked by the menu item width (int division)
+			//If division result is 0 ==> first item is clicked, if 1 ==> 2nd item and so on
+			switch (ClickedItemOrder)
+			{
+			case ITM_HALF: return HALF;
+			case ITM_QUARTER: return QUARTER;
+			case ITM_DOUBLE:   return DOUBLE1;
+			case ITM_QUADRUPLE: return QUADRUPLE;
+			case ITM_BACK:  return BACK;
+			}
+		}
 	}
 	else	//GUI is in PLAY mode
 	{
@@ -189,18 +209,18 @@ void GUI::CreateDrawToolBar() const
 void GUI::CreateSizeToolBar() const
 {
 	CreateToolBar();
-	CreateStatusBar();
+	//CreateStatusBar();
 	UI.InterfaceMode = MODE_SIZE;
 
 	//First prepare List of images for each menu item
 	//To control the order of these images in the menu, 
 	//reoder them in UI_Info.h ==> enum DrawMenuItem
 	string MenuItemImages[SIZE_ITM_COUNT];
-	MenuItemImages[ITM_QURT] = "images\\MenuItems\\circle-quarter.jpg";
+	MenuItemImages[ITM_QUARTER] = "images\\MenuItems\\circle-quarter.jpg";
 	MenuItemImages[ITM_HALF] = "images\\MenuItems\\LLduu.jpg";
-	MenuItemImages[ITM_DUBBLE] = "images\\MenuItems\\d-2.jpg";
-	MenuItemImages[ITEM_FOURTH] = "images\\MenuItems\\f.jpg";
-	MenuItemImages[ITM_BACK2] = "images\\MenuItems\\Menu_Back_2.jpg";
+	MenuItemImages[ITM_DOUBLE] = "images\\MenuItems\\d-2.jpg";
+	MenuItemImages[ITM_QUADRUPLE] = "images\\MenuItems\\f.jpg";
+	MenuItemImages[ITM_BACK] = "images\\MenuItems\\Menu_Back_2.jpg";
 	/*MenuItemImages[ITM_QURT] = "images\\MenuItems\\Menu_Sqr.jpg";
 	MenuItemImages[ITM_HALF] = "images\\MenuItems\\Menu_Sqr.jpg";
 	/*MenuItemImages[ITM_DUBBLE] = "images\\MenuItems\\Menu_Sqr.jpg";
