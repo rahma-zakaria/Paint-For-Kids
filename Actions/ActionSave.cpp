@@ -46,7 +46,7 @@ void ActionSave::Execute()
 	pGUI->PrintMessage("Save succesfull to " + filename);
 
 	ofstream MyFile;
-	MyFile.open(filename, ios::app);
+	MyFile.open(filename, ios::out | ios::trunc);
 
 	pManager->SaveAll(MyFile);
 

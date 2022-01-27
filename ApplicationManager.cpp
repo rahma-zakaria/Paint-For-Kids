@@ -177,7 +177,6 @@ void ApplicationManager::SaveAll(ofstream& fileName)
 	for (int i = 0; i < FigCount; i++)
 	{
 		FigList[i]->Save(fileName);
-		printf("%d", i);
 	}
 }
 
@@ -191,24 +190,19 @@ void ApplicationManager::LoadAll(ifstream& fileName)
 	CFigure* LoadedFig;
 
 	fileName >> draw >> fill >> back;
-	std::cout <<"draw : "<< draw << "  fill : " << fill << "  back : " << back;
 	fileName >> FigNumbers;
-	printf("\n%d", FigNumbers);
 
 	while (FigNumbers) {
 		fileName >> FigureType;
 		std::cout << FigureType << " ";
 		if (FigureType == "SQR") {
 			LoadedFig = new CSquare;
-			printf("New Square");
 		}
 		else if (FigureType == "ELPS") {
 			LoadedFig = new CEllipse;
-
 		}
 		else if (FigureType == "HEXA") {
 			LoadedFig = new CHexagon;
-
 		}
 		LoadedFig->Load(fileName);
 		AddFigure(LoadedFig);
