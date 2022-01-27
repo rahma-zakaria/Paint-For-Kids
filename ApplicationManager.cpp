@@ -14,7 +14,7 @@
 
 
 //Constructor
-ApplicationManager::ApplicationManager()
+ApplicationManager::ApplicationManager() : mode(0)
 {
 	//Create Input and output
 	pGUI = new GUI;
@@ -70,15 +70,21 @@ Action* ApplicationManager::CreateAction(ActionType ActType)
 		case DRAW_HEX:
 			newAct = new AddHexaAction(this);
 			break;
-		case RESIZE:
+		/*case RESIZE:
 			newAct = new RezizeAction(this);
-			break;
+			break;*/
 		case SAVE:
 			newAct = new ActionSave(this);
 			break;
 
 		case LOAD:
 			newAct = new ActionLoad(this);
+			break;
+		case TO_SIZE:
+			mode = 1;
+			break;
+		case BACK: 
+			mode = 0;
 			break;
 
 		case EXIT:
@@ -132,8 +138,14 @@ CFigure *ApplicationManager::GetFigure(int x, int y) const
 //Draw all figures on the user interface
 void ApplicationManager::UpdateInterface() const
 {	
+	pGUI->ClearDrawArea();
 	for(int i=0; i<FigCount; i++)
 		FigList[i]->DrawMe(pGUI);		//Call Draw function (virtual member fn)
+
+	if (mode == 0)
+		pGUI->CreateDrawToolBar();
+	else if (mode == 1)
+		pGUI->CreateSizeToolBar();
 }
 ////////////////////////////////////////////////////////////////////////////////////
 //Return a pointer to the interface

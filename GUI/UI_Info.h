@@ -37,15 +37,15 @@ enum sizeMenueItems //The items of the Draw menu (you should add more items)
 {
 	//Note: Items are ordered here as they appear in menu
 	//If you want to change the menu items order, change the order here
-	ITM_QURT,		//Square item in menu
-	ITM_HALF,		//Ellipse item in menu
+	ITM_QUARTER,		//quarter item in menu
+	ITM_HALF,		//Halh item in menu
 
 
 	//TODO: Add more items names here
-	ITM_DUBBLE,       //Hexa item in menue
+	ITM_DOUBLE,       //Double item in menue
 	
-	ITEM_FOURTH,
-	ITM_BACK2,
+	ITM_QUADRUPLE, //Quadruple item in menue
+	ITM_BACK, // back item in menue
 
 	SIZE_ITM_COUNT		//no. of menu items ==> This should be the last line in this enum
 
