@@ -35,7 +35,7 @@ void AddHexaAction::Execute()
 		while (!flag)
 		{
 			pGUI->GetPointClicked(P1.x, P1.y); //Get Pasting Point
-			if (!(P2.y < UI.StatusBarHeight || P2.y > UI.height - UI.StatusBarHeight))
+			if (!(P1.y < UI.StatusBarHeight || P1.y > UI.height - UI.StatusBarHeight))
 				flag = 1;
 		}
 	}

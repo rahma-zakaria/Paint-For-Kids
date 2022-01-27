@@ -26,9 +26,10 @@ public:
 
 	/////////// Output Functoinality  ////////////////
 	void CreateDrawToolBar() const;	//creates Draw mode toolbar & menu
+	void CreateSizeToolBar() const; // create size toolBar & menue
 	void CreatePlayToolBar() const;	//creates Play mode toolbar & menu
 	void CreateStatusBar() const;	//create the status bar
-
+	
 	void ClearStatusBar() const;	//Clears the status bar
 	void ClearDrawArea() const;	//Clears the drawing area
 	

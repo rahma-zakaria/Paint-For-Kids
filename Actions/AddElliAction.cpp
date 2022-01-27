@@ -44,7 +44,7 @@ void AddElliAction::Execute()
 
 	 pGUI->ClearStatusBar();
 
-	 pGUI->PrintMessage("New Ellipse: Click at the first point of ellipse");
+	 pGUI->PrintMessage("New Ellipse: Click at the second point of ellipse");
 
 	 //Read center and store in point C
 	 pGUI->GetPointClicked(P2.x, P2.y);

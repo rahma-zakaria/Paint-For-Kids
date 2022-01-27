@@ -4,6 +4,7 @@
 #include "Actions\AddHexaAction.h"
 #include "Actions\ActionSave.h"
 #include "Actions\ActionLoad.h"
+#include "Actions\RezizeAction.h"
 #include<iostream>
 #include <fstream>
 
@@ -65,7 +66,9 @@ Action* ApplicationManager::CreateAction(ActionType ActType)
 		case DRAW_HEX:
 			newAct = new AddHexaAction(this);
 			break;
-
+		case RESIZE:
+			newAct = new RezizeAction(this);
+			break;
 		case SAVE:
 			newAct = new ActionSave(this);
 			break;

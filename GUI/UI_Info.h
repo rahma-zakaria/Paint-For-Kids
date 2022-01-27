@@ -10,7 +10,8 @@
 enum GUI_MODE	//Graphical user interface mode
 {
 	MODE_DRAW,	//Drawing mode (startup mode)
-	MODE_PLAY	//Playing mode
+	MODE_PLAY,	//Playing mode
+	MODE_SIZE  //create size mode 
 };
 
 enum DrawMenuItem //The items of the Draw menu (you should add more items)
@@ -25,10 +26,28 @@ enum DrawMenuItem //The items of the Draw menu (you should add more items)
 	ITM_Hexa,       //Hexa item in menue
 	ITM_Save,       //Save item in menue
 	ITM_Load,       //Load item in menue
+	ITIM_RESIZE,    //create resize menue 
 	ITM_EXIT,		//Exit item
 	
 	DRAW_ITM_COUNT		//no. of menu items ==> This should be the last line in this enum
 	
+};
+
+enum sizeMenueItems //The items of the Draw menu (you should add more items)
+{
+	//Note: Items are ordered here as they appear in menu
+	//If you want to change the menu items order, change the order here
+	ITM_QURT,		//Square item in menu
+	ITM_HALF,		//Ellipse item in menu
+
+
+	//TODO: Add more items names here
+	ITM_DUBBLE,       //Hexa item in menue
+	
+	ITEM_FOURTH,
+
+	SIZE_ITM_COUNT		//no. of menu items ==> This should be the last line in this enum
+
 };
 
 enum PlayMenuItem //The items of the Play menu (you should add more items)

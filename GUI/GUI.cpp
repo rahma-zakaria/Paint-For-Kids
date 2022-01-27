@@ -32,7 +32,9 @@ GUI::GUI()
 	pWind->ChangeTitle("Paint for Kids - Programming Techniques Project");
 	
 	CreateDrawToolBar();
+
 	CreateStatusBar();
+	
 	
 }
 
@@ -90,6 +92,7 @@ ActionType GUI::MapInputToActionType() const
 			case ITM_Hexa: return DRAW_HEX;
 			case ITM_Save: return SAVE;			
 			case ITM_Load: return LOAD;
+			case ITIM_RESIZE: return RESIZE;
 			case ITM_EXIT: return EXIT;	
 			
 			default: return EMPTY;	//A click on empty place in desgin toolbar
@@ -158,7 +161,9 @@ void GUI::CreateDrawToolBar() const
 	MenuItemImages[ITM_Hexa] = "images\\MenuItems\\hexa.png";
 	MenuItemImages[ITM_Save] = "images\\MenuItems\\Save.png";
 	MenuItemImages[ITM_Load] = "images\\MenuItems\\Load.jpg";
+	MenuItemImages[ITIM_RESIZE] = "images\\MenuItems\\Resize.jpg";
 	MenuItemImages[ITM_EXIT] = "images\\MenuItems\\Menu_Exit.jpg";
+	
 
 	//TODO: Prepare images for each menu item and add it to the list
 
@@ -171,6 +176,38 @@ void GUI::CreateDrawToolBar() const
 	//Draw a line under the toolbar
 	pWind->SetPen(RED, 3);
 	pWind->DrawLine(0, UI.ToolBarHeight, UI.width, UI.ToolBarHeight);	
+
+}
+// new toolBar
+void GUI::CreateSizeToolBar() const
+{
+	CreateStatusBar();
+	UI.InterfaceMode = MODE_SIZE;
+
+	//First prepare List of images for each menu item
+	//To control the order of these images in the menu, 
+	//reoder them in UI_Info.h ==> enum DrawMenuItem
+	string MenuItemImages[SIZE_ITM_COUNT];
+	MenuItemImages[ITM_QURT] = "images\\MenuItems\\circle-quarter.jpg";
+	MenuItemImages[ITM_HALF] = "images\\MenuItems\\LLduu.jpg";
+	MenuItemImages[ITM_DUBBLE] = "images\\MenuItems\\d-2.jpg";
+	MenuItemImages[ITEM_FOURTH] = "images\\MenuItems\\f.jpg";
+	/*MenuItemImages[ITM_QURT] = "images\\MenuItems\\Menu_Sqr.jpg";
+	MenuItemImages[ITM_HALF] = "images\\MenuItems\\Menu_Sqr.jpg";
+	/*MenuItemImages[ITM_DUBBLE] = "images\\MenuItems\\Menu_Sqr.jpg";
+	MenuItemImages[ITEM_FOURTH] = "images\\MenuItems\\Menu_Sqr.jpg";*/
+
+	//TODO: Prepare images for each menu item and add it to the list
+
+	//Draw menu item one image at a time
+	for (int i = 0; i < SIZE_ITM_COUNT; i++)
+		pWind->DrawImage(MenuItemImages[i], i * UI.MenuItemWidth, 0, UI.MenuItemWidth, UI.ToolBarHeight);
+
+
+
+	//Draw a line under the toolbar
+	pWind->SetPen(RED, 3);
+	pWind->DrawLine(0, UI.ToolBarHeight, UI.width, UI.ToolBarHeight);
 
 }
 //////////////////////////////////////////////////////////////////////////////////////////
