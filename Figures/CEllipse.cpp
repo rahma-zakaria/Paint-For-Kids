@@ -55,3 +55,12 @@ void CEllipse::Load(ifstream& inFile)
 		FigGfxInfo.isFilled = true;
 	}
 }
+
+int CEllipse::getFigureData(POINT& p1, POINT& p2)
+{
+	return 1;
+}
+
+string CEllipse::getFigureName() {
+	return "Ellipse selected";
+}

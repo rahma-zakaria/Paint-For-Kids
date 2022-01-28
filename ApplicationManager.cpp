@@ -54,6 +54,17 @@ void ApplicationManager::Run()
 //Creates an action
 Action* ApplicationManager::CreateAction(ActionType ActType) 
 {
+
+	//for selecting purpose variable
+	int x, y;
+	CFigure* whichFigSelected;
+	POINT p1, p2;
+	int numberOfFiguresSelected = 0, previousFigure = 0;
+	int length;
+	bool isFigureSelected = false;
+	string figureName;
+	// end for selecting purpose
+
 	Action* newAct = NULL;
 	
 	//According to Action Type, create the corresponding action object
@@ -85,6 +96,40 @@ Action* ApplicationManager::CreateAction(ActionType ActType)
 			break;
 		case BACK: 
 			mode = 0;
+			break;
+
+		case DRAWING_AREA:
+			pGUI->GetPointClicked(x, y);
+			if (FigCount == 0) {
+				pGUI->PrintMessage("no figures drawing");
+			}
+			else {
+				for (int i = 0; i < FigCount; i++)
+				{
+					whichFigSelected = FigList[i];
+					length = whichFigSelected->getFigureData(p1, p2);
+
+					if (x >= p1.x && x <= p2.x && y >= p1.y && y <= p2.y)
+					{
+						isFigureSelected = whichFigSelected->IsSelected();
+						numberOfFiguresSelected++;
+						figureName = whichFigSelected->getFigureName();
+						isFigureSelected ? pGUI->CreateStatusBar() : pGUI->PrintMessage(figureName);
+						isFigureSelected ? whichFigSelected->SetSelected(false) : whichFigSelected->SetSelected(true);
+					}
+					else {
+						whichFigSelected->SetSelected(false);
+					}
+					if (numberOfFiguresSelected == 1 && previousFigure == 0) {
+						previousFigure = i;
+					}
+					else if (numberOfFiguresSelected > 1) {
+						CFigure* t = FigList[previousFigure];
+						t->SetSelected(false);
+						previousFigure = i;
+					}
+				}
+			}
 			break;
 
 		case EXIT:

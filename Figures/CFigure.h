@@ -31,7 +31,8 @@ public:
 	///It should be overridden by each inherited figure
 
 	///Decide the parameters that you should pass to each function	
-
+	virtual int getFigureData(POINT& p1, POINT& p2) = 0;
+	virtual string getFigureName() = 0;
 
 	//virtual void Rotate() = 0;	//Rotate the figure
 	//virtual void Resize() = 0;	//Resize the figure

@@ -14,6 +14,8 @@ public:
 	virtual void DrawMe(GUI* pOut) const;
 	virtual void Save(ofstream& outFile);
 	virtual void Load(ifstream& inFile);
+	int getFigureData(POINT& p1, POINT& p2);
+	string getFigureName();
 };
 
 #endif

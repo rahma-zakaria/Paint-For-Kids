@@ -51,3 +51,12 @@ void CHexagon::Load(ifstream& inFile)
 		FigGfxInfo.isFilled = true;
 	}
 }
+
+int CHexagon::getFigureData(POINT& p1, POINT& p2)
+{
+	return 1;
+}
+
+string CHexagon::getFigureName() {
+	return "Hexagon selected";
+}

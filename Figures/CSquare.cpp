@@ -60,3 +60,16 @@ void CSquare::Load(ifstream& inFile)
 	}
 
 }
+
+int CSquare::getFigureData(POINT& p1, POINT& p2)
+{
+	p1.x = TopLeftCorner.x;
+	p1.y = TopLeftCorner.y;
+	p2.x = TopLeftCorner.x + length;
+	p2.y = TopLeftCorner.y + length;
+	return length;
+}
+
+string CSquare::getFigureName() {
+	return "Square selected";
+}
