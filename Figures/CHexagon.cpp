@@ -54,7 +54,8 @@ void CHexagon::Load(ifstream& inFile)
 
 int CHexagon::getFigureData(POINT& p1, POINT& p2)
 {
-	return 1;
+	// not finished yet
+	return -1;
 }
 
 string CHexagon::getFigureName() {
