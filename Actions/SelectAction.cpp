@@ -48,7 +48,7 @@ void SelectAction::Select() {
 	GUI* pGUI = pManager->GetGUI(); //Get a Pointer to the Output Interface
 	//SelectedFig->PrintInfo(pGUI); //Print the selected figure info on the status bar
 }
-
+	
 //Unselect a selected figure
 void SelectAction::Unselect() {
 	SelectedFig->SetSelected(false); //Sets the figure as "unselected"
