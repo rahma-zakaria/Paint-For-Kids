@@ -95,7 +95,7 @@ Action* ApplicationManager::CreateAction(ActionType ActType)
 			break;
 	
 			//case select Action
-			case SELECT:
+			case DRAWING_AREA:
 			newAct = new SelectAction(this);
 			std::cout << "Select";
 			break;
