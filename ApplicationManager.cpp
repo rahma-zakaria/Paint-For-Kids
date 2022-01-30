@@ -2,6 +2,7 @@
 #include "Actions\ActionAddSquare.h"
 #include "Actions\AddElliAction.h"
 #include "Actions\AddHexaAction.h"
+#include "Actions\SelectAction.h"
 #include "Actions\ActionSave.h"
 #include "Actions\ActionLoad.h"
 #include "Actions\RezizeAction.h"
@@ -21,9 +22,20 @@ ApplicationManager::ApplicationManager() : mode(0)
 	
 	FigCount = 0;
 		
-	//Create an array of figure pointers and set them to NULL		
-	for(int i=0; i<MaxFigCount; i++)
-		FigList[i] = NULL;	
+	// Rahma
+	////and intialise SelectedFigs array to NULL
+	for (int i = 0; i < MaxFigCount; i++) {
+		FigList[i] = NULL;
+
+		//Rahma
+		SelectedFigs[i] = NULL;
+
+
+	}
+	//initialise selectedCount to 0
+	selectedCount = 0;
+
+	pGUI->PrintMessage("Welcome to a world of wonders ! (i.e colors and stuff)");
 }
 
 void ApplicationManager::Run()
@@ -81,6 +93,13 @@ Action* ApplicationManager::CreateAction(ActionType ActType)
 		case DRAW_HEX:
 			newAct = new AddHexaAction(this);
 			break;
+	
+			//case select Action
+			case SELECT:
+			newAct = new SelectAction(this);
+			std::cout << "Select";
+			break;
+
 		/*case RESIZE:
 			newAct = new RezizeAction(this);
 			break;*/
@@ -98,7 +117,7 @@ Action* ApplicationManager::CreateAction(ActionType ActType)
 			mode = 0;
 			break;
 
-		case DRAWING_AREA:
+		/*case DRAWING_AREA:
 			pGUI->GetPointClicked(x, y);
 			if (FigCount == 0) {
 				pGUI->PrintMessage("no figures drawing");
@@ -131,6 +150,8 @@ Action* ApplicationManager::CreateAction(ActionType ActType)
 				}
 			}
 			break;
+			*/
+		
 
 		case EXIT:
 			///create ExitAction here
@@ -170,12 +191,59 @@ CFigure *ApplicationManager::GetFigure(int x, int y) const
 {
 	//If a figure is found return a pointer to it.
 	//if this point (x,y) does not belong to any figure return NULL
-
+	for (int i = FigCount - 1; i >= 0; i--)
+	{
+		if (FigList[i]->PointInShape(x, y))
+			return FigList[i];
+	}
 
 	///Add your code here to search for a figure given a point x,y	
 
 	return NULL;
 }
+
+//==================================================================================//
+//							Select Functions										//
+//==================================================================================//
+
+//Returns the number of selected figures
+int ApplicationManager::GetSelectedCount() const {
+	return selectedCount;
+}
+////////////////////////////////////////////////////////////////////////////////////
+//Returns a pointer to SelectedFigs array
+CFigure* const* ApplicationManager::GetSelectedFigures() const {
+	return SelectedFigs;
+}
+///////////////////////////////////////////////////////////////////////////////////
+//Adds a figure to the SelectedFigs array
+void ApplicationManager::AddSelectedFigure(CFigure* sf) {
+
+	SelectedFigs[selectedCount] = sf;
+	selectedCount++;
+}
+////////////////////////////////////////////////////////////////////////////////////
+//Removes a figure from the SelectedFigs array
+void ApplicationManager::RemoveSelectedFigure(CFigure* sf) {
+
+	for (int i = 0; i < selectedCount; i++) {
+		if (SelectedFigs[i] == sf) {
+			SelectedFigs[i] = SelectedFigs[selectedCount - 1];
+			SelectedFigs[selectedCount - 1] = NULL;
+			selectedCount--;
+			return;
+		}
+	}
+}
+
+void ApplicationManager::ClearSelectedFigs() {
+	for (int i = 0; i < selectedCount; i++)
+	{
+		SelectedFigs[i] = NULL;
+	}
+	selectedCount = 0;
+}
+
 //==================================================================================//
 //							Interface Management Functions							//
 //==================================================================================//
@@ -205,6 +273,8 @@ ApplicationManager::~ApplicationManager()
 	delete pGUI;
 	
 }
+
+
 
 //==================================================================================//
 //							Save And Load Functions							//

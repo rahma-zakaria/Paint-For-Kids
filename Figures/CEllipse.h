@@ -14,6 +14,7 @@ public:
 	virtual void Save(ofstream& outFile);
 	virtual void Load(ifstream& inFile);
 	int getFigureData(POINT& p1, POINT& p2);
+	virtual bool PointInShape(int x, int y) const;
 	string getFigureName();
 };
 

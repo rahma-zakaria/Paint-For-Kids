@@ -70,6 +70,11 @@ int CSquare::getFigureData(POINT& p1, POINT& p2)
 	return length;
 }
 
+bool CSquare::PointInShape(int x, int y) const {
+	return (x >= TopLeftCorner.x && x <= TopLeftCorner.x + length)
+		&& (y >= TopLeftCorner.y && y <= TopLeftCorner.y + length);
+}
+
 string CSquare::getFigureName() {
 	return "Square selected";
 }

@@ -25,6 +25,7 @@ void CEllipse::DrawMe(GUI* pGUI) const
 
 }
 
+
 void CEllipse::Save(ofstream& outFile)
 {
 	outFile << type << "\t" << ID << "\t" << point1.x << "\t" << point1.y <<
@@ -63,4 +64,9 @@ int CEllipse::getFigureData(POINT& p1, POINT& p2)
 
 string CEllipse::getFigureName() {
 	return "Ellipse selected";
+}
+
+bool CEllipse::PointInShape(int x, int y) const {
+	return (x >= point1.x && x <= point2.x)
+		&& (y >= point1.y && y <= point2.y);
 }

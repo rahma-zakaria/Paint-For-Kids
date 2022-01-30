@@ -2,6 +2,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include "../DEFS.h"
 
 CHexagon::CHexagon(Point c, Point p, GfxInfo FigureGfxInfo) :CFigure(FigureGfxInfo)
 {
@@ -11,7 +12,7 @@ CHexagon::CHexagon(Point c, Point p, GfxInfo FigureGfxInfo) :CFigure(FigureGfxIn
 	type = "HEXA";
 }
 
-CHexagon::CHexagon() {}
+CHexagon::CHexagon() {} //default constractur
 
 void CHexagon::DrawMe(GUI* pGUI) const
 {
@@ -59,4 +60,11 @@ int CHexagon::getFigureData(POINT& p1, POINT& p2)
 
 string CHexagon::getFigureName() {
 	return "Hexagon selected";
+}
+bool CHexagon::PointInShape(int x, int y) const {
+	Point tempP;
+	tempP.x = center.x - (point.x - center.x);
+	tempP.y = center.y-(point.y-center.y);
+	return (x >= tempP.x && x <= point.x)
+		&& (y >= tempP.y && y <= point.y);
 }

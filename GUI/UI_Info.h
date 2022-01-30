@@ -24,6 +24,9 @@ enum DrawMenuItem //The items of the Draw menu (you should add more items)
 	
 	//TODO: Add more items names here
 	ITM_Hexa,       //Hexa item in menue
+	 
+	ITM_Select,     //Select item in menu
+
 	ITM_Save,       //Save item in menue
 	ITM_Load,       //Load item in menue
 	ITIM_RESIZE,    //create resize menue 
