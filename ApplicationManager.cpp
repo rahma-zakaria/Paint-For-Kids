@@ -116,6 +116,12 @@ Action* ApplicationManager::CreateAction(ActionType ActType)
 		case BACK: 
 			mode = 0;
 			break;
+		case TO_PLAY:
+			mode = 2;
+			break;
+		case TO_DRAW:
+			mode = 0;
+			break;
 
 		case EXIT:
 			///create ExitAction here
@@ -223,6 +229,8 @@ void ApplicationManager::UpdateInterface() const
 		pGUI->CreateDrawToolBar();
 	else if (mode == 1)
 		pGUI->CreateSizeToolBar();
+	else if (mode == 2)
+		pGUI->CreatePlayToolBar();
 }
 ////////////////////////////////////////////////////////////////////////////////////
 //Return a pointer to the interface

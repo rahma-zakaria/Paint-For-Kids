@@ -21,7 +21,6 @@ enum DrawMenuItem //The items of the Draw menu (you should add more items)
 	ITM_SQUR,		//Square item in menu
 	ITM_ELPS,		//Ellipse item in menu
 	
-	
 	//TODO: Add more items names here
 	ITM_Hexa,       //Hexa item in menue
 	 
@@ -30,6 +29,7 @@ enum DrawMenuItem //The items of the Draw menu (you should add more items)
 	ITM_Save,       //Save item in menue
 	ITM_Load,       //Load item in menue
 	ITIM_RESIZE,    //create resize menue 
+	ITIM_SwitchPlay,    //switch To play Mode 
 	ITM_EXIT,		//Exit item
 	
 	DRAW_ITM_COUNT		//no. of menu items ==> This should be the last line in this enum
@@ -56,13 +56,10 @@ enum sizeMenueItems //The items of the Draw menu (you should add more items)
 
 enum PlayMenuItem //The items of the Play menu (you should add more items)
 {
-	//Note: Items are ordered here as they appear in menu
-	//If you want to change the menu items order, change the order here
-	
-	//TODO: Add more items names here
+	ITIM_SwitchDraw,    //switch To Draw Mode 
+	//ITM_EXIT,		//Exit item
 
 	PLAY_ITM_COUNT		//no. of menu items ==> This should be the last line in this enum
-	
 };
 
 

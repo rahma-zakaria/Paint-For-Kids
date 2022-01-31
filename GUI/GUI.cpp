@@ -94,6 +94,7 @@ ActionType GUI::MapInputToActionType() const
 			case ITM_Save: return SAVE;			
 			case ITM_Load: return LOAD;
 			case ITIM_RESIZE: return TO_SIZE;
+			case ITIM_SwitchPlay: return TO_PLAY;    //switch To play Mode 
 			case ITM_EXIT: return EXIT;	
 			
 			default: return EMPTY;	//A click on empty place in desgin toolbar
@@ -133,8 +134,27 @@ ActionType GUI::MapInputToActionType() const
 	{
 		///TODO:
 		//perform checks similar to Draw mode checks above
-		//and return the correspoding action
-		return TO_PLAY;	//just for now. This should be updated
+		
+		//[1] If user clicks on the Toolbar
+		if (y >= 0 && y < UI.ToolBarHeight)
+		{
+			int ClickedItemOrder = (x / UI.MenuItemWidth);
+			switch (ClickedItemOrder)
+			{
+			case ITIM_SwitchDraw: return TO_DRAW;
+
+			default: return EMPTY;	//A click on empty place in desgin toolbar
+			}
+		}
+
+		//[2] User clicks on the drawing area
+		if (y >= UI.ToolBarHeight && y < UI.height - UI.StatusBarHeight)
+		{
+			return DRAWING_AREA;
+		}
+
+		//[3] User clicks on the status bar
+		return STATUS;
 	}	
 
 }
@@ -192,6 +212,7 @@ void GUI::CreateDrawToolBar() const
 	MenuItemImages[ITM_Save] = "images\\MenuItems\\Save.jpg";
 	MenuItemImages[ITM_Load] = "images\\MenuItems\\Load.jpg";
 	MenuItemImages[ITIM_RESIZE] = "images\\MenuItems\\Resize.jpg";
+	MenuItemImages[ITIM_SwitchPlay] = "images\\MenuItems\\play.jpg";
 	MenuItemImages[ITM_EXIT] = "images\\MenuItems\\Menu_Exit.jpg";
 	
 
@@ -202,7 +223,6 @@ void GUI::CreateDrawToolBar() const
 		pWind->DrawImage(MenuItemImages[i], i*UI.MenuItemWidth,0,UI.MenuItemWidth, UI.ToolBarHeight);
 
 
-
 	//Draw a line under the toolbar
 	pWind->SetPen(RED, 3);
 	pWind->DrawLine(0, UI.ToolBarHeight, UI.width, UI.ToolBarHeight);	
@@ -211,7 +231,7 @@ void GUI::CreateDrawToolBar() const
 // new toolBar
 void GUI::CreateSizeToolBar() const
 {
-	CreateToolBar();
+	//CreateToolBar();
 	//CreateStatusBar();
 	UI.InterfaceMode = MODE_SIZE;
 
@@ -246,8 +266,22 @@ void GUI::CreateSizeToolBar() const
 
 void GUI::CreatePlayToolBar() const
 {
+	CreateToolBar();
 	UI.InterfaceMode = MODE_PLAY;
 	///TODO: write code to create Play mode menu
+	string MenuItemImages[PLAY_ITM_COUNT];
+	MenuItemImages[ITIM_SwitchDraw] = "images\\MenuItems\\draw.jpg";
+
+	//TODO: Prepare images for each menu item and add it to the list
+
+	//Draw menu item one image at a time
+	for (int i = 0; i < PLAY_ITM_COUNT; i++)
+		pWind->DrawImage(MenuItemImages[i], i * UI.MenuItemWidth, 0, UI.MenuItemWidth, UI.ToolBarHeight);
+
+	//Draw a line under the toolbar
+	pWind->SetPen(RED, 3);
+	pWind->DrawLine(0, UI.ToolBarHeight, UI.width, UI.ToolBarHeight);
+
 }
 //////////////////////////////////////////////////////////////////////////////////////////
 
