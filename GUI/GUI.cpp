@@ -315,6 +315,15 @@ color GUI::getCrntFillColor() const	//get current filling color
 int GUI::getCrntPenWidth() const		//get current pen width
 {	return UI.PenWidth;	}
 
+void GUI::changeCrntDrawColor(color SelectedColor)
+{
+	UI.DrawColor = SelectedColor;
+}
+
+void GUI::changeCrntFillColor(color SelectedColor)
+{
+	UI.FillColor = SelectedColor;
+}
 //======================================================================================//
 //								Figures Drawing Functions								//
 //======================================================================================//

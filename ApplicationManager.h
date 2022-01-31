@@ -32,6 +32,8 @@ public:
 
 	void Run();		//to run the application
 	
+	ActionType GetUserAction() const;
+
 	// -- Action-Related Functions
 	Action* CreateAction(ActionType);
 	void ExecuteAction(Action*&) ; //Execute an action
@@ -60,6 +62,8 @@ public:
 	void LoadAll(ifstream& fileName);//Load all figures in figure list
 
 	void ClearAllFig();
+	void ChangeCDrawingColor(color SelectedColor);
+	void ChangeSDrawingColor(color SelectedColor);
 };
 
 #endif

@@ -65,19 +65,15 @@ void ApplicationManager::Run()
 //==================================================================================//
 //								Actions Related Functions							//
 //==================================================================================//
+ActionType ApplicationManager::GetUserAction() const
+{
+	//Ask the input to get the action from the user.
+	return pGUI->MapInputToActionType();
+}
+////////////////////////////////////////////////////////////////////////////////////
 //Creates an action
 Action* ApplicationManager::CreateAction(ActionType ActType) 
 {
-
-	//for selecting purpose variable
-	int x, y;
-	CFigure* whichFigSelected;
-	POINT p1, p2;
-	int numberOfFiguresSelected = 0, previousFigure = 0;
-	int length;
-	bool isFigureSelected = false;
-	string figureName;
-	// end for selecting purpose
 
 	Action* newAct = NULL;
 	
@@ -312,4 +308,17 @@ void ApplicationManager::ClearAllFig()
 		FigList[i] = NULL;
 	}
 	FigCount = 0;
+}
+
+void ApplicationManager::ChangeCDrawingColor(color selectedColor)
+{
+	pGUI->changeCrntDrawColor(selectedColor);
+}
+
+void ApplicationManager::ChangeSDrawingColor(color selectedColor)
+{
+	for (int i = 0; i < selectedCount; i++)
+	{
+		FigList[i]->ChngDrawClr(selectedColor);
+	}
 }
