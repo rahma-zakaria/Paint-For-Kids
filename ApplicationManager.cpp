@@ -6,6 +6,8 @@
 #include "Actions\ActionSave.h"
 #include "Actions\ActionLoad.h"
 #include "Actions\RezizeAction.h"
+#include "Actions\SwitchToDraw.h"
+#include "Actions\SwitchToPlay.h"
 #include "Figures\CSquare.h"
 #include "Figures\CHexagon.h"
 #include "Figures\CEllipse.h"
@@ -118,9 +120,11 @@ Action* ApplicationManager::CreateAction(ActionType ActType)
 			break;
 		case TO_PLAY:
 			mode = 2;
+			newAct = new SwitchToPlay(this);
 			break;
 		case TO_DRAW:
 			mode = 0;
+			newAct = new SwitchToDraw(this);
 			break;
 
 		case EXIT:
@@ -171,6 +175,8 @@ CFigure *ApplicationManager::GetFigure(int x, int y) const
 
 	return NULL;
 }
+
+int ApplicationManager::GetFigCount() { return FigCount; }
 
 //==================================================================================//
 //							Select Functions										//

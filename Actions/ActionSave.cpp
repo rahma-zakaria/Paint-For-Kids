@@ -25,7 +25,6 @@ void ActionSave::ReadActionParameters()
 	ofn.lpstrDefExt = "conf";
 	if (GetSaveFileName(&ofn)) {
 		filename = Name;
-		//ofstream fout(Name, ios::out);
 	}
 	else {
 		printf("No Name");
@@ -42,7 +41,6 @@ void ActionSave::Execute()
 
 	pGUI->PrintMessage("Save");
 	ReadActionParameters();
-	//ofstream fout(filename, ios::out);
 	pGUI->PrintMessage("Save succesfull to " + filename);
 
 	ofstream MyFile;
