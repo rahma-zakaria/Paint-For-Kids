@@ -31,6 +31,7 @@ enum DrawMenuItem //The items of the Draw menu (you should add more items)
 	ITIM_RESIZE,    //create resize menue 
 	ITM_PALETTE,
 	ITM_CHANGECDC,
+	ITM_CHANGECFC,
 	ITIM_SwitchPlay,    //switch To play Mode 
 	ITM_EXIT,		//Exit item
 	
@@ -79,7 +80,8 @@ struct UI_Info	//User Interface Info.
 		StatusBarHeight,	//Status Bar Height
 		ToolBarHeight,		//Tool Bar Height (distance from top of window to bottom line of toolbar)
 		MenuItemWidth;		//Width of each item in toolbar menu
-	
+	bool FillFigures;
+
 
 	color DrawColor;		//Drawing color
 	color FillColor;		//Filling color

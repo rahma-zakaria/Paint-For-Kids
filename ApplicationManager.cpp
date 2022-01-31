@@ -5,7 +5,9 @@
 #include "Actions\SelectAction.h"
 #include "Actions\ActionSave.h"
 #include "Actions\ActionLoad.h"
+#include "Actions/ChangeCFCAction.h"
 #include "Actions\ChangeCDCAction.h"
+#include "Actions/ExitAction.h"
 #include "Actions\RezizeAction.h"
 #include "Actions\SwitchToDraw.h"
 #include "Actions\SwitchToPlay.h"
@@ -15,6 +17,7 @@
 #include<iostream>
 #include <fstream>
 #include <string>
+
 
 
 //Constructor
@@ -106,7 +109,9 @@ Action* ApplicationManager::CreateAction(ActionType ActType)
 		case CHNG_DRAW_CLR:
 			newAct = new ChangeCDCAction(this);
 			break;
-
+		case CHNG_FILL_CLR:
+			newAct = new ChangeCFCAction(this);
+			break;
 		case SAVE:
 			newAct = new ActionSave(this);
 			break;
@@ -131,7 +136,7 @@ Action* ApplicationManager::CreateAction(ActionType ActType)
 
 		case EXIT:
 			///create ExitAction here
-			
+			newAct = new ExitAction(this);
 			break;
 		
 		case STATUS:	//a click on the status bar ==> no action
@@ -326,6 +331,28 @@ void ApplicationManager::ChangeSDrawingColor(color selectedColor)
 	for (int i = 0; i < selectedCount; i++)
 	{
 		SelectedFigs[i]->ChngDrawClr(selectedColor);
+	}
+}
+
+void ApplicationManager::ChangeCFillColor(color SelectedColor)
+{
+	if (true)
+	{
+		UI.FillFigures = 0;
+		UI.FillColor = INDIAN;
+	}
+	else
+	{
+		UI.FillFigures = 1;
+		pGUI->changeCrntFillColor(SelectedColor);
+	}
+}
+
+void ApplicationManager::ChangeSFillColor(color SelectedColor)
+{
+	for (int i = 0; i < selectedCount; i++)
+	{
+		SelectedFigs[i]->ChngFillClr(SelectedColor);
 	}
 }
 

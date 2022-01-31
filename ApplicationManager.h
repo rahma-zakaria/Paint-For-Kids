@@ -64,6 +64,8 @@ public:
 	void ClearAllFig();
 	void ChangeCDrawingColor(color SelectedColor);
 	void ChangeSDrawingColor(color SelectedColor);
+	void ChangeCFillColor(color SelectedColor);
+	void ChangeSFillColor(color SelectedColor);
 	CFigure* getSelectedFig();
 };
 

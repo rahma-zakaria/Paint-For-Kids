@@ -108,6 +108,7 @@ ActionType GUI::MapInputToActionType() const
 				return COLOR_BLUE;
 			}
 			case ITM_CHANGECDC: return CHNG_DRAW_CLR;
+			case ITM_CHANGECFC: return CHNG_FILL_CLR;
 			case ITM_SQUR: return DRAW_SQUARE;
 			case ITM_ELPS: return DRAW_ELPS;
 			case ITM_Hexa: return DRAW_HEX;
@@ -235,7 +236,7 @@ void GUI::CreateDrawToolBar() const
 	MenuItemImages[ITIM_RESIZE] = "images\\MenuItems\\Resize.jpg";
 	MenuItemImages[ITM_PALETTE] = "images\\MenuItems\\Menu_Palette.jpg";
 	MenuItemImages[ITM_CHANGECDC] = "images\\MenuItems\\drawcolor.jpg";
-
+	MenuItemImages[ITM_CHANGECFC] = "images\\MenuItems\\Menu_FillColor.jpg";
 	MenuItemImages[ITIM_SwitchPlay] = "images\\MenuItems\\play.jpg";
 	MenuItemImages[ITM_EXIT] = "images\\MenuItems\\Menu_Exit.jpg";
 	
