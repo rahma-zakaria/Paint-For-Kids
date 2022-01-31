@@ -29,6 +29,8 @@ enum DrawMenuItem //The items of the Draw menu (you should add more items)
 	ITM_Save,       //Save item in menue
 	ITM_Load,       //Load item in menue
 	ITIM_RESIZE,    //create resize menue 
+	ITIM_UNDO,    //undo item in menue
+	ITIM_REDO,    //redo item in menue 
 	ITIM_SwitchPlay,    //switch To play Mode 
 	ITM_EXIT,		//Exit item
 	

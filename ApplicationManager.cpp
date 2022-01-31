@@ -92,7 +92,6 @@ Action* ApplicationManager::CreateAction(ActionType ActType)
 		case SAVE:
 			newAct = new ActionSave(this);
 			break;
-
 		case LOAD:
 			newAct = new ActionLoad(this);
 			break;
@@ -101,6 +100,12 @@ Action* ApplicationManager::CreateAction(ActionType ActType)
 			break;
 		case BACK: 
 			mode = 0;
+			break;
+		case UNDO:
+			
+			break;
+		case REDO:
+
 			break;
 		case TO_PLAY:
 			mode = 2;

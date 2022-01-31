@@ -17,14 +17,14 @@ void SwitchToPlay::ReadActionParameters()
 void SwitchToPlay::Execute()
 {
 	GUI* pGUI = pManager->GetGUI();
-	pManager->ClearSelectedFigs();
-
+	
 	ReadActionParameters();
+	pManager->ClearSelectedFigs();
+	ofstream MyFile;
+	MyFile.open("tempSave.txt", ios::out);
 
 	if(pManager->GetFigCount()!=0){
-		ofstream MyFile;
-		MyFile.open("tempSave.txt", ios::out);
 		pManager->SaveAll(MyFile);
-		MyFile.close();
 	}
+	MyFile.close();
 }
