@@ -204,6 +204,7 @@ void ApplicationManager::RemoveSelectedFigure(CFigure* sf) {
 void ApplicationManager::ClearSelectedFigs() {
 	for (int i = 0; i < selectedCount; i++)
 	{
+		SelectedFigs[i]->SetSelected(false);
 		SelectedFigs[i] = NULL;
 	}
 	selectedCount = 0;
