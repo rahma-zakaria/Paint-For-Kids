@@ -1,14 +1,5 @@
 #include "ActionLoad.h"
-#include <fstream>
-#include <iostream>
-#include <sstream>
-#include "../Figures/CSquare.h"
-#include "../GUI/GUI.h"
 #include "../ApplicationManager.h"
-#include "../CMUgraphicsLib/colors.h"
-#include <windows.h>
-#include <Commdlg.h>
-
 
 ActionLoad::ActionLoad(ApplicationManager* pApp) :Action(pApp) {
 
@@ -36,31 +27,28 @@ void ActionLoad::ReadActionParameters()
 	ofn.Flags = OFN_PATHMUSTEXIST | OFN_FILEMUSTEXIST;
 
 	if (GetOpenFileName(&ofn)) {
-		printf("\nIn file open\n");
 		filename = Name;
 	}
-	else {
-		std::cout << "no file selected ";
-	}
-
 }
 //Execute the action
 void ActionLoad::Execute() {
 	//Get a Pointer to the Interface
 	GUI* pGUI = pManager->GetGUI();
 	pGUI->PrintMessage("load");
+
 	ReadActionParameters();
-	
-	pGUI->PrintMessage("Load succesfull to " + filename);
+	if (filename.empty()) {
+		pGUI->PrintMessage("no file selected ");
+	}
+	else {
+		pGUI->PrintMessage("Load Succesfull From " + filename);
 
-	ifstream MyFile;
-	MyFile.open(filename, ios::app);
-
-	// Read from the text file
-	pManager->LoadAll(MyFile);
-
-	MyFile.close();
-
+		ifstream MyFile;
+		MyFile.open(filename, ios::app);
+		// Read from the text file
+		pManager->LoadAll(MyFile);
+		MyFile.close();
+	}
 }
 
 

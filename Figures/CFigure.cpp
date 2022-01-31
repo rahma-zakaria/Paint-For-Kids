@@ -10,7 +10,7 @@ CFigure::CFigure()
 {
 	//FigGfxInfo = NULL;	//Default status is non-filled.
 	Selected = false;
-	ID = nextID++;
+	//ID = nextID++;
 }
 
 int CFigure::nextID = 0;

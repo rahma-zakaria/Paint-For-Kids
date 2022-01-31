@@ -115,7 +115,6 @@ Action* ApplicationManager::CreateAction(ActionType ActType)
 		case SAVE:
 			newAct = new ActionSave(this);
 			break;
-
 		case LOAD:
 			newAct = new ActionLoad(this);
 			break;
@@ -124,6 +123,12 @@ Action* ApplicationManager::CreateAction(ActionType ActType)
 			break;
 		case BACK: 
 			mode = 0;
+			break;
+		case UNDO:
+			
+			break;
+		case REDO:
+
 			break;
 		case TO_PLAY:
 			mode = 2;
@@ -222,6 +227,7 @@ void ApplicationManager::RemoveSelectedFigure(CFigure* sf) {
 void ApplicationManager::ClearSelectedFigs() {
 	for (int i = 0; i < selectedCount; i++)
 	{
+		SelectedFigs[i]->SetSelected(false);
 		SelectedFigs[i] = NULL;
 	}
 	selectedCount = 0;
@@ -294,7 +300,6 @@ void ApplicationManager::LoadAll(ifstream& fileName)
 
 	while (FigNumbers) {
 		fileName >> FigureType;
-		std::cout << FigureType << " ";
 		if (FigureType == "SQR") {
 			LoadedFig = new CSquare;
 		}
@@ -308,6 +313,7 @@ void ApplicationManager::LoadAll(ifstream& fileName)
 		AddFigure(LoadedFig);
 		FigNumbers--;
 	}
+	UpdateInterface();
 
 }
 

@@ -1,5 +1,5 @@
 blue	white	white
 3
-	0	126	107	163	blue	NO_FILL
-	1	515	264	601	400	0	360	blue	NO_FILL
-	2	909	312	925	373	blue	NO_FILL
+HEXA	0	266	190	366	285	blue	red
+ELPS	1	760	292	859	495	0	360	blue	red
+ELPS	2	535	335	683	482	0	360	blue	red
