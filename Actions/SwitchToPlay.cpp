@@ -1,8 +1,5 @@
 #include "SwitchToPlay.h"
-#include "..\GUI\GUI.h"
 #include "..\ApplicationManager.h"
-
-#include <fstream>
 
 SwitchToPlay::SwitchToPlay(ApplicationManager * pApp):Action(pApp)
 {}
@@ -20,13 +17,13 @@ void SwitchToPlay::ReadActionParameters()
 void SwitchToPlay::Execute()
 {
 	GUI* pGUI = pManager->GetGUI();
+	pManager->ClearSelectedFigs();
+
 	ReadActionParameters();
 
 	if(pManager->GetFigCount()!=0){
-		pManager->ClearSelectedFigs();
-
 		ofstream MyFile;
-		MyFile.open("tempSave.txt", ios::out | ios::trunc);
+		MyFile.open("tempSave.txt", ios::out);
 		pManager->SaveAll(MyFile);
 		MyFile.close();
 	}

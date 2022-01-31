@@ -1,20 +1,4 @@
 #include "ApplicationManager.h"
-#include "Actions\ActionAddSquare.h"
-#include "Actions\AddElliAction.h"
-#include "Actions\AddHexaAction.h"
-#include "Actions\SelectAction.h"
-#include "Actions\ActionSave.h"
-#include "Actions\ActionLoad.h"
-#include "Actions\RezizeAction.h"
-#include "Actions\SwitchToDraw.h"
-#include "Actions\SwitchToPlay.h"
-#include "Figures\CSquare.h"
-#include "Figures\CHexagon.h"
-#include "Figures\CEllipse.h"
-#include<iostream>
-#include <fstream>
-#include <string>
-
 
 //Constructor
 ApplicationManager::ApplicationManager() : mode(0)
@@ -287,7 +271,6 @@ void ApplicationManager::LoadAll(ifstream& fileName)
 
 	while (FigNumbers) {
 		fileName >> FigureType;
-		std::cout << FigureType << " ";
 		if (FigureType == "SQR") {
 			LoadedFig = new CSquare;
 		}
@@ -301,6 +284,7 @@ void ApplicationManager::LoadAll(ifstream& fileName)
 		AddFigure(LoadedFig);
 		FigNumbers--;
 	}
+	UpdateInterface();
 
 }
 

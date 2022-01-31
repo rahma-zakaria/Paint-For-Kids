@@ -1,11 +1,5 @@
 #include "AddElliAction.h"
-
-#include "..\Figures\CEllipse.h"
-
 #include "..\ApplicationManager.h"
-
-#include "..\GUI\GUI.h"
-
 
 AddElliAction::AddElliAction(ApplicationManager* pApp) :Action(pApp)
 {}
