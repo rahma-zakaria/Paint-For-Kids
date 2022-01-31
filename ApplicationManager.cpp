@@ -5,6 +5,7 @@
 #include "Actions\SelectAction.h"
 #include "Actions\ActionSave.h"
 #include "Actions\ActionLoad.h"
+#include "Actions\ChangeCDCAction.h"
 #include "Actions\RezizeAction.h"
 #include "Actions\SwitchToDraw.h"
 #include "Actions\SwitchToPlay.h"
@@ -28,7 +29,6 @@ ApplicationManager::ApplicationManager() : mode(0)
 	////and intialise SelectedFigs array to NULL
 	for (int i = 0; i < MaxFigCount; i++) {
 		FigList[i] = NULL;
-
 		//Rahma
 		SelectedFigs[i] = NULL;
 
@@ -93,14 +93,20 @@ Action* ApplicationManager::CreateAction(ActionType ActType)
 			break;
 	
 			//case select Action
-			case DRAWING_AREA:
+		case SELECT:
+		case DRAWING_AREA:
 			newAct = new SelectAction(this);
 			std::cout << "Select";
 			break;
 
-		/*case RESIZE:
+			/*case RESIZE:
 			newAct = new RezizeAction(this);
 			break;*/
+
+		case CHNG_DRAW_CLR:
+			newAct = new ChangeCDCAction(this);
+			break;
+
 		case SAVE:
 			newAct = new ActionSave(this);
 			break;
@@ -319,6 +325,11 @@ void ApplicationManager::ChangeSDrawingColor(color selectedColor)
 {
 	for (int i = 0; i < selectedCount; i++)
 	{
-		FigList[i]->ChngDrawClr(selectedColor);
+		SelectedFigs[i]->ChngDrawClr(selectedColor);
 	}
+}
+
+CFigure* ApplicationManager::getSelectedFig()
+{
+	return SelectedFigs[0];
 }

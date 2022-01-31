@@ -10,7 +10,7 @@ class ChangeCDCAction : public Action
 	int SelectedColorIndex;
 	color SelectedColor;
 	bool IsSelected;
-	CFigure* const* SelectedFigure;
+	CFigure* SelectedFigure;
 public:
 	ChangeCDCAction(ApplicationManager* pApp);
 	virtual void ReadActionParameters();

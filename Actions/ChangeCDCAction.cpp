@@ -1,5 +1,5 @@
 #include "ChangeCDCAction.h"
-
+#include <iostream>
 #include "..\Figures\CEllipse.h"
 #include "..\Figures\CHexagon.h"
 #include "..\Figures\CSquare.h"
@@ -23,7 +23,7 @@ void ChangeCDCAction::ReadActionParameters()
 
 	GUI* pGui = pManager->GetGUI();
 
-	SelectedFigure = pManager->GetSelectedFigures();
+	SelectedFigure = pManager->getSelectedFig();
 	if (SelectedFigure == NULL)
 	{
 		pGui->PrintMessage("Select Color to Change Current Drawing Color");
@@ -41,31 +41,32 @@ void ChangeCDCAction::Execute()
 {
 	GUI* pGui = pManager->GetGUI();
 	ReadActionParameters();
-	if (SelectedColorIndex == 18)
+	std::cout << SelectedColorIndex;
+	if (SelectedColorIndex == 27)
 	{
 		SelectedColor = BLACK;
 		IsSelected = true;
 		pGui->PrintMessage("Current Drawing Color changed to BLACK");
 	}
-	else if (SelectedColorIndex == 19)
+	else if (SelectedColorIndex == 28)
 	{
 		SelectedColor = WHITE;
 		IsSelected = true;
 		pGui->PrintMessage("Current Drawing Color changed to WHITE");
 	}
-	else if (SelectedColorIndex == 20)
+	else if (SelectedColorIndex == 29)
 	{
 		SelectedColor = RED;
 		IsSelected = true;
 		pGui->PrintMessage("Current Drawing Color changed to RED");
 	}
-	else if (SelectedColorIndex == 21)
+	else if (SelectedColorIndex == 30)
 	{
 		SelectedColor = GREEN;
 		IsSelected = true;
 		pGui->PrintMessage("Current Drawing Color changed to GREEN");
 	}
-	else if (SelectedColorIndex == 22)
+	else if (SelectedColorIndex == 31)
 	{
 		SelectedColor = BLUE;
 		IsSelected = true;
@@ -75,6 +76,7 @@ void ChangeCDCAction::Execute()
 	{
 		pGui->PrintMessage("No Color has been selected");
 	}
+
 	if (SelectedFigure == NULL)
 	{
 		if (IsSelected)

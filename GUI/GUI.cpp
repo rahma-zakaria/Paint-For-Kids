@@ -87,6 +87,27 @@ ActionType GUI::MapInputToActionType() const
 
 			switch (ClickedItemOrder)
 			{
+			case ITM_PALETTE: if (x < ITM_PALETTE * UI.MenuItemWidth + UI.MenuItemWidth / 5)
+			{
+				return COLOR_BLACK;
+			}
+							else if (x < ITM_PALETTE * UI.MenuItemWidth + UI.MenuItemWidth * 2 / 5)
+			{
+				return COLOR_WHITE;
+			}
+							else if (x < ITM_PALETTE * UI.MenuItemWidth + UI.MenuItemWidth * 3 / 5)
+			{
+				return COLOR_RED;
+			}
+							else if (x < ITM_PALETTE * UI.MenuItemWidth + UI.MenuItemWidth * 4 / 5)
+			{
+				return COLOR_GREEN;
+			}
+							else
+			{
+				return COLOR_BLUE;
+			}
+			case ITM_CHANGECDC: return CHNG_DRAW_CLR;
 			case ITM_SQUR: return DRAW_SQUARE;
 			case ITM_ELPS: return DRAW_ELPS;
 			case ITM_Hexa: return DRAW_HEX;
@@ -212,6 +233,9 @@ void GUI::CreateDrawToolBar() const
 	MenuItemImages[ITM_Save] = "images\\MenuItems\\Save.jpg";
 	MenuItemImages[ITM_Load] = "images\\MenuItems\\Load.jpg";
 	MenuItemImages[ITIM_RESIZE] = "images\\MenuItems\\Resize.jpg";
+	MenuItemImages[ITM_PALETTE] = "images\\MenuItems\\Menu_Palette.jpg";
+	MenuItemImages[ITM_CHANGECDC] = "images\\MenuItems\\drawcolor.jpg";
+
 	MenuItemImages[ITIM_SwitchPlay] = "images\\MenuItems\\play.jpg";
 	MenuItemImages[ITM_EXIT] = "images\\MenuItems\\Menu_Exit.jpg";
 	

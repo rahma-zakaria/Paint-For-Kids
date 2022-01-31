@@ -38,7 +38,12 @@ enum ActionType //The actions supported (you can add more if needed)
 	QUARTER,
 	DOUBLE1,
 	QUADRUPLE,
-	BACK
+	BACK,
+	COLOR_BLACK,
+	COLOR_WHITE,
+	COLOR_RED,
+	COLOR_GREEN,
+	COLOR_BLUE,
 };
 
 struct Point	//To be used for figures points

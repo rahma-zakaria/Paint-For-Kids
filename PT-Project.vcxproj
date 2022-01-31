@@ -134,6 +134,7 @@
     <ClCompile Include="Actions\AddElliAction.cpp" />
     <ClCompile Include="Actions\AddHexaAction.cpp" />
     <ClCompile Include="Actions\ChangeCDCAction.cpp" />
+    <ClCompile Include="Actions\ExitAction.cpp" />
     <ClCompile Include="Actions\RezizeAction.cpp" />
     <ClCompile Include="Actions\SelectAction.cpp" />
     <ClCompile Include="Actions\SwitchToDraw.cpp" />
@@ -188,6 +189,7 @@
     <ClInclude Include="Actions\AddElliAction.h" />
     <ClInclude Include="Actions\AddHexaAction.h" />
     <ClInclude Include="Actions\ChangeCDCAction.h" />
+    <ClInclude Include="Actions\ExitAction.h" />
     <ClInclude Include="Actions\RezizeAction.h" />
     <ClInclude Include="Actions\SelectAction.h" />
     <ClInclude Include="Actions\SwitchToDraw.h" />
