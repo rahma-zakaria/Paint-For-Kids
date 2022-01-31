@@ -32,6 +32,8 @@ enum DrawMenuItem //The items of the Draw menu (you should add more items)
 	ITM_PALETTE,
 	ITM_CHANGECDC,
 	ITM_CHANGECFC,
+	ITIM_UNDO,    //undo item in menue
+	ITIM_REDO,    //redo item in menue 
 	ITIM_SwitchPlay,    //switch To play Mode 
 	ITM_EXIT,		//Exit item
 	

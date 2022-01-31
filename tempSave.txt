@@ -1,5 +1,6 @@
 blue	white	white
-3
-	0	126	107	163	blue	NO_FILL
-	1	515	264	601	400	0	360	blue	NO_FILL
-	2	909	312	925	373	blue	NO_FILL
+4
+SQR	0	195	228	116	blue	red
+ELPS	1	549	267	666	375	0	360	blue	red
+SQR	2	870	255	0	blue	NO_FILL
+SQR	3	895	257	168	blue	red

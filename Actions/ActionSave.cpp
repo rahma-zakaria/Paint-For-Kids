@@ -1,11 +1,5 @@
 #include "ActionSave.h"
-#include "..\GUI\GUI.h"
 #include "..\ApplicationManager.h"
-#include <iostream>
-#include <string>
-#include <fstream>
-#include <Commdlg.h>
-
 
 ActionSave::ActionSave(ApplicationManager* pApp) :Action(pApp) {}
 
@@ -45,8 +39,6 @@ void ActionSave::Execute()
 
 	ofstream MyFile;
 	MyFile.open(filename, ios::out | ios::trunc);
-
 	pManager->SaveAll(MyFile);
-
 	MyFile.close();
 }

@@ -2,7 +2,26 @@
 #define APPLICATION_MANAGER_H
 
 #include "DEFS.h"
+#include "GUI\GUI.h"
 #include "Figures\CFigure.h"
+#include "Actions\ActionAddSquare.h"
+#include "Actions\AddElliAction.h"
+#include "Actions\AddHexaAction.h"
+#include "Actions\SelectAction.h"
+#include "Actions\ActionSave.h"
+#include "Actions\ActionLoad.h"
+#include "Actions\RezizeAction.h"
+#include "Actions\SwitchToDraw.h"
+#include "Actions\SwitchToPlay.h"
+#include "Figures\CSquare.h"
+#include "Figures\CHexagon.h"
+#include "Figures\CEllipse.h"
+
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <windows.h>
+#include <Commdlg.h>
 
 class Action;	//Forward Declaration
 

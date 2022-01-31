@@ -116,6 +116,8 @@ ActionType GUI::MapInputToActionType() const
 			case ITM_Save: return SAVE;			
 			case ITM_Load: return LOAD;
 			case ITIM_RESIZE: return TO_SIZE;
+			case ITIM_UNDO: return UNDO;
+			case ITIM_REDO: return REDO;
 			case ITIM_SwitchPlay: return TO_PLAY;    //switch To play Mode 
 			case ITM_EXIT: return EXIT;	
 			
@@ -237,6 +239,8 @@ void GUI::CreateDrawToolBar() const
 	MenuItemImages[ITM_PALETTE] = "images\\MenuItems\\Menu_Palette.jpg";
 	MenuItemImages[ITM_CHANGECDC] = "images\\MenuItems\\drawcolor.jpg";
 	MenuItemImages[ITM_CHANGECFC] = "images\\MenuItems\\Menu_FillColor.jpg";
+	MenuItemImages[ITIM_UNDO] = "images\\MenuItems\\Undo.jpg";
+	MenuItemImages[ITIM_REDO] = "images\\MenuItems\\Redo.jpg";
 	MenuItemImages[ITIM_SwitchPlay] = "images\\MenuItems\\play.jpg";
 	MenuItemImages[ITM_EXIT] = "images\\MenuItems\\Menu_Exit.jpg";
 	

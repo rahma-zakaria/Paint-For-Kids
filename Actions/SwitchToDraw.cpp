@@ -1,10 +1,5 @@
 #include "SwitchToDraw.h"
-#include "..\GUI\GUI.h"
 #include "..\ApplicationManager.h"
-
-#include <fstream>
-#include <iostream>
-#include <sstream>
 
 SwitchToDraw::SwitchToDraw(ApplicationManager * pApp):Action(pApp)
 {}
@@ -24,8 +19,11 @@ void SwitchToDraw::Execute()
 	ReadActionParameters();
 
 	ifstream MyFile;
-	MyFile.open("tempSave.txt", ios::app);
-	// Read from the text file
-	pManager->LoadAll(MyFile);
+	MyFile.open("tempSave.txt", ios::in);
+
+	if (pManager->GetFigCount() != 0) {
+		// Read from the text file
+		pManager->LoadAll(MyFile);
+	}
 	MyFile.close();
 }

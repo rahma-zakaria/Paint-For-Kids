@@ -15,7 +15,9 @@ CEllipse::CEllipse(Point P1, Point P2,double an1,double an2, GfxInfo FigureGfxIn
 
 }
 
-CEllipse::CEllipse() {}
+CEllipse::CEllipse() {
+	type = "ELPS";
+}
 
 void CEllipse::DrawMe(GUI* pGUI) const
 {
@@ -43,7 +45,6 @@ void CEllipse::Load(ifstream& inFile)
 	//Get a Pointer to the Interface
 	inFile >> ID >> point1.x >> point1.y >> point2.x >> point2.y >> angele1 >> angele2;
 	inFile >> FigureColor >> FigureFill;
-	std::cout << FigureColor << " " << FigureFill << endl;
 	//FigGfxInfo.DrawClr = FigureColor;
 	FigGfxInfo.DrawClr = RED;
 	FigGfxInfo.BorderWdth = UI.PenWidth;
