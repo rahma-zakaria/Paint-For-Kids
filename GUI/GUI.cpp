@@ -93,7 +93,7 @@ ActionType GUI::MapInputToActionType() const
 			case ITM_Select:return SELECT;
 			case ITM_Save: return SAVE;			
 			case ITM_Load: return LOAD;
-			case ITIM_RESIZE: return TO_SIZE;
+			case ITIM_RESIZE: return RESIZE;
 			case ITIM_SwitchPlay: return TO_PLAY;    //switch To play Mode 
 			case ITM_SEND_TO_BACK: return SEND_BACK;
 			case ITM_BRING_TO_FRONT: return BRNG_FRNT;

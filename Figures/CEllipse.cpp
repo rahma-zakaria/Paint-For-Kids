@@ -74,3 +74,32 @@ bool CEllipse::PointInShape(int x, int y) const {
 	return (x >= point1.x && x <= point2.x)
 		&& (y >= point1.y && y <= point2.y);
 }
+
+void CEllipse::Resize(float) {
+	if (FigGfxInfo.Resize_Factor == .5) FigGfxInfo.Resize_Factor = -1;
+	else if (FigGfxInfo.Resize_Factor == .25) FigGfxInfo.Resize_Factor = -(4.0 / 3);
+
+	Point O;
+	O.x = (point1.x + point2.x) / 2;
+	O.y = (point1.y + point2.y) / 2;
+
+	if (point1.x <= O.x)
+		point1.x -= (O.x - point1.x) * FigGfxInfo.Resize_Factor / 2;
+	else
+		point1.x += (point1.x - O.x) * FigGfxInfo.Resize_Factor / 2;
+
+	if (point2.x <= O.x)
+		point2.x -= (O.x - point2.x) * FigGfxInfo.Resize_Factor / 2;
+	else
+		point2.x += (point2.x - O.x) * FigGfxInfo.Resize_Factor / 2;
+
+	if (point1.y <= O.y)
+		point1.y -= (O.y - point1.y) * FigGfxInfo.Resize_Factor / 2;
+	else
+		point1.y += (point1.y - O.y) * FigGfxInfo.Resize_Factor / 2;
+
+	if (point2.y <= O.y)
+		point2.y -= (O.y - point2.y) * FigGfxInfo.Resize_Factor / 2;
+	else
+		point2.y += (point2.y - O.y) * FigGfxInfo.Resize_Factor / 2;
+}

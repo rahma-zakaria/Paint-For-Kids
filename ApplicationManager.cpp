@@ -106,9 +106,10 @@ Action* ApplicationManager::CreateAction(ActionType ActType)
 			std::cout << "Select";
 			break;
 
-		/*case RESIZE:
-			newAct = new RezizeAction(this);
-			break;*/
+		case RESIZE:
+			mode = 1;
+			newAct = new RezizeAction(this, SelectedFigs[selectedCount-1]);
+			break;
 		case SAVE:
 			newAct = new ActionSave(this);
 			break;
@@ -118,6 +119,7 @@ Action* ApplicationManager::CreateAction(ActionType ActType)
 			break;
 		case TO_SIZE:
 			mode = 1;
+			
 			break;
 		case BACK: 
 			mode = 0;

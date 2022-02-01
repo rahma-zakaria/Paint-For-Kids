@@ -4,6 +4,7 @@ class CHexagon :public CFigure
 {
 private:
 	Point center, point;
+	//float radius;
 
 public:
 	CHexagon(Point, Point, GfxInfo FigureGfxInfo);
@@ -15,5 +16,6 @@ public:
 	virtual bool PointInShape(int x, int y) const;
 	int getFigureData(POINT& p1, POINT& p2);
 	string getFigureName();
+	void Resize(float);
 };
 

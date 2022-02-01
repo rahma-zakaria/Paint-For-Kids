@@ -7,6 +7,7 @@ class AddHexaAction :public Action
 private:
 	// A Point For hexa Center
 	Point P1, P2;
+	
 	// Object of Graphical Struct
 	GfxInfo HexapseGfxInfo;
 

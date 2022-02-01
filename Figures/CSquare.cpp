@@ -78,3 +78,7 @@ bool CSquare::PointInShape(int x, int y) const {
 string CSquare::getFigureName() {
 	return "Square selected";
 }
+
+void CSquare:: Resize(float size) {
+	length = length * size;
+}
