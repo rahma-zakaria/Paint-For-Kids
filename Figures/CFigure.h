@@ -50,7 +50,7 @@ public:
 	void setSize(float);
 
 	void setnexID(int);
-
+	virtual int getID();
 	//virtual void PrintInfo(Output* pOut) = 0;	//print all figure info on the status bar
 };
 

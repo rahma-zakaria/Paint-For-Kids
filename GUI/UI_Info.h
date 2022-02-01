@@ -64,6 +64,7 @@ enum sizeMenueItems //The items of the Draw menu (you should add more items)
 enum PlayMenuItem //The items of the Play menu (you should add more items)
 {
 	ITIM_SwitchDraw,    //switch To Draw Mode 
+	ITIM_SelectByShape,
 	//ITM_EXIT,		//Exit item
 
 	PLAY_ITM_COUNT		//no. of menu items ==> This should be the last line in this enum

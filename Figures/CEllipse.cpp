@@ -68,12 +68,14 @@ int CEllipse::getFigureData(POINT& p1, POINT& p2)
 }
 
 string CEllipse::getFigureName() {
-	return "Ellipse selected";
+	return "Ellipse";
 }
 
 bool CEllipse::PointInShape(int x, int y) const {
-	return (x >= point1.x && x <= point2.x)
-		&& (y >= point1.y && y <= point2.y);
+	Point center;
+	center.x = (point1.x + point2.x) / 2;
+	center.y = (point1.y + point2.y) / 2;
+	return pow((x - center.x), 2) / pow((point1.x - center.x), 2) + pow((y - center.y), 2) / pow((point1.y - center.y), 2) <= 1;
 }
 
 void CEllipse::Resize(float) {

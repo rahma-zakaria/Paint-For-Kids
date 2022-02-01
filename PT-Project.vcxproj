@@ -139,6 +139,7 @@
     <ClCompile Include="Actions\ExitAction.cpp" />
     <ClCompile Include="Actions\RezizeAction.cpp" />
     <ClCompile Include="Actions\SelectAction.cpp" />
+    <ClCompile Include="Actions\SelectByShape.cpp" />
     <ClCompile Include="Actions\Send_To_Back.cpp" />
     <ClCompile Include="Actions\SwitchToDraw.cpp" />
     <ClCompile Include="Actions\SwitchToPlay.cpp" />
@@ -197,6 +198,7 @@
     <ClInclude Include="Actions\Bring_to_front.h" />
     <ClInclude Include="Actions\RezizeAction.h" />
     <ClInclude Include="Actions\SelectAction.h" />
+    <ClInclude Include="Actions\SelectByShape.h" />
     <ClInclude Include="Actions\Send_To_Back.h" />
     <ClInclude Include="Actions\SwitchToDraw.h" />
     <ClInclude Include="Actions\SwitchToPlay.h" />

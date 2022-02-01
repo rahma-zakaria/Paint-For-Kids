@@ -13,7 +13,7 @@
 #include "Actions\SwitchToPlay.h"
 #include "Actions\Bring_to_front.h"
 #include "Actions\Send_To_Back.h"
-
+#include "Actions\SelectByShape.h"
 #include "Figures\CSquare.h"
 #include "Figures\CHexagon.h"
 #include "Figures\CEllipse.h"
@@ -21,6 +21,7 @@
 #include<iostream>
 #include <fstream>
 #include <string>
+using namespace std;
 
 
 
@@ -101,9 +102,12 @@ Action* ApplicationManager::CreateAction(ActionType ActType)
 	
 			//case select Action
 		case SELECT:
-		case DRAWING_AREA:
 			newAct = new SelectAction(this);
-			std::cout << "Select";
+			break;
+		case DRAWING_AREA:
+			if (mode == 2) {
+				return new SelectAction(this);
+			}
 			break;
 
 			/*case RESIZE:
@@ -139,12 +143,15 @@ Action* ApplicationManager::CreateAction(ActionType ActType)
 
 			break;
 		case TO_PLAY:
-			mode = 2;
+			configureAllPlayModeData();
 			newAct = new SwitchToPlay(this);
 			break;
 		case TO_DRAW:
-			mode = 0;
+			configureAllDrawModeData();
 			newAct = new SwitchToDraw(this);
+			break;
+		case TO_PLAY_SELECT_BY_SHAPE:
+			newAct = new SelectByShape(this);
 			break;
 		case SEND_BACK:
 			newAct = new Send_To_Back(this);
@@ -414,4 +421,54 @@ void ApplicationManager::ChangeSFillColor(color SelectedColor)
 CFigure* ApplicationManager::getSelectedFig()
 {
 	return SelectedFigs[0];
+}
+
+string ApplicationManager::getShapeInPlayMode() {
+	int randomShape = rand() % FigCount;
+	return FigList[randomShape]->getFigureName();
+}
+
+void ApplicationManager::deleteSelectedFigure(CFigure* figure) {
+	int index;
+	for (int i = 0; i < FigCount; i++) {
+		if (FigList[i]->getID() == figure->getID()) {
+			index = i;
+		}
+	}
+	for (int i = index; i < FigCount; i++) {
+		FigList[i] = FigList[i + 1];
+	}
+	FigCount--;
+}
+
+int ApplicationManager::getMode() {
+	return mode;
+}
+
+bool ApplicationManager::isFigureExists(string figureName) {
+	for (int i = 0; i < FigCount; i++) {
+		if (FigList[i]->getFigureName() == figureName)
+			return true;
+	}
+	return false;
+}
+
+void ApplicationManager::configureAllPlayModeData() {
+	ClearSelectedFigs();
+	restoreDataCount = FigCount;
+	for (int i = 0; i < FigCount; i++) {
+		FigList[i]->SetSelected(false);
+		restoreData[i] = FigList[i];
+	}
+	mode = 2;
+}
+void ApplicationManager::configureAllDrawModeData() {
+	ClearSelectedFigs();
+	for (int i = 0; i < restoreDataCount; i++) {
+		restoreData[i]->SetSelected(false);
+		FigList[i] = restoreData[i];
+	}
+	FigCount = restoreDataCount;
+	UpdateInterface();
+	mode = 0;
 }

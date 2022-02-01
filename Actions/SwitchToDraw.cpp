@@ -18,12 +18,12 @@ void SwitchToDraw::Execute()
 
 	ReadActionParameters();
 
-	ifstream MyFile;
+	/*ifstream MyFile;
 	MyFile.open("tempSave.txt", ios::in);
 
 	if (pManager->GetFigCount() != 0) {
 		// Read from the text file
 		pManager->LoadAll(MyFile);
 	}
-	MyFile.close();
+	MyFile.close();*/
 }

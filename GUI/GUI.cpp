@@ -168,7 +168,7 @@ ActionType GUI::MapInputToActionType() const
 			switch (ClickedItemOrder)
 			{
 			case ITIM_SwitchDraw: return TO_DRAW;
-
+			case ITIM_SelectByShape: return TO_PLAY_SELECT_BY_SHAPE;
 			default: return EMPTY;	//A click on empty place in desgin toolbar
 			}
 		}
@@ -304,6 +304,7 @@ void GUI::CreatePlayToolBar() const
 	///TODO: write code to create Play mode menu
 	string MenuItemImages[PLAY_ITM_COUNT];
 	MenuItemImages[ITIM_SwitchDraw] = "images\\MenuItems\\draw.jpg";
+	MenuItemImages[ITIM_SelectByShape] = "images\\MenuItems\\select.jpg";
 
 	//TODO: Prepare images for each menu item and add it to the list
 
@@ -414,7 +415,7 @@ void GUI::DrawElli(Point p1,Point p2,double startAngle,double  endAngle, GfxInfo
 
 void GUI::DrawHexa(Point P1, Point P2, GfxInfo hexaGfxInfo, bool selected) const
 {
-	int r = sqrt(pow((P1.x - P2.x), 2) + pow((P1.y - P2.y), 2));
+	int r = (sqrt(pow((P1.x - P2.x), 2) + pow((P1.y - P2.y), 2))) / 2;
 	color DrawingClr;
 	if (selected)
 		DrawingClr = UI.HighlightColor; //Figure should be drawn highlighted
@@ -437,8 +438,8 @@ void GUI::DrawHexa(Point P1, Point P2, GfxInfo hexaGfxInfo, bool selected) const
 	int HexaY[6];
 
 	for (int i = 0; i < n; i++) {
-		HexaX[i] = P1.x + r * cos(2 * M_PI * i / n);
-		HexaY[i] = P1.y + r * sin(2 * M_PI * i / n);
+		HexaX[i] = ((P1.x + P2.x) / 2) + r * cos(2 * M_PI * i / n);
+		HexaY[i] = ((P1.y + P2.y) / 2) + r * sin(2 * M_PI * i / n);
 	}
 	/*int HexaX[6] = {P1.x + P2.x, P1.x - P2.x, P1.x - 2 * P2.x, P1.x - P2.x ,P1.x + P2.x, P1.x + 2 * P2.x}, HexaY[6] = {P1.y - P2.y, P1.y - P2.y, P1.y, P1.y + P2.y,P1.y + P2.y,P1.y};*/
 

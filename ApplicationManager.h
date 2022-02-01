@@ -34,7 +34,9 @@ class ApplicationManager
 private:
 	int mode;
 	int FigCount;		//Actual number of figures
+	int restoreDataCount;
 	CFigure* FigList[MaxFigCount];	//List of all figures (Array of pointers)
+	CFigure* restoreData[MaxFigCount];
 
 	CFigure* SelectedFigs[MaxFigCount]; //array of pointers to the selected figures
 	
@@ -90,6 +92,12 @@ public:
 	void ChangeCFillColor(color SelectedColor);
 	void ChangeSFillColor(color SelectedColor);
 	CFigure* getSelectedFig();
+	string getShapeInPlayMode();
+	int getMode();
+	void deleteSelectedFigure(CFigure* figure);
+	bool isFigureExists(string figureName);
+	void configureAllDrawModeData();
+	void configureAllPlayModeData();
 };
 
 #endif
