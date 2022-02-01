@@ -22,6 +22,8 @@ enum ActionType //The actions supported (you can add more if needed)
 	BRNG_FRNT,		//Bring a figure to the front of all figures
 	SAVE,			//Save the whole graph to a file
 	LOAD,			//Load a graph from a file
+	UNDO,			//undo action
+	REDO,			//redo action
 	EXIT,			//Exit the application
 
 	DRAWING_AREA,	//A click on the drawing area
@@ -38,7 +40,12 @@ enum ActionType //The actions supported (you can add more if needed)
 	QUARTER,
 	DOUBLE1,
 	QUADRUPLE,
-	BACK
+	BACK,
+	COLOR_BLACK,
+	COLOR_WHITE,
+	COLOR_RED,
+	COLOR_GREEN,
+	COLOR_BLUE,
 };
 
 struct Point	//To be used for figures points

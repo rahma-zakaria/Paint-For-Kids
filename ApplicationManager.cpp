@@ -5,6 +5,9 @@
 #include "Actions\SelectAction.h"
 #include "Actions\ActionSave.h"
 #include "Actions\ActionLoad.h"
+#include "Actions/ChangeCFCAction.h"
+#include "Actions\ChangeCDCAction.h"
+#include "Actions/ExitAction.h"
 #include "Actions\RezizeAction.h"
 #include "Actions\SwitchToDraw.h"
 #include "Actions\SwitchToPlay.h"
@@ -20,6 +23,7 @@
 #include <string>
 
 
+
 //Constructor
 ApplicationManager::ApplicationManager() : mode(0)
 {
@@ -32,7 +36,6 @@ ApplicationManager::ApplicationManager() : mode(0)
 	////and intialise SelectedFigs array to NULL
 	for (int i = 0; i < MaxFigCount; i++) {
 		FigList[i] = NULL;
-
 		//Rahma
 		SelectedFigs[i] = NULL;
 		
@@ -69,19 +72,15 @@ void ApplicationManager::Run()
 //==================================================================================//
 //								Actions Related Functions							//
 //==================================================================================//
+ActionType ApplicationManager::GetUserAction() const
+{
+	//Ask the input to get the action from the user.
+	return pGUI->MapInputToActionType();
+}
+////////////////////////////////////////////////////////////////////////////////////
 //Creates an action
 Action* ApplicationManager::CreateAction(ActionType ActType) 
 {
-
-	//for selecting purpose variable
-	int x, y;
-	CFigure* whichFigSelected;
-	POINT p1, p2;
-	int numberOfFiguresSelected = 0, previousFigure = 0;
-	int length;
-	bool isFigureSelected = false;
-	string figureName;
-	// end for selecting purpose
 
 	Action* newAct = NULL;
 	
@@ -101,11 +100,22 @@ Action* ApplicationManager::CreateAction(ActionType ActType)
 			break;
 	
 			//case select Action
-			case DRAWING_AREA:
+		case SELECT:
+		case DRAWING_AREA:
 			newAct = new SelectAction(this);
 			std::cout << "Select";
 			break;
 
+			/*case RESIZE:
+			newAct = new RezizeAction(this);
+			break;*/
+
+		case CHNG_DRAW_CLR:
+			newAct = new ChangeCDCAction(this);
+			break;
+		case CHNG_FILL_CLR:
+			newAct = new ChangeCFCAction(this);
+			break;
 		case RESIZE:
 			mode = 1;
 			newAct = new RezizeAction(this, SelectedFigs[selectedCount-1]);
@@ -113,7 +123,6 @@ Action* ApplicationManager::CreateAction(ActionType ActType)
 		case SAVE:
 			newAct = new ActionSave(this);
 			break;
-
 		case LOAD:
 			newAct = new ActionLoad(this);
 			break;
@@ -123,6 +132,12 @@ Action* ApplicationManager::CreateAction(ActionType ActType)
 			break;
 		case BACK: 
 			mode = 0;
+			break;
+		case UNDO:
+			
+			break;
+		case REDO:
+
 			break;
 		case TO_PLAY:
 			mode = 2;
@@ -140,7 +155,7 @@ Action* ApplicationManager::CreateAction(ActionType ActType)
 			break;
 		case EXIT:
 			///create ExitAction here
-			
+			newAct = new ExitAction(this);
 			break;
 		
 		case STATUS:	//a click on the status bar ==> no action
@@ -226,6 +241,7 @@ void ApplicationManager::RemoveSelectedFigure(CFigure* sf) {
 void ApplicationManager::ClearSelectedFigs() {
 	for (int i = 0; i < selectedCount; i++)
 	{
+		SelectedFigs[i]->SetSelected(false);
 		SelectedFigs[i] = NULL;
 	}
 	selectedCount = 0;
@@ -298,7 +314,6 @@ void ApplicationManager::LoadAll(ifstream& fileName)
 
 	while (FigNumbers) {
 		fileName >> FigureType;
-		std::cout << FigureType << " ";
 		if (FigureType == "SQR") {
 			LoadedFig = new CSquare;
 		}
@@ -312,6 +327,7 @@ void ApplicationManager::LoadAll(ifstream& fileName)
 		AddFigure(LoadedFig);
 		FigNumbers--;
 	}
+	UpdateInterface();
 
 }
 
@@ -359,4 +375,44 @@ void ApplicationManager::ClearAllFig()
 		FigList[i] = NULL;
 	}
 	FigCount = 0;
+}
+
+void ApplicationManager::ChangeCDrawingColor(color selectedColor)
+{
+	pGUI->changeCrntDrawColor(selectedColor);
+}
+
+void ApplicationManager::ChangeSDrawingColor(color selectedColor)
+{
+	for (int i = 0; i < selectedCount; i++)
+	{
+		SelectedFigs[i]->ChngDrawClr(selectedColor);
+	}
+}
+
+void ApplicationManager::ChangeCFillColor(color SelectedColor)
+{
+	if (true)
+	{
+		UI.FillFigures = 0;
+		UI.FillColor = INDIAN;
+	}
+	else
+	{
+		UI.FillFigures = 1;
+		pGUI->changeCrntFillColor(SelectedColor);
+	}
+}
+
+void ApplicationManager::ChangeSFillColor(color SelectedColor)
+{
+	for (int i = 0; i < selectedCount; i++)
+	{
+		SelectedFigs[i]->ChngFillClr(SelectedColor);
+	}
+}
+
+CFigure* ApplicationManager::getSelectedFig()
+{
+	return SelectedFigs[0];
 }

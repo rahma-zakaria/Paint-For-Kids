@@ -87,13 +87,37 @@ ActionType GUI::MapInputToActionType() const
 
 			switch (ClickedItemOrder)
 			{
+			case ITM_PALETTE: if (x < ITM_PALETTE * UI.MenuItemWidth + UI.MenuItemWidth / 5)
+			{
+				return COLOR_BLACK;
+			}
+							else if (x < ITM_PALETTE * UI.MenuItemWidth + UI.MenuItemWidth * 2 / 5)
+			{
+				return COLOR_WHITE;
+			}
+							else if (x < ITM_PALETTE * UI.MenuItemWidth + UI.MenuItemWidth * 3 / 5)
+			{
+				return COLOR_RED;
+			}
+							else if (x < ITM_PALETTE * UI.MenuItemWidth + UI.MenuItemWidth * 4 / 5)
+			{
+				return COLOR_GREEN;
+			}
+							else
+			{
+				return COLOR_BLUE;
+			}
+			case ITM_CHANGECDC: return CHNG_DRAW_CLR;
+			case ITM_CHANGECFC: return CHNG_FILL_CLR;
 			case ITM_SQUR: return DRAW_SQUARE;
 			case ITM_ELPS: return DRAW_ELPS;
 			case ITM_Hexa: return DRAW_HEX;
 			case ITM_Select:return SELECT;
 			case ITM_Save: return SAVE;			
 			case ITM_Load: return LOAD;
-			case ITIM_RESIZE: return RESIZE;
+			case ITIM_RESIZE: return TO_SIZE;
+			case ITIM_UNDO: return UNDO;
+			case ITIM_REDO: return REDO;
 			case ITIM_SwitchPlay: return TO_PLAY;    //switch To play Mode 
 			case ITM_SEND_TO_BACK: return SEND_BACK;
 			case ITM_BRING_TO_FRONT: return BRNG_FRNT;
@@ -214,6 +238,11 @@ void GUI::CreateDrawToolBar() const
 	MenuItemImages[ITM_Save] = "images\\MenuItems\\Save.jpg";
 	MenuItemImages[ITM_Load] = "images\\MenuItems\\Load.jpg";
 	MenuItemImages[ITIM_RESIZE] = "images\\MenuItems\\Resize.jpg";
+	MenuItemImages[ITM_PALETTE] = "images\\MenuItems\\Menu_Palette.jpg";
+	MenuItemImages[ITM_CHANGECDC] = "images\\MenuItems\\drawcolor.jpg";
+	MenuItemImages[ITM_CHANGECFC] = "images\\MenuItems\\Menu_FillColor.jpg";
+	MenuItemImages[ITIM_UNDO] = "images\\MenuItems\\Undo.jpg";
+	MenuItemImages[ITIM_REDO] = "images\\MenuItems\\Redo.jpg";
 	MenuItemImages[ITIM_SwitchPlay] = "images\\MenuItems\\play.jpg";
 	MenuItemImages[ITM_SEND_TO_BACK] = "images\\MenuItems\\Send_to_Back.jpg";
 	MenuItemImages[ITM_BRING_TO_FRONT] = "images\\MenuItems\\Bring_to_Front.jpg";
@@ -319,6 +348,15 @@ color GUI::getCrntFillColor() const	//get current filling color
 int GUI::getCrntPenWidth() const		//get current pen width
 {	return UI.PenWidth;	}
 
+void GUI::changeCrntDrawColor(color SelectedColor)
+{
+	UI.DrawColor = SelectedColor;
+}
+
+void GUI::changeCrntFillColor(color SelectedColor)
+{
+	UI.FillColor = SelectedColor;
+}
 //======================================================================================//
 //								Figures Drawing Functions								//
 //======================================================================================//

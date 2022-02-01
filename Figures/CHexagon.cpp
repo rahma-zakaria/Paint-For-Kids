@@ -15,7 +15,9 @@ CHexagon::CHexagon(Point c, Point p,GfxInfo FigureGfxInfo) :CFigure(FigureGfxInf
 	type = "HEXA";
 }
 
-CHexagon::CHexagon() {} //default constractur
+CHexagon::CHexagon() {
+	type = "HEXA";
+} //default constractur
 
 void CHexagon::DrawMe(GUI* pGUI) const
 {
@@ -40,9 +42,7 @@ void CHexagon::Load(ifstream& inFile)
 
 	//Get a Pointer to the Interface
 	inFile >> ID >> center.x >> center.y >> point.x >> point.y;
-	std::cout << ID << " " << center.x << " " << center.y << " " << point.x << " " << point.y << " ";
 	inFile >> FigureColor >> FigureFill;
-	std::cout << FigureColor << " " << FigureFill << endl;
 	//FigGfxInfo.DrawClr = FigureColor;
 	FigGfxInfo.DrawClr = RED;
 	FigGfxInfo.BorderWdth = UI.PenWidth;
