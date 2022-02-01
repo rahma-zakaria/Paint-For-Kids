@@ -128,7 +128,6 @@ Action* ApplicationManager::CreateAction(ActionType ActType)
 			break;
 		case TO_SIZE:
 			mode = 1;
-			
 			break;
 		case BACK: 
 			mode = 0;
