@@ -30,6 +30,8 @@ enum DrawMenuItem //The items of the Draw menu (you should add more items)
 	ITM_Load,       //Load item in menue
 	ITIM_RESIZE,    //create resize menue 
 	ITIM_SwitchPlay,    //switch To play Mode 
+	ITM_SEND_TO_BACK,   //send to back item in menue
+	ITM_BRING_TO_FRONT, //bring to front in menue
 	ITM_EXIT,		//Exit item
 	
 	DRAW_ITM_COUNT		//no. of menu items ==> This should be the last line in this enum

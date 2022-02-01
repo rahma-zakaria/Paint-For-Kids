@@ -8,9 +8,13 @@
 #include "Actions\RezizeAction.h"
 #include "Actions\SwitchToDraw.h"
 #include "Actions\SwitchToPlay.h"
+#include "Actions\Bring_to_front.h"
+#include "Actions\Send_To_Back.h"
+
 #include "Figures\CSquare.h"
 #include "Figures\CHexagon.h"
 #include "Figures\CEllipse.h"
+
 #include<iostream>
 #include <fstream>
 #include <string>
@@ -31,7 +35,7 @@ ApplicationManager::ApplicationManager() : mode(0)
 
 		//Rahma
 		SelectedFigs[i] = NULL;
-
+		
 
 	}
 	//initialise selectedCount to 0
@@ -126,7 +130,12 @@ Action* ApplicationManager::CreateAction(ActionType ActType)
 			mode = 0;
 			newAct = new SwitchToDraw(this);
 			break;
-
+		case SEND_BACK:
+			newAct = new Send_To_Back(this);
+			break;
+		case BRNG_FRNT:
+			newAct = new Bring_to_front(this);
+			break;
 		case EXIT:
 			///create ExitAction here
 			
@@ -303,6 +312,42 @@ void ApplicationManager::LoadAll(ifstream& fileName)
 	}
 
 }
+
+
+//==================================================================================//
+//						 Bring_to_front,send_to_back functions						//
+//==================================================================================//
+
+void ApplicationManager::Bring_Front()
+{
+	CFigure* temp = SelectedFigs[selectedCount - 1];
+	int Swapped_index;
+	for (int i = 0; i < FigCount; i++)
+		if (SelectedFigs[selectedCount - 1] == FigList[i])
+			Swapped_index = i;
+
+	for (int i = Swapped_index; i < FigCount - 1; i++)
+		FigList[i] = FigList[i + 1];
+	FigList[FigCount - 1] = temp;
+}
+
+void ApplicationManager::Send_Back()
+{
+	
+	CFigure* temp = SelectedFigs[selectedCount-1];
+	int Swapped_index;
+	for (int i = 0; i < FigCount; i++)
+		if (SelectedFigs[selectedCount - 1] == FigList[i])
+		{
+			Swapped_index = i;
+			break;
+		}
+
+	for (int i = Swapped_index; i > 0; i--)
+		FigList[i] = FigList[i - 1];
+	FigList[0] = temp;
+}
+
 
 void ApplicationManager::ClearAllFig()
 {

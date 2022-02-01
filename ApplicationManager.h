@@ -18,6 +18,7 @@ private:
 	CFigure* FigList[MaxFigCount];	//List of all figures (Array of pointers)
 
 	CFigure* SelectedFigs[MaxFigCount]; //array of pointers to the selected figures
+	
 	//Rahma
 	int selectedCount;			//Number of selected figures
 
@@ -58,6 +59,9 @@ public:
 	// --Save And Load 
 	void SaveAll(ofstream& fileName);//Save all figures in figure list
 	void LoadAll(ifstream& fileName);//Load all figures in figure list
+
+	void Bring_Front();
+	void Send_Back();
 
 	void ClearAllFig();
 };
