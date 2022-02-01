@@ -115,10 +115,12 @@ ActionType GUI::MapInputToActionType() const
 			case ITM_Select:return SELECT;
 			case ITM_Save: return SAVE;			
 			case ITM_Load: return LOAD;
-			case ITIM_RESIZE: return TO_SIZE;
+			case ITIM_RESIZE: return RESIZE;
 			case ITIM_UNDO: return UNDO;
 			case ITIM_REDO: return REDO;
 			case ITIM_SwitchPlay: return TO_PLAY;    //switch To play Mode 
+			case ITM_SEND_TO_BACK: return SEND_BACK;
+			case ITM_BRING_TO_FRONT: return BRNG_FRNT;
 			case ITM_EXIT: return EXIT;	
 			
 			default: return EMPTY;	//A click on empty place in desgin toolbar
@@ -242,6 +244,8 @@ void GUI::CreateDrawToolBar() const
 	MenuItemImages[ITIM_UNDO] = "images\\MenuItems\\Undo.jpg";
 	MenuItemImages[ITIM_REDO] = "images\\MenuItems\\Redo.jpg";
 	MenuItemImages[ITIM_SwitchPlay] = "images\\MenuItems\\play.jpg";
+	MenuItemImages[ITM_SEND_TO_BACK] = "images\\MenuItems\\Send_to_Back.jpg";
+	MenuItemImages[ITM_BRING_TO_FRONT] = "images\\MenuItems\\Bring_to_Front.jpg";
 	MenuItemImages[ITM_EXIT] = "images\\MenuItems\\Menu_Exit.jpg";
 	
 
@@ -260,7 +264,7 @@ void GUI::CreateDrawToolBar() const
 // new toolBar
 void GUI::CreateSizeToolBar() const
 {
-	//CreateToolBar();
+	CreateToolBar();
 	//CreateStatusBar();
 	UI.InterfaceMode = MODE_SIZE;
 

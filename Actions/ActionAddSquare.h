@@ -12,6 +12,8 @@ public:
 	
 	//Add Square to the ApplicationManager to Excute it
 	virtual void Execute() ;
+
+
 	
 };
 

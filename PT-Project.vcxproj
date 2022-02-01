@@ -133,11 +133,13 @@
     <ClCompile Include="Actions\ActionSave.cpp" />
     <ClCompile Include="Actions\AddElliAction.cpp" />
     <ClCompile Include="Actions\AddHexaAction.cpp" />
+    <ClCompile Include="Actions\Bring_to_front.cpp" />
     <ClCompile Include="Actions\ChangeCDCAction.cpp" />
     <ClCompile Include="Actions\ChangeCFCAction.cpp" />
     <ClCompile Include="Actions\ExitAction.cpp" />
     <ClCompile Include="Actions\RezizeAction.cpp" />
     <ClCompile Include="Actions\SelectAction.cpp" />
+    <ClCompile Include="Actions\Send_To_Back.cpp" />
     <ClCompile Include="Actions\SwitchToDraw.cpp" />
     <ClCompile Include="Actions\SwitchToPlay.cpp" />
     <ClCompile Include="CMUgraphicsLib\auxil.cpp" />
@@ -192,8 +194,10 @@
     <ClInclude Include="Actions\ChangeCDCAction.h" />
     <ClInclude Include="Actions\ChangeCFCAction.h" />
     <ClInclude Include="Actions\ExitAction.h" />
+    <ClInclude Include="Actions\Bring_to_front.h" />
     <ClInclude Include="Actions\RezizeAction.h" />
     <ClInclude Include="Actions\SelectAction.h" />
+    <ClInclude Include="Actions\Send_To_Back.h" />
     <ClInclude Include="Actions\SwitchToDraw.h" />
     <ClInclude Include="Actions\SwitchToPlay.h" />
     <ClInclude Include="CMUgraphicsLib\auxil.h" />

@@ -32,3 +32,8 @@ void CFigure::ChngFillClr(color Fclr)
 	FigGfxInfo.FillClr = Fclr; 
 }
 
+void CFigure::setSize(float size)
+{
+	FigGfxInfo.Resize_Factor = size;
+}
+
