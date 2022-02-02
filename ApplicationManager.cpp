@@ -105,9 +105,9 @@ Action* ApplicationManager::CreateAction(ActionType ActType)
 			newAct = new SelectAction(this);
 			break;
 		case DRAWING_AREA:
-			if (mode == 2) {
+			//if (mode == 2) {
 				return new SelectAction(this);
-			}
+			//}
 			break;
 
 			/*case RESIZE:
@@ -141,6 +141,9 @@ Action* ApplicationManager::CreateAction(ActionType ActType)
 			break;
 		case REDO:
 
+			break;
+		case MOVE:
+			newAct = new ActionMove(this);
 			break;
 		case TO_PLAY:
 			configureAllPlayModeData();
@@ -244,6 +247,24 @@ void ApplicationManager::RemoveSelectedFigure(CFigure* sf) {
 	}
 }
 
+void ApplicationManager::SelectFigure(Point clickedPoint) //Select a figure given last clicked point
+{
+	for (int i = FigCount - 1; i >= 0; i--) { // from front to back
+		if (FigList[i]->PointInShape(clickedPoint.x, clickedPoint.y)) {
+			// Select/Unselect
+			FigList[i]->SetSelected(!FigList[i]->IsSelected());
+			// Print figure info if figure is selected
+			if (FigList[i]->IsSelected()) {
+				//pGUI->PrintMessage(FigList[i]->FigureInfo());
+				CFigure* SelectedFig;
+				SelectedFig = GetFigure(clickedPoint.x, clickedPoint.y);
+				AddSelectedFigure(SelectedFig);
+			}
+			break;
+		}
+	}
+}
+
 void ApplicationManager::ClearSelectedFigs() {
 	for (int i = 0; i < selectedCount; i++)
 	{
@@ -271,6 +292,22 @@ void ApplicationManager::UpdateInterface() const
 	else if (mode == 2)
 		pGUI->CreatePlayToolBar();
 }
+
+void ApplicationManager::updateMoveInterface() {
+
+	pGUI->ClearDrawArea();
+
+	for (int i = 0; i < FigCount; i++)
+	{
+		FigList[i]->DrawMe(pGUI); //Call Draw function (virtual member fn)
+	}
+	// Uses a whole picture to reduce lagging effect
+	pGUI->CreateDrawToolBar();
+	//pGUI->CreateSizeToolBar();
+	//pGUI->pWind->SetPen(RED, 3);
+	//pGUI->pWind->DrawLine(0, UI.ToolBarHeight, UI.width, UI.ToolBarHeight);
+
+}
 ////////////////////////////////////////////////////////////////////////////////////
 //Return a pointer to the interface
 GUI *ApplicationManager::GetGUI() const
@@ -294,15 +331,13 @@ ApplicationManager::~ApplicationManager()
 void ApplicationManager::SaveAll(ofstream& fileName)
 {
 	// DrawColor	FillColor	BkGrndColor
-	//fileName << to_string(DrawColor)<<"\t"<< to_string(FillColor)<< "\t" << to_string(BkGrndColor) << endl;
-	fileName << "blue" << "\t" << "white" << "\t" << "white" << endl;
-
+	fileName << pGUI->ColorToString(pGUI->getCrntDrawColor()) << "\t" << pGUI->ColorToString(pGUI->getCrntFillColor()) << "\t" << "white" << endl;
 	// FigCount
 	fileName << to_string(FigCount) << endl;
 
 	for (int i = 0; i < FigCount; i++)
 	{
-		FigList[i]->Save(fileName);
+		FigList[i]->Save(fileName, pGUI);
 	}
 }
 
@@ -329,7 +364,7 @@ void ApplicationManager::LoadAll(ifstream& fileName)
 		else if (FigureType == "HEXA") {
 			LoadedFig = new CHexagon;
 		}
-		LoadedFig->Load(fileName);
+		LoadedFig->Load(fileName, pGUI);
 		AddFigure(LoadedFig);
 		FigNumbers--;
 	}
@@ -439,6 +474,36 @@ void ApplicationManager::deleteSelectedFigure(CFigure* figure) {
 		FigList[i] = FigList[i + 1];
 	}
 	FigCount--;
+}
+//moves selected figures from point p to pMoveTo
+bool ApplicationManager::MoveSelected(Point p, Point pMoveTo)
+{
+	bool success = 1;//returns 1 if move is successful and 0 if not
+	CFigure* pFig;
+	for (int i = 0; i < FigCount; i++)
+	{
+		pFig = FigList[i];
+		if (pFig->IsSelected())
+		{
+			pFig->Move(p, pMoveTo);
+			//makes sure figure is inside borders
+			/*
+			if (!pFig->IsFigInsideBorders(0, UI.width - 10, UI.ToolBarHeight, UI.height - UI.StatusBarHeight + 3))
+			{
+				//if figure is outside borders, move it back to point p
+				pGUI->PrintMessage("Cannot drag figure beyond Drawing Area borders.");
+				pFig->Move(pMoveTo, p);
+				success = 0;
+			}
+			*/
+			SetGraphSaved(false);
+		}
+	}
+	return success;
+}
+
+void ApplicationManager::SetGraphSaved(bool s) {
+	saved = s;
 }
 
 int ApplicationManager::getMode() {

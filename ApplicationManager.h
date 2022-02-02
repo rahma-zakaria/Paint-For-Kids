@@ -10,6 +10,7 @@
 #include "Actions\SelectAction.h"
 #include "Actions\ActionSave.h"
 #include "Actions\ActionLoad.h"
+#include "Actions\ActionMove.h"
 #include "Actions\RezizeAction.h"
 #include "Actions\SwitchToDraw.h"
 #include "Actions\SwitchToPlay.h"
@@ -43,7 +44,7 @@ private:
 	//Rahma
 	int selectedCount;			//Number of selected figures
 
-
+	bool saved = false;
 	//Pointers to Input and Output classes
 	GUI* pGUI;
 	
@@ -64,7 +65,8 @@ public:
 	void AddFigure(CFigure* pFig); //Adds a new figure to the FigList
 	CFigure *GetFigure(int x, int y) const; //Search for a figure given a point inside the figure
 	int GetFigCount();
-	
+	void SetGraphSaved(bool s);		//sets save state
+
 		//Rahma 
 	// -- Select Functions -- //
 	//error prone area !  // compiler issues 
@@ -72,12 +74,14 @@ public:
 	void AddSelectedFigure(CFigure*);				//Adds a figure to the SelectedFigs array
 	void RemoveSelectedFigure(CFigure*);			//Removes a figure from the SelectedFigs array
 	CFigure* const* GetSelectedFigures() const;		//Returns a pointer to the SelectedFigs array
+	void SelectFigure(Point clickedPoint);
 	void ClearSelectedFigs();                       //Cleares the SelectedFig array
 
 
 	// -- Interface Management Functions	
 	GUI *GetGUI() const; //Return pointer to the interface
 	void UpdateInterface() const;	//Redraws all the drawing window	
+	void updateMoveInterface(); // for drag figure
 
 	// --Save And Load 
 	void SaveAll(ofstream& fileName);//Save all figures in figure list
@@ -92,6 +96,8 @@ public:
 	void ChangeCFillColor(color SelectedColor);
 	void ChangeSFillColor(color SelectedColor);
 	CFigure* getSelectedFig();
+	//Move the selected figure. returns 1 if move is successful and 0 if not
+	bool MoveSelected(Point p, Point pMoveTo);
 	string getShapeInPlayMode();
 	int getMode();
 	void deleteSelectedFigure(CFigure* figure);

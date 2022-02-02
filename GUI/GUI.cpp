@@ -118,6 +118,7 @@ ActionType GUI::MapInputToActionType() const
 			case ITIM_RESIZE: return RESIZE;
 			case ITIM_UNDO: return UNDO;
 			case ITIM_REDO: return REDO;
+			case ITIM_MOVE: return MOVE;
 			case ITIM_SwitchPlay: return TO_PLAY;    //switch To play Mode 
 			case ITM_SEND_TO_BACK: return SEND_BACK;
 			case ITM_BRING_TO_FRONT: return BRNG_FRNT;
@@ -237,6 +238,7 @@ void GUI::CreateDrawToolBar() const
 	//MenuItemImages[ITM_Delete] = "images\\MenuItems\\delete.jpg";
 	MenuItemImages[ITM_Save] = "images\\MenuItems\\Save.jpg";
 	MenuItemImages[ITM_Load] = "images\\MenuItems\\Load.jpg";
+	MenuItemImages[ITIM_MOVE] = "images\\MenuItems\\Move.jpg";
 	MenuItemImages[ITIM_RESIZE] = "images\\MenuItems\\Resize.jpg";
 	MenuItemImages[ITM_PALETTE] = "images\\MenuItems\\Menu_Palette.jpg";
 	MenuItemImages[ITM_CHANGECDC] = "images\\MenuItems\\drawcolor.jpg";
@@ -357,6 +359,42 @@ void GUI::changeCrntDrawColor(color SelectedColor)
 void GUI::changeCrntFillColor(color SelectedColor)
 {
 	UI.FillColor = SelectedColor;
+}
+color GUI::StringToColor(string colorStr)    //convert string to color type
+{
+	if (colorStr == "BLUE") return BLUE;
+	else if (colorStr == "BLACK") return BLACK;
+	else if (colorStr == "RED") return RED;
+	else if (colorStr == "YELLOW") return YELLOW;
+	else if (colorStr == "WHITE") return WHITE;
+	else if (colorStr == "GREEN") return GREEN;
+	else if (colorStr == "ORANGE") return ORANGE;
+}
+
+string GUI::ColorToString(color clr)    //convert string to color type
+{
+
+	if (isMatchedColors(clr, BLUE)) return "BLUE";
+	else if (isMatchedColors(clr, BLACK)) return "BLACK";
+	else if (isMatchedColors(clr, RED)) return "RED";
+	else if (isMatchedColors(clr, YELLOW)) return "YELLOW";
+	else if (isMatchedColors(clr, WHITE)) return "WHITE";
+	else if (isMatchedColors(clr, GREEN)) return "GREEN";
+	else if (isMatchedColors(clr, ORANGE)) return "ORANGE";
+	else if (isMatchedColors(clr, LIGHTGOLDENRODYELLOW)) return "LIGHTGOLDENRODYELLOW";
+
+}
+
+bool GUI::isMatchedColors(color c1, color c2)
+{
+	if (c1.ucBlue == c2.ucBlue && c1.ucRed == c2.ucRed && c1.ucGreen == c2.ucGreen)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }
 //======================================================================================//
 //								Figures Drawing Functions								//
