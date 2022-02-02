@@ -36,8 +36,13 @@ void SelectAction::Execute()
 	if (SelectedFig != NULL) {
 		if (SelectedFig->IsSelected())
 			Unselect();
-		else
+		else if (GetKeyState(VK_CONTROL) & 0x8000)
 			Select();
+		else {
+			pManager->ClearSelectedFigs();
+			Select();
+		}
+			
 	}
 
 }
