@@ -433,16 +433,10 @@ void ApplicationManager::ChangeSDrawingColor(color selectedColor)
 
 void ApplicationManager::ChangeCFillColor(color SelectedColor)
 {
-	if (false)
-	{
-		UI.FillFigures = 0;
-		UI.FillColor = INDIAN;
-	}
-	else
-	{
+	
 		UI.FillFigures = 1;
 		pGUI->changeCrntFillColor(SelectedColor);
-	}
+	
 }
 
 void ApplicationManager::ChangeSFillColor(color SelectedColor)

@@ -359,6 +359,7 @@ void GUI::changeCrntDrawColor(color SelectedColor)
 void GUI::changeCrntFillColor(color SelectedColor)
 {
 	UI.FillColor = SelectedColor;
+	
 }
 color GUI::StringToColor(string colorStr)    //convert string to color type
 {
@@ -447,7 +448,7 @@ void GUI::DrawElli(Point p1,Point p2,double startAngle,double  endAngle, GfxInfo
 
 
 	pWind->DrawEllipse(p1.x, p1.y, p2.x, p1.y, style);
-	pWind->DrawArc(p1.x, p1.y, p2.x, p2.y, startAngle, endAngle,style);
+	pWind->DrawArc(p1.x, p1.y, p2.x, p2.y, startAngle, endAngle, style);
 
 }
 
@@ -470,7 +471,6 @@ void GUI::DrawHexa(Point P1, Point P2, GfxInfo hexaGfxInfo, bool selected) const
 	else
 		style = FRAME;
 
-	style = FRAME;
 	int n = 6;
 	int HexaX[6];
 	int HexaY[6];
