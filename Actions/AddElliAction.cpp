@@ -10,12 +10,12 @@ void AddElliAction::Execute()
 	//Get a Pointer to the Interface
 	 GUI* pGUI = pManager->GetGUI();
 
-	
 	 EllipseGfxInfo.isFilled = false;	//default is not filled
 	 //get drawing, filling colors and pen width from the interface
 	 EllipseGfxInfo.DrawClr = pGUI->getCrntDrawColor();
 	 EllipseGfxInfo.FillClr = pGUI->getCrntFillColor();
 	 EllipseGfxInfo.BorderWdth = pGUI->getCrntPenWidth();
+	EllipseGfxInfo.isFilled = UI.FillFigures;
 
 	 //Step 1 - Read Ellipse data from the user
 

@@ -23,6 +23,7 @@ void ActionAddSquare::Execute()
 	SqrGfxInfo.DrawClr = pGUI->getCrntDrawColor();
 	SqrGfxInfo.FillClr = pGUI->getCrntFillColor();
 	SqrGfxInfo.BorderWdth = pGUI->getCrntPenWidth();
+	SqrGfxInfo.isFilled = UI.FillFigures;
 
 
 	//Step 1 - Read Square data from the user

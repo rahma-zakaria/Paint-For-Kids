@@ -87,26 +87,27 @@ ActionType GUI::MapInputToActionType() const
 
 			switch (ClickedItemOrder)
 			{
-			case ITM_PALETTE: if (x < ITM_PALETTE * UI.MenuItemWidth + UI.MenuItemWidth / 5)
-			{
-				return COLOR_BLACK;
-			}
-							else if (x < ITM_PALETTE * UI.MenuItemWidth + UI.MenuItemWidth * 2 / 5)
-			{
-				return COLOR_WHITE;
-			}
-							else if (x < ITM_PALETTE * UI.MenuItemWidth + UI.MenuItemWidth * 3 / 5)
-			{
-				return COLOR_RED;
-			}
-							else if (x < ITM_PALETTE * UI.MenuItemWidth + UI.MenuItemWidth * 4 / 5)
-			{
-				return COLOR_GREEN;
-			}
-							else
-			{
-				return COLOR_BLUE;
-			}
+			case ITM_PALETTE: 
+				if (x < ITM_PALETTE * UI.MenuItemWidth + UI.MenuItemWidth / 5)
+				{
+					return COLOR_BLACK;
+				}
+				else if (x < ITM_PALETTE * UI.MenuItemWidth + UI.MenuItemWidth * 2 / 5)
+				{
+					return COLOR_WHITE;
+				}
+				else if (x < ITM_PALETTE * UI.MenuItemWidth + UI.MenuItemWidth * 3 / 5)
+				{
+					return COLOR_RED;
+				}
+				else if (x < ITM_PALETTE * UI.MenuItemWidth + UI.MenuItemWidth * 4 / 5)
+				{
+					return COLOR_GREEN;
+				}
+				else
+				{
+					return COLOR_BLUE;
+				}
 			case ITM_CHANGECDC: return CHNG_DRAW_CLR;
 			case ITM_CHANGECFC: return CHNG_FILL_CLR;
 			case ITM_SQUR: return DRAW_SQUARE;
@@ -359,6 +360,7 @@ void GUI::changeCrntDrawColor(color SelectedColor)
 void GUI::changeCrntFillColor(color SelectedColor)
 {
 	UI.FillColor = SelectedColor;
+	
 }
 color GUI::StringToColor(string colorStr)    //convert string to color type
 {
@@ -447,7 +449,7 @@ void GUI::DrawElli(Point p1,Point p2,double startAngle,double  endAngle, GfxInfo
 
 
 	pWind->DrawEllipse(p1.x, p1.y, p2.x, p1.y, style);
-	pWind->DrawArc(p1.x, p1.y, p2.x, p2.y, startAngle, endAngle,style);
+	pWind->DrawArc(p1.x, p1.y, p2.x, p2.y, startAngle, endAngle, style);
 
 }
 
@@ -470,7 +472,6 @@ void GUI::DrawHexa(Point P1, Point P2, GfxInfo hexaGfxInfo, bool selected) const
 	else
 		style = FRAME;
 
-	style = FRAME;
 	int n = 6;
 	int HexaX[6];
 	int HexaY[6];

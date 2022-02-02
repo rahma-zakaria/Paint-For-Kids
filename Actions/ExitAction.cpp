@@ -17,7 +17,7 @@ void ExitAction::ReadActionParameters()
 void ExitAction::Execute()
 {
 	GUI* pGui = pManager->GetGUI();
-	pGui->PrintMessage("Sure ? You want to save your graph befor exit ? if yes then write Y or any key to exit");
+	pGui->PrintMessage("Sure! ? You want to save your graph before exit ? if yes then write Y or any key to exit");
 	string userChoose = pGui->GetSrting();
 	if (userChoose == "Y" || userChoose == "y")
 	{

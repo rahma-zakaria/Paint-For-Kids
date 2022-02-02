@@ -20,7 +20,7 @@ void AddHexaAction::Execute()
 	HexapseGfxInfo.DrawClr = pGUI->getCrntDrawColor();
 	HexapseGfxInfo.FillClr = pGUI->getCrntFillColor();
 	HexapseGfxInfo.BorderWdth = pGUI->getCrntPenWidth();
-
+	HexapseGfxInfo.isFilled = UI.FillFigures;
 	//Step 1 - Read Hexa data from the user
 
 	pGUI->PrintMessage("New Hexa: Click at the center");
