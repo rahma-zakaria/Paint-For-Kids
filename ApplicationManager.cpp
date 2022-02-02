@@ -391,7 +391,7 @@ void ApplicationManager::ChangeSDrawingColor(color selectedColor)
 
 void ApplicationManager::ChangeCFillColor(color SelectedColor)
 {
-	if (true)
+	if (false)
 	{
 		UI.FillFigures = 0;
 		UI.FillColor = INDIAN;
