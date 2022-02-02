@@ -13,7 +13,8 @@ void SelectAction::ReadActionParameters()
 	//Get a Pointer to the Interface
 	GUI* pGUI = pManager->GetGUI();
 
-	pGUI->PrintMessage("Select a figure: Click a figure");
+	if (pManager->getMode() != 2)
+		pGUI->PrintMessage("Select a figure: Click a figure");
 
 	//Read clicked point and store in P
 	pGUI->GetPointClicked(P.x, P.y);
@@ -53,4 +54,8 @@ void SelectAction::Select() {
 void SelectAction::Unselect() {
 	SelectedFig->SetSelected(false); //Sets the figure as "unselected"
 	pManager->RemoveSelectedFigure(SelectedFig);	//Removes the figure from ApplicationManager's SelectedFigs array
+}
+
+CFigure* SelectAction::getSelectedFigure() {
+	return SelectedFig;
 }

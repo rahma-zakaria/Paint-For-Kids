@@ -27,17 +27,16 @@ void CEllipse::DrawMe(GUI* pGUI) const
 
 }
 
-
-void CEllipse::Save(ofstream& outFile)
+void CEllipse::Save(ofstream& outFile, GUI* pGUI)
 {
 	outFile << type << "\t" << ID << "\t" << point1.x << "\t" << point1.y <<
-		"\t" << point2.x << "\t" << point2.y << "\t" << angele1 << "\t" 
-		<< angele2 << "\t" << "blue" << "\t";
-	if (FigGfxInfo.isFilled) outFile << "red" << endl;
+		"\t" << point2.x << "\t" << point2.y << "\t" << angele1 << "\t"
+		<< angele2 << "\t" << pGUI->ColorToString(FigGfxInfo.DrawClr) << "\t";
+	if (FigGfxInfo.isFilled) outFile << pGUI->ColorToString(FigGfxInfo.FillClr) << endl;
 	else outFile << "NO_FILL" << endl;
 }
 
-void CEllipse::Load(ifstream& inFile)
+void CEllipse::Load(ifstream& inFile, GUI* pGUI)
 {
 	string FigureColor;
 	string FigureFill;
@@ -45,17 +44,26 @@ void CEllipse::Load(ifstream& inFile)
 	//Get a Pointer to the Interface
 	inFile >> ID >> point1.x >> point1.y >> point2.x >> point2.y >> angele1 >> angele2;
 	inFile >> FigureColor >> FigureFill;
-	//FigGfxInfo.DrawClr = FigureColor;
-	FigGfxInfo.DrawClr = RED;
+	FigGfxInfo.DrawClr = pGUI->StringToColor(FigureColor);
 	FigGfxInfo.BorderWdth = UI.PenWidth;
 	if (FigureFill == "NO_FILL") {
 		FigGfxInfo.isFilled = false;
 	}
 	else {
-		//FigGfxInfo.FillClr = FigureFill;
-		FigGfxInfo.FillClr = RED;
+		FigGfxInfo.FillClr = pGUI->StringToColor(FigureFill);;
 		FigGfxInfo.isFilled = true;
 	}
+}
+void CEllipse::Move(Point p, Point pMoveTo) {
+
+	int DeltaX = (pMoveTo.x - p.x);
+	int DeltaY = (pMoveTo.y - p.y);
+
+	point1.x += DeltaX;
+	point1.y += DeltaY;
+	point2.x += DeltaX;
+	point2.y += DeltaY;
+
 }
 
 int CEllipse::getFigureData(POINT& p1, POINT& p2)
@@ -68,12 +76,14 @@ int CEllipse::getFigureData(POINT& p1, POINT& p2)
 }
 
 string CEllipse::getFigureName() {
-	return "Ellipse selected";
+	return "Ellipse";
 }
 
 bool CEllipse::PointInShape(int x, int y) const {
-	return (x >= point1.x && x <= point2.x)
-		&& (y >= point1.y && y <= point2.y);
+	Point center;
+	center.x = (point1.x + point2.x) / 2;
+	center.y = (point1.y + point2.y) / 2;
+	return pow((x - center.x), 2) / pow((point1.x - center.x), 2) + pow((y - center.y), 2) / pow((point1.y - center.y), 2) <= 1;
 }
 
 void CEllipse::Resize(float) {

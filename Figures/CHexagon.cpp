@@ -27,15 +27,15 @@ void CHexagon::DrawMe(GUI* pGUI) const
 
 }
 
-void CHexagon::Save(ofstream& outFile)
+void CHexagon::Save(ofstream& outFile, GUI* pGUI)
 {
 	outFile << type << "\t" << ID << "\t" << center.x << "\t" << center.y <<
-		"\t" << point.x << "\t" << point.y << "\t" << "blue" << "\t";
-	if (FigGfxInfo.isFilled) outFile << "red" << endl;
+		"\t" << point.x << "\t" << point.y << "\t" << pGUI->ColorToString(FigGfxInfo.DrawClr) << "\t";
+	if (FigGfxInfo.isFilled) outFile << pGUI->ColorToString(FigGfxInfo.FillClr) << endl;
 	else outFile << "NO_FILL" << endl;
 }
 
-void CHexagon::Load(ifstream& inFile)
+void CHexagon::Load(ifstream& inFile, GUI* pGUI)
 {
 	string FigureColor;
 	string FigureFill;
@@ -43,17 +43,25 @@ void CHexagon::Load(ifstream& inFile)
 	//Get a Pointer to the Interface
 	inFile >> ID >> center.x >> center.y >> point.x >> point.y;
 	inFile >> FigureColor >> FigureFill;
-	//FigGfxInfo.DrawClr = FigureColor;
-	FigGfxInfo.DrawClr = RED;
+	FigGfxInfo.DrawClr = pGUI->StringToColor(FigureColor);
 	FigGfxInfo.BorderWdth = UI.PenWidth;
 	if (FigureFill == "NO_FILL") {
 		FigGfxInfo.isFilled = false;
 	}
 	else {
-		//FigGfxInfo.FillClr = FigureFill;
-		FigGfxInfo.FillClr = RED;
+		FigGfxInfo.FillClr = pGUI->StringToColor(FigureFill);;
 		FigGfxInfo.isFilled = true;
 	}
+}
+void CHexagon::Move(Point p, Point pMoveTo) {
+
+	int DeltaX = (pMoveTo.x - p.x);
+	int DeltaY = (pMoveTo.y - p.y);
+
+	center.x += DeltaX;
+	center.y += DeltaY;
+	point.x += DeltaX;
+	point.y += DeltaY;
 }
 
 int CHexagon::getFigureData(POINT& p1, POINT& p2)
@@ -63,14 +71,10 @@ int CHexagon::getFigureData(POINT& p1, POINT& p2)
 }
 
 string CHexagon::getFigureName() {
-	return "Hexagon selected";
+	return "Hexagon";
 }
 bool CHexagon::PointInShape(int x, int y) const {
-	Point tempP;
-	tempP.x = center.x - (point.x - center.x);
-	tempP.y = center.y-(point.y-center.y);
-	return (x >= tempP.x && x <= point.x)
-		&& (y >= tempP.y && y <= point.y);
+	return (x <= max(center.x, point.x) && x >= min(center.x, point.x) && y <= max(center.y, point.y) && y >= min(center.y, point.y));
 }
 void CHexagon::Resize(float size) {
 	if (FigGfxInfo.Resize_Factor == .5) FigGfxInfo.Resize_Factor = -1;

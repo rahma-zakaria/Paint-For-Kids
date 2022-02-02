@@ -18,6 +18,7 @@ public:
 	virtual void Execute();
 	void Select();
 	void Unselect();
+	CFigure* getSelectedFigure();
 };
 
 

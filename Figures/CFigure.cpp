@@ -37,3 +37,6 @@ void CFigure::setSize(float size)
 	FigGfxInfo.Resize_Factor = size;
 }
 
+int CFigure::getID() {
+	return ID;
+}

@@ -20,11 +20,11 @@ void SwitchToPlay::Execute()
 	
 	ReadActionParameters();
 	pManager->ClearSelectedFigs();
-	ofstream MyFile;
+	/*ofstream MyFile;
 	MyFile.open("tempSave.txt", ios::out);
 
 	if(pManager->GetFigCount()!=0){
 		pManager->SaveAll(MyFile);
 	}
-	MyFile.close();
+	MyFile.close();*/
 }

@@ -22,24 +22,16 @@ void CSquare::DrawMe(GUI* pGUI) const
 	
 
 }
-
-void CSquare::Save(ofstream& outFile)
+void CSquare::Save(ofstream& outFile, GUI* pGUI)
 {
 	outFile << type << "\t" << ID << "\t" << TopLeftCorner.x << "\t" << TopLeftCorner.y <<
-		"\t" << length << "\t" << "blue" << "\t";
-	if (FigGfxInfo.isFilled) outFile << "red" << endl;
+		"\t" << length << "\t" << pGUI->ColorToString(FigGfxInfo.DrawClr) << "\t";
+	if (FigGfxInfo.isFilled) outFile << pGUI->ColorToString(FigGfxInfo.FillClr) << endl;
 	else outFile << "NO_FILL" << endl;
 }
 
-//void CSquare::Save(ofstream& outFile)
-//{
-//	outFile << type << "\t" << ID << "\t" << TopLeftCorner.x << "\t" << TopLeftCorner.y <<
-//		"\t" << length << "\t" << FigGfxInfo.DrawClr << "\t";
-//	if (FigGfxInfo.isFilled) outFile << pGUI->ColorToString(FigGfxInfo.FillClr) << endl;
-//	else outFile << "NO_FILL" << endl;
-//}
 
-void CSquare::Load(ifstream& inFile)
+void CSquare::Load(ifstream& inFile, GUI* pGUI)
 {
 	string FigureColor;
 	string FigureFill;
@@ -47,18 +39,22 @@ void CSquare::Load(ifstream& inFile)
 	//Get a Pointer to the Interface
 	inFile >> ID >> TopLeftCorner.x >> TopLeftCorner.y >> length;
 	inFile >> FigureColor >> FigureFill;
-	//FigGfxInfo.DrawClr = FigureColor;
-	FigGfxInfo.DrawClr = RED;
+	FigGfxInfo.DrawClr = pGUI->StringToColor(FigureColor);
 	FigGfxInfo.BorderWdth = UI.PenWidth;
 	if (FigureFill == "NO_FILL") {
 		FigGfxInfo.isFilled = false;
 	}
 	else {
-		//FigGfxInfo.FillClr = FigureFill;
-		FigGfxInfo.FillClr = YELLOW;
+		FigGfxInfo.FillClr = pGUI->StringToColor(FigureFill);;
 		FigGfxInfo.isFilled = true;
 	}
+}
+void CSquare::Move(Point p, Point pMoveTo) {
+	int DeltaX = (pMoveTo.x - p.x);
+	int DeltaY = (pMoveTo.y - p.y);
 
+	TopLeftCorner.x += DeltaX;
+	TopLeftCorner.y += DeltaY;
 }
 
 int CSquare::getFigureData(POINT& p1, POINT& p2)
@@ -76,7 +72,7 @@ bool CSquare::PointInShape(int x, int y) const {
 }
 
 string CSquare::getFigureName() {
-	return "Square selected";
+	return "Square";
 }
 
 void CSquare:: Resize(float size) {
