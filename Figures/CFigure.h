@@ -20,7 +20,7 @@ protected:
 public:
 	CFigure(GfxInfo FigureGfxInfo);
 	CFigure();
-	void SetSelected(bool );	//select/unselect the figure
+	void SetSelected(bool s);	//select/unselect the figure
 	bool IsSelected() const;	//check whether fig is selected
 
 	virtual void DrawMe(GUI*) const  = 0 ;		//Draw the figure
@@ -42,10 +42,9 @@ public:
 
 	//virtual void Rotate() = 0;	//Rotate the figure
 	//virtual void Resize() = 0;	//Resize the figure
-	//virtual void Move() = 0;		//Move the figure
-
-	virtual void Save(ofstream &OutFile) = 0;	//Save the figure parameters to the file
-	virtual void Load(ifstream &Infile) = 0;	//Load the figure parameters to the file
+	virtual void Move(Point p, Point pMoveTo) = 0; //Moves Figure from point p to point pMoveTo
+	virtual void Save(ofstream& OutFile, GUI* pGUI) = 0;	//Save the figure parameters to the file
+	virtual void Load(ifstream& Infile, GUI* pGUI) = 0;	//Load the figure parameters to the file
 
 	virtual void Resize(float) = 0;
 

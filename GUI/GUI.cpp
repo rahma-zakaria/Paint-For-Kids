@@ -15,7 +15,7 @@ GUI::GUI()
 	
 	UI.StatusBarHeight = 50;
 	UI.ToolBarHeight = 50;
-	UI.MenuItemWidth = 80;
+	UI.MenuItemWidth = 65;
 	
 	UI.DrawColor = BLUE;	//Drawing color
 	UI.FillColor = GREEN;	//Filling color
@@ -87,26 +87,27 @@ ActionType GUI::MapInputToActionType() const
 
 			switch (ClickedItemOrder)
 			{
-			case ITM_PALETTE: if (x < ITM_PALETTE * UI.MenuItemWidth + UI.MenuItemWidth / 5)
-			{
-				return COLOR_BLACK;
-			}
-							else if (x < ITM_PALETTE * UI.MenuItemWidth + UI.MenuItemWidth * 2 / 5)
-			{
-				return COLOR_WHITE;
-			}
-							else if (x < ITM_PALETTE * UI.MenuItemWidth + UI.MenuItemWidth * 3 / 5)
-			{
-				return COLOR_RED;
-			}
-							else if (x < ITM_PALETTE * UI.MenuItemWidth + UI.MenuItemWidth * 4 / 5)
-			{
-				return COLOR_GREEN;
-			}
-							else
-			{
-				return COLOR_BLUE;
-			}
+			case ITM_PALETTE: 
+				if (x < ITM_PALETTE * UI.MenuItemWidth + UI.MenuItemWidth / 5)
+				{
+					return COLOR_BLACK;
+				}
+				else if (x < ITM_PALETTE * UI.MenuItemWidth + UI.MenuItemWidth * 2 / 5)
+				{
+					return COLOR_WHITE;
+				}
+				else if (x < ITM_PALETTE * UI.MenuItemWidth + UI.MenuItemWidth * 3 / 5)
+				{
+					return COLOR_RED;
+				}
+				else if (x < ITM_PALETTE * UI.MenuItemWidth + UI.MenuItemWidth * 4 / 5)
+				{
+					return COLOR_GREEN;
+				}
+				else
+				{
+					return COLOR_BLUE;
+				}
 			case ITM_CHANGECDC: return CHNG_DRAW_CLR;
 			case ITM_CHANGECFC: return CHNG_FILL_CLR;
 			case ITM_SQUR: return DRAW_SQUARE;
@@ -118,6 +119,7 @@ ActionType GUI::MapInputToActionType() const
 			case ITIM_RESIZE: return RESIZE;
 			case ITIM_UNDO: return UNDO;
 			case ITIM_REDO: return REDO;
+			case ITIM_MOVE: return MOVE;
 			case ITIM_SwitchPlay: return TO_PLAY;    //switch To play Mode 
 			case ITM_SEND_TO_BACK: return SEND_BACK;
 			case ITM_BRING_TO_FRONT: return BRNG_FRNT;
@@ -238,6 +240,7 @@ void GUI::CreateDrawToolBar() const
 	//MenuItemImages[ITM_Delete] = "images\\MenuItems\\delete.jpg";
 	MenuItemImages[ITM_Save] = "images\\MenuItems\\Save.jpg";
 	MenuItemImages[ITM_Load] = "images\\MenuItems\\Load.jpg";
+	MenuItemImages[ITIM_MOVE] = "images\\MenuItems\\Move.jpg";
 	MenuItemImages[ITIM_RESIZE] = "images\\MenuItems\\Resize.jpg";
 	MenuItemImages[ITM_PALETTE] = "images\\MenuItems\\Menu_Palette.jpg";
 	MenuItemImages[ITM_CHANGECDC] = "images\\MenuItems\\drawcolor.jpg";
@@ -359,6 +362,43 @@ void GUI::changeCrntDrawColor(color SelectedColor)
 void GUI::changeCrntFillColor(color SelectedColor)
 {
 	UI.FillColor = SelectedColor;
+	
+}
+color GUI::StringToColor(string colorStr)    //convert string to color type
+{
+	if (colorStr == "BLUE") return BLUE;
+	else if (colorStr == "BLACK") return BLACK;
+	else if (colorStr == "RED") return RED;
+	else if (colorStr == "YELLOW") return YELLOW;
+	else if (colorStr == "WHITE") return WHITE;
+	else if (colorStr == "GREEN") return GREEN;
+	else if (colorStr == "ORANGE") return ORANGE;
+}
+
+string GUI::ColorToString(color clr)    //convert string to color type
+{
+
+	if (isMatchedColors(clr, BLUE)) return "BLUE";
+	else if (isMatchedColors(clr, BLACK)) return "BLACK";
+	else if (isMatchedColors(clr, RED)) return "RED";
+	else if (isMatchedColors(clr, YELLOW)) return "YELLOW";
+	else if (isMatchedColors(clr, WHITE)) return "WHITE";
+	else if (isMatchedColors(clr, GREEN)) return "GREEN";
+	else if (isMatchedColors(clr, ORANGE)) return "ORANGE";
+	else if (isMatchedColors(clr, LIGHTGOLDENRODYELLOW)) return "LIGHTGOLDENRODYELLOW";
+
+}
+
+bool GUI::isMatchedColors(color c1, color c2)
+{
+	if (c1.ucBlue == c2.ucBlue && c1.ucRed == c2.ucRed && c1.ucGreen == c2.ucGreen)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }
 //======================================================================================//
 //								Figures Drawing Functions								//
@@ -411,7 +451,7 @@ void GUI::DrawElli(Point p1,Point p2,double startAngle,double  endAngle, GfxInfo
 
 
 	pWind->DrawEllipse(p1.x, p1.y, p2.x, p1.y, style);
-	pWind->DrawArc(p1.x, p1.y, p2.x, p2.y, startAngle, endAngle,style);
+	pWind->DrawArc(p1.x, p1.y, p2.x, p2.y, startAngle, endAngle, style);
 
 }
 
@@ -434,7 +474,6 @@ void GUI::DrawHexa(Point P1, Point P2, GfxInfo hexaGfxInfo, bool selected) const
 	else
 		style = FRAME;
 
-	style = FRAME;
 	int n = 6;
 	int HexaX[6];
 	int HexaY[6];
