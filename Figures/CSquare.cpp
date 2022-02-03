@@ -79,6 +79,10 @@ string CSquare::getFigureName() {
 	return "Square";
 }
 
+string CSquare::getFigureColor() {
+	return figColor;
+}
+
 void CSquare:: Resize(float size) {
 	length = length * size;
 }

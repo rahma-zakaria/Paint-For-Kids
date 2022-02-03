@@ -14,6 +14,7 @@
 #include "Actions\Bring_to_front.h"
 #include "Actions\Send_To_Back.h"
 #include "Actions\SelectByShape.h"
+#include "Actions\SelectByColor.h"
 #include "Figures\CSquare.h"
 #include "Figures\CHexagon.h"
 #include "Figures\CEllipse.h"
@@ -84,6 +85,7 @@ Action* ApplicationManager::CreateAction(ActionType ActType)
 {
 
 	Action* newAct = NULL;
+	bool isThereColoredFig = false;
 	
 	//According to Action Type, create the corresponding action object
 	switch (ActType)
@@ -151,7 +153,30 @@ Action* ApplicationManager::CreateAction(ActionType ActType)
 			newAct = new SwitchToDraw(this);
 			break;
 		case TO_PLAY_SELECT_BY_SHAPE:
+			configureAllDrawModeData();
+			configureAllPlayModeData();
+			if (FigCount == 0)
+				return NULL;
 			newAct = new SelectByShape(this);
+			break;
+		case TO_PLAY_SELECT_BY_COLOR:
+			configureAllDrawModeData();
+			configureAllPlayModeData();
+			if (FigCount == 0)
+				return NULL;
+			for (int i = 0;i < FigCount;i++)
+			{
+				if (FigList[i]->getFigureColor() != "none")
+				{
+					isThereColoredFig = true;
+				}
+			}
+			if (!isThereColoredFig)
+			{
+				pGUI->PrintMessage("There is no colored figures");
+				return NULL;
+			}
+			newAct = new SelectByColor(this);
 			break;
 		case SEND_BACK:
 			newAct = new Send_To_Back(this);
@@ -428,6 +453,11 @@ string ApplicationManager::getShapeInPlayMode() {
 	return FigList[randomShape]->getFigureName();
 }
 
+string ApplicationManager::getColorInPlayMode() {
+	int randomShape = rand() % FigCount;
+	return FigList[randomShape]->getFigureColor();
+}
+
 void ApplicationManager::deleteSelectedFigure(CFigure* figure) {
 	int index;
 	for (int i = 0; i < FigCount; i++) {
@@ -448,6 +478,14 @@ int ApplicationManager::getMode() {
 bool ApplicationManager::isFigureExists(string figureName) {
 	for (int i = 0; i < FigCount; i++) {
 		if (FigList[i]->getFigureName() == figureName)
+			return true;
+	}
+	return false;
+}
+
+bool ApplicationManager::isFigureColorExists(string figureColor) {
+	for (int i = 0; i < FigCount; i++) {
+		if (FigList[i]->getFigureColor() == figureColor)
 			return true;
 	}
 	return false;

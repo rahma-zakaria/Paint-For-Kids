@@ -93,9 +93,11 @@ public:
 	void ChangeSFillColor(color SelectedColor);
 	CFigure* getSelectedFig();
 	string getShapeInPlayMode();
+	string getColorInPlayMode();
 	int getMode();
 	void deleteSelectedFigure(CFigure* figure);
 	bool isFigureExists(string figureName);
+	bool isFigureColorExists(string figureColor);
 	void configureAllDrawModeData();
 	void configureAllPlayModeData();
 };

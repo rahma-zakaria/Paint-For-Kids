@@ -16,6 +16,7 @@ public:
 	virtual bool PointInShape(int x, int y) const;
 	int getFigureData(POINT& p1, POINT& p2);
 	string getFigureName();
+	string getFigureColor();
 	void Resize(float);
 };
 

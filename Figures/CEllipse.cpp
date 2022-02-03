@@ -71,6 +71,10 @@ string CEllipse::getFigureName() {
 	return "Ellipse";
 }
 
+string CEllipse::getFigureColor() {
+	return figColor;
+}
+
 bool CEllipse::PointInShape(int x, int y) const {
 	Point center;
 	center.x = (point1.x + point2.x) / 2;

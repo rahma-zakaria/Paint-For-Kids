@@ -65,6 +65,11 @@ int CHexagon::getFigureData(POINT& p1, POINT& p2)
 string CHexagon::getFigureName() {
 	return "Hexagon";
 }
+
+string CHexagon::getFigureColor() {
+	return figColor;
+}
+
 bool CHexagon::PointInShape(int x, int y) const {
 	return (x <= max(center.x, point.x) && x >= min(center.x, point.x) && y <= max(center.y, point.y) && y >= min(center.y, point.y));
 }

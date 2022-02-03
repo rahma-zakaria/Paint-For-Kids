@@ -169,6 +169,7 @@ ActionType GUI::MapInputToActionType() const
 			{
 			case ITIM_SwitchDraw: return TO_DRAW;
 			case ITIM_SelectByShape: return TO_PLAY_SELECT_BY_SHAPE;
+			case ITIM_SelectByColor: return TO_PLAY_SELECT_BY_COLOR;
 			default: return EMPTY;	//A click on empty place in desgin toolbar
 			}
 		}
@@ -305,6 +306,7 @@ void GUI::CreatePlayToolBar() const
 	string MenuItemImages[PLAY_ITM_COUNT];
 	MenuItemImages[ITIM_SwitchDraw] = "images\\MenuItems\\draw.jpg";
 	MenuItemImages[ITIM_SelectByShape] = "images\\MenuItems\\select.jpg";
+	MenuItemImages[ITIM_SelectByColor] = "images\\MenuItems\\select.jpg";
 
 	//TODO: Prepare images for each menu item and add it to the list
 
