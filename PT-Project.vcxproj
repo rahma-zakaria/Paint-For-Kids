@@ -140,6 +140,7 @@
     <ClCompile Include="Actions\ExitAction.cpp" />
     <ClCompile Include="Actions\RezizeAction.cpp" />
     <ClCompile Include="Actions\SelectAction.cpp" />
+    <ClCompile Include="Actions\SelectByBoth.cpp" />
     <ClCompile Include="Actions\SelectByColor.cpp" />
     <ClCompile Include="Actions\SelectByShape.cpp" />
     <ClCompile Include="Actions\Send_To_Back.cpp" />
@@ -201,6 +202,7 @@
     <ClInclude Include="Actions\Bring_to_front.h" />
     <ClInclude Include="Actions\RezizeAction.h" />
     <ClInclude Include="Actions\SelectAction.h" />
+    <ClInclude Include="Actions\SelectByBoth.h" />
     <ClInclude Include="Actions\SelectByColor.h" />
     <ClInclude Include="Actions\SelectByShape.h" />
     <ClInclude Include="Actions\Send_To_Back.h" />

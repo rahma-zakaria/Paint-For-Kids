@@ -15,6 +15,7 @@
 #include "Actions\Send_To_Back.h"
 #include "Actions\SelectByShape.h"
 #include "Actions\SelectByColor.h"
+#include "Actions\SelectByBoth.h"
 #include "Figures\CSquare.h"
 #include "Figures\CHexagon.h"
 #include "Figures\CEllipse.h"
@@ -156,30 +157,19 @@ Action* ApplicationManager::CreateAction(ActionType ActType)
 			newAct = new SwitchToDraw(this);
 			break;
 		case TO_PLAY_SELECT_BY_SHAPE:
-			configureAllDrawModeData();
-			configureAllPlayModeData();
-			if (FigCount == 0)
-				return NULL;
-			newAct = new SelectByShape(this);
+			newAct = playMode(TO_PLAY_SELECT_BY_SHAPE);
+			if (newAct == NULL)
+				return newAct;
 			break;
 		case TO_PLAY_SELECT_BY_COLOR:
-			configureAllDrawModeData();
-			configureAllPlayModeData();
-			if (FigCount == 0)
-				return NULL;
-			for (int i = 0;i < FigCount;i++)
-			{
-				if (FigList[i]->getFigureColor() != "none")
-				{
-					isThereColoredFig = true;
-				}
-			}
-			if (!isThereColoredFig)
-			{
-				pGUI->PrintMessage("There is no colored figures");
-				return NULL;
-			}
-			newAct = new SelectByColor(this);
+			newAct = playMode(TO_PLAY_SELECT_BY_COLOR);
+			if (newAct == NULL)
+				return newAct;
+			break;
+		case TO_PLAY_SELECT_BY_BOTH:
+			newAct = playMode(TO_PLAY_SELECT_BY_BOTH);
+			if (newAct == NULL)
+				return newAct;
 			break;
 		case SEND_BACK:
 			newAct = new Send_To_Back(this);
@@ -477,6 +467,24 @@ CFigure* ApplicationManager::getSelectedFig()
 	return SelectedFigs[0];
 }
 
+Action* ApplicationManager::playMode(ActionType gameModeType) {
+	configureAllDrawModeData();
+	configureAllPlayModeData();
+	if (FigCount == 0)
+		return NULL;
+	Action *action;
+	if (gameModeType == TO_PLAY_SELECT_BY_SHAPE) {
+		action=new SelectByShape(this);
+	}
+	else if (gameModeType == TO_PLAY_SELECT_BY_COLOR) {
+		action=new SelectByColor(this);
+	}
+	else{
+		action=new SelectByBoth(this);
+	}
+	return action;
+}
+
 string ApplicationManager::getShapeInPlayMode() {
 	int randomShape = rand() % FigCount;
 	return FigList[randomShape]->getFigureName();
@@ -485,6 +493,16 @@ string ApplicationManager::getShapeInPlayMode() {
 string ApplicationManager::getColorInPlayMode() {
 	int randomShape = rand() % FigCount;
 	return FigList[randomShape]->getFigureColor();
+}
+
+CFigure* ApplicationManager::getColoredFigure() {
+	CFigure *result;
+	do
+	{
+		int randomShape = rand() % FigCount;
+		result=FigList[randomShape];
+	} while (result->getFigureColor() == "none");
+	return result;
 }
 
 void ApplicationManager::deleteSelectedFigure(CFigure* figure) {
@@ -545,6 +563,14 @@ bool ApplicationManager::isFigureExists(string figureName) {
 bool ApplicationManager::isFigureColorExists(string figureColor) {
 	for (int i = 0; i < FigCount; i++) {
 		if (FigList[i]->getFigureColor() == figureColor)
+			return true;
+	}
+	return false;
+}
+
+bool ApplicationManager::isColoredFiguresExists(CFigure* figure) {
+	for (int i = 0; i < FigCount; i++) {
+		if (FigList[i]->getFigureColor() == figure->getFigureColor()&&FigList[i]->getFigureName()==figure->getFigureName())
 			return true;
 	}
 	return false;
