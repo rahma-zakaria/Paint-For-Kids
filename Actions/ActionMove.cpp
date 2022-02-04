@@ -12,7 +12,7 @@ void ActionMove::Execute()
 	pManager->UpdateInterface();
 	pGUI->PrintMessage("Select a figure to Move");
 	Point p;
-	//pGUI->pWind->WaitMouseClick(p.x, p.y);
+	pGUI->pWind->WaitMouseClick(p.x, p.y);
 	if ((p.y > UI.ToolBarHeight) && (p.y < (UI.height - UI.StatusBarHeight))) {
 		pManager->SelectFigure(p);
 		if (pManager->GetSelectedCount() == 0){
