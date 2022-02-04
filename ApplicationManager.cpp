@@ -103,21 +103,9 @@ Action* ApplicationManager::CreateAction(ActionType ActType)
 		case DRAW_HEX:
 			newAct = new AddHexaAction(this);
 			break;
-	
-			//case select Action
-		/*case SELECT:
-			newAct = new SelectAction(this);
-			break;*/
 		case DRAWING_AREA:
-			//if (mode == 2) {
 				return new SelectAction(this);
-			//}
 			break;
-
-			/*case RESIZE:
-			newAct = new RezizeAction(this);
-			break;*/
-
 		case CHNG_DRAW_CLR:
 			newAct = new ChangeCDCAction(this);
 			break;
@@ -148,11 +136,11 @@ Action* ApplicationManager::CreateAction(ActionType ActType)
 			break;
 		case TO_PLAY:
 			configureAllPlayModeData();
-			newAct = new SwitchToPlay(this);
+			//newAct = new SwitchToPlay(this);
 			break;
 		case TO_DRAW:
 			configureAllDrawModeData();
-			newAct = new SwitchToDraw(this);
+			//newAct = new SwitchToDraw(this);
 			break;
 		case TO_PLAY_SELECT_BY_SHAPE:
 			newAct = playMode(TO_PLAY_SELECT_BY_SHAPE);
@@ -610,6 +598,9 @@ bool ApplicationManager::isColoredFiguresExists(CFigure* figure) {
 }
 
 void ApplicationManager::configureAllPlayModeData() {
+	if (FigCount != 0)
+		pGUI->PrintMessage("Welcome To PlayMode");
+	else pGUI->PrintMessage("No Figer To Play");
 	ClearSelectedFigs();
 	restoreDataCount = FigCount;
 	for (int i = 0; i < FigCount; i++) {
@@ -619,6 +610,7 @@ void ApplicationManager::configureAllPlayModeData() {
 	mode = 2;
 }
 void ApplicationManager::configureAllDrawModeData() {
+	pGUI->PrintMessage("Back To DrawMode");
 	ClearSelectedFigs();
 	for (int i = 0; i < restoreDataCount; i++) {
 		restoreData[i]->SetSelected(false);

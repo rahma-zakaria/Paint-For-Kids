@@ -34,6 +34,15 @@ void ActionLoad::ReadActionParameters()
 void ActionLoad::Execute() {
 	//Get a Pointer to the Interface
 	GUI* pGUI = pManager->GetGUI();
+
+	pGUI->PrintMessage("You want to save your graph before Load ? if yes then write Y");
+	string userChoose = pGUI->GetSrting();
+	if (userChoose == "Y" || userChoose == "y")
+	{
+		Action* saveAct = new ActionSave(pManager);
+		pManager->ExecuteAction(saveAct);
+	}
+
 	pGUI->PrintMessage("load");
 
 	ReadActionParameters();
