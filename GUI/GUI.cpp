@@ -466,9 +466,9 @@ void GUI::DrawElli(Point p1,Point p2,double startAngle,double  endAngle, GfxInfo
 
 }
 
-void GUI::DrawHexa(Point P1, Point P2,int radius, GfxInfo hexaGfxInfo, bool selected) const
+void GUI::DrawHexa(Point P1, Point P2, GfxInfo hexaGfxInfo, bool selected) const
 {
-	//radius = (sqrt(pow((P1.x - P2.x), 2) + pow((P1.y - P2.y), 2))) / 2;
+	int radius = (sqrt(pow((P1.x - P2.x), 2) + pow((P1.y - P2.y), 2))) / 2;
 	color DrawingClr;
 	if (selected)
 		DrawingClr = UI.HighlightColor; //Figure should be drawn highlighted
