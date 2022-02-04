@@ -15,7 +15,7 @@ GUI::GUI()
 	
 	UI.StatusBarHeight = 50;
 	UI.ToolBarHeight = 50;
-	UI.MenuItemWidth = 65;
+	UI.MenuItemWidth = 70;
 	
 	UI.DrawColor = BLUE;	//Drawing color
 	UI.FillColor = GREEN;	//Filling color
@@ -119,8 +119,6 @@ ActionType GUI::MapInputToActionType() const
 			case ITM_Save: return SAVE;			
 			case ITM_Load: return LOAD;
 			case ITIM_RESIZE: return RESIZE;
-			case ITIM_UNDO: return UNDO;
-			case ITIM_REDO: return REDO;
 			case ITIM_MOVE: return MOVE;
 			case ITIM_SwitchPlay: return TO_PLAY;    //switch To play Mode 
 			case ITM_SEND_TO_BACK: return SEND_BACK;
@@ -251,8 +249,6 @@ void GUI::CreateDrawToolBar() const
 	MenuItemImages[ITM_CHANGECDC] = "images\\MenuItems\\drawcolor.jpg";
 	MenuItemImages[ITM_CHANGECFC] = "images\\MenuItems\\Menu_FillColor.jpg";
 	MenuItemImages[ITM_BACKGROUND_CLR] = "images\\MenuItems\\Background_Color.jpg";
-	MenuItemImages[ITIM_UNDO] = "images\\MenuItems\\Undo.jpg";
-	MenuItemImages[ITIM_REDO] = "images\\MenuItems\\Redo.jpg";
 	MenuItemImages[ITIM_SwitchPlay] = "images\\MenuItems\\play.jpg";
 	MenuItemImages[ITM_SEND_TO_BACK] = "images\\MenuItems\\Send_to_Back.jpg";
 	MenuItemImages[ITM_BRING_TO_FRONT] = "images\\MenuItems\\Bring_to_Front.jpg";
