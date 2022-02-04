@@ -11,9 +11,8 @@ public:
 	ActionAddSquare(ApplicationManager *pApp);
 	
 	//Add Square to the ApplicationManager to Excute it
-	virtual void Execute() ;
-
-
+	virtual void Execute();
+	~ActionAddSquare();
 	
 };
 

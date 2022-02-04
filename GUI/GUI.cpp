@@ -113,7 +113,8 @@ ActionType GUI::MapInputToActionType() const
 			case ITM_SQUR: return DRAW_SQUARE;
 			case ITM_ELPS: return DRAW_ELPS;
 			case ITM_Hexa: return DRAW_HEX;
-			case ITM_Select:return SELECT;
+			//case ITM_Select:return SELECT;
+			case ITM_Delete:return DEL;
 			case ITM_Save: return SAVE;			
 			case ITM_Load: return LOAD;
 			case ITIM_RESIZE: return RESIZE;
@@ -235,8 +236,8 @@ void GUI::CreateDrawToolBar() const
 	MenuItemImages[ITM_SQUR] = "images\\MenuItems\\Square.jpg";
 	MenuItemImages[ITM_ELPS] = "images\\MenuItems\\Elips.jpg";
 	MenuItemImages[ITM_Hexa] = "images\\MenuItems\\Hexa.jpg";
-	MenuItemImages[ITM_Select] = "images\\MenuItems\\select.jpg";
-	//MenuItemImages[ITM_Delete] = "images\\MenuItems\\delete.jpg";
+	//MenuItemImages[ITM_Select] = "images\\MenuItems\\select.jpg";
+	MenuItemImages[ITM_Delete] = "images\\MenuItems\\delete.jpg";
 	MenuItemImages[ITM_Save] = "images\\MenuItems\\Save.jpg";
 	MenuItemImages[ITM_Load] = "images\\MenuItems\\Load.jpg";
 	MenuItemImages[ITIM_MOVE] = "images\\MenuItems\\Move.jpg";

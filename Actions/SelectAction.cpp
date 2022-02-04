@@ -50,6 +50,7 @@ void SelectAction::Execute()
 //Selected an unselected figure
 void SelectAction::Select() { 
 	SelectedFig->SetSelected(true); //Sets the figure as "selected"
+	cout << SelectedFig->IsSelected();
 	pManager->AddSelectedFigure(SelectedFig); //Add the figure to ApplicationManager's SelectedFigs array
 	GUI* pGUI = pManager->GetGUI(); //Get a Pointer to the Output Interface
 	//SelectedFig->PrintInfo(pGUI); //Print the selected figure info on the status bar

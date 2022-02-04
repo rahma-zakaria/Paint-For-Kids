@@ -76,6 +76,7 @@ string CHexagon::getFigureName() {
 bool CHexagon::PointInShape(int x, int y) const {
 	return (x <= max(center.x, point.x) && x >= min(center.x, point.x) && y <= max(center.y, point.y) && y >= min(center.y, point.y));
 }
+
 void CHexagon::Resize(float size) {
 	if (FigGfxInfo.Resize_Factor == .5) FigGfxInfo.Resize_Factor = -1;
 	else if (FigGfxInfo.Resize_Factor == .25) FigGfxInfo.Resize_Factor = -(4.0 / 3);

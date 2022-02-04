@@ -137,6 +137,7 @@
     <ClCompile Include="Actions\Bring_to_front.cpp" />
     <ClCompile Include="Actions\ChangeCDCAction.cpp" />
     <ClCompile Include="Actions\ChangeCFCAction.cpp" />
+    <ClCompile Include="Actions\DeleteAction.cpp" />
     <ClCompile Include="Actions\ExitAction.cpp" />
     <ClCompile Include="Actions\RezizeAction.cpp" />
     <ClCompile Include="Actions\SelectAction.cpp" />
@@ -196,6 +197,7 @@
     <ClInclude Include="Actions\AddHexaAction.h" />
     <ClInclude Include="Actions\ChangeCDCAction.h" />
     <ClInclude Include="Actions\ChangeCFCAction.h" />
+    <ClInclude Include="Actions\DeleteAction.h" />
     <ClInclude Include="Actions\ExitAction.h" />
     <ClInclude Include="Actions\Bring_to_front.h" />
     <ClInclude Include="Actions\RezizeAction.h" />

@@ -17,7 +17,6 @@
 #include "Figures\CSquare.h"
 #include "Figures\CHexagon.h"
 #include "Figures\CEllipse.h"
-
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -67,9 +66,9 @@ public:
 	int GetFigCount();
 	void SetGraphSaved(bool s);		//sets save state
 
-		//Rahma 
+	 
 	// -- Select Functions -- //
-	//error prone area !  // compiler issues 
+
 	int GetSelectedCount() const;					//Returns the number of selected figures
 	void AddSelectedFigure(CFigure*);				//Adds a figure to the SelectedFigs array
 	void RemoveSelectedFigure(CFigure*);			//Removes a figure from the SelectedFigs array
@@ -77,7 +76,7 @@ public:
 	void SelectFigure(Point clickedPoint);
 	void ClearSelectedFigs();                       //Cleares the SelectedFig array
 
-
+	void DeleteMF();
 	// -- Interface Management Functions	
 	GUI *GetGUI() const; //Return pointer to the interface
 	void UpdateInterface() const;	//Redraws all the drawing window	
