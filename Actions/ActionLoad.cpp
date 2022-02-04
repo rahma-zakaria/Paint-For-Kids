@@ -49,6 +49,7 @@ void ActionLoad::Execute() {
 		pManager->LoadAll(MyFile);
 		MyFile.close();
 	}
+	pGUI->PrintMessage("");
 }
 
 

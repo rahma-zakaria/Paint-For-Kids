@@ -350,7 +350,8 @@ ApplicationManager::~ApplicationManager()
 void ApplicationManager::SaveAll(ofstream& fileName)
 {
 	// DrawColor	FillColor	BkGrndColor
-	fileName << pGUI->ColorToString(pGUI->getCrntDrawColor()) << "\t" << pGUI->ColorToString(pGUI->getCrntFillColor()) << "\t" << "white" << endl;
+	fileName << pGUI->ColorToString(pGUI->getCrntDrawColor()) << "\t" <<
+		pGUI->ColorToString(pGUI->getCrntFillColor()) << "\t" << pGUI->ColorToString(pGUI->getCrntBackgroundColor()) << endl;
 	// FigCount
 	fileName << to_string(FigCount) << endl;
 
@@ -370,8 +371,12 @@ void ApplicationManager::LoadAll(ifstream& fileName)
 	CFigure* LoadedFig;
 
 	fileName >> draw >> fill >> back;
-	fileName >> FigNumbers;
 
+	UI.FillColor = pGUI->StringToColor(fill);
+	UI.DrawColor = pGUI->StringToColor(draw);
+	UI.BkGrndColor = pGUI->StringToColor(back);
+
+	fileName >> FigNumbers;
 	while (FigNumbers) {
 		fileName >> FigureType;
 		if (FigureType == "SQR") {
