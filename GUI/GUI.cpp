@@ -457,9 +457,9 @@ void GUI::DrawElli(Point p1,Point p2,double startAngle,double  endAngle, GfxInfo
 
 }
 
-void GUI::DrawHexa(Point P1, Point P2, GfxInfo hexaGfxInfo, bool selected) const
+void GUI::DrawHexa(Point P1, Point P2,int radius, GfxInfo hexaGfxInfo, bool selected) const
 {
-	int r = (sqrt(pow((P1.x - P2.x), 2) + pow((P1.y - P2.y), 2))) / 2;
+	//radius = (sqrt(pow((P1.x - P2.x), 2) + pow((P1.y - P2.y), 2))) / 2;
 	color DrawingClr;
 	if (selected)
 		DrawingClr = UI.HighlightColor; //Figure should be drawn highlighted
@@ -477,12 +477,13 @@ void GUI::DrawHexa(Point P1, Point P2, GfxInfo hexaGfxInfo, bool selected) const
 		style = FRAME;
 
 	int n = 6;
-	int HexaX[6];
-	int HexaY[6];
+	int HexaX[6]{};
+	int HexaY[6]{};
+	
 
 	for (int i = 0; i < n; i++) {
-		HexaX[i] = ((P1.x + P2.x) / 2) + r * cos(2 * M_PI * i / n);
-		HexaY[i] = ((P1.y + P2.y) / 2) + r * sin(2 * M_PI * i / n);
+		HexaX[i] = ((static_cast<double>(P1.x) + P2.x) / 2) + radius * cos(2 * M_PI * i / n);
+		HexaY[i] = ((static_cast<double>(P1.y) + P2.y) / 2) + radius * sin(2 * M_PI * i / n);	
 	}
 	/*int HexaX[6] = {P1.x + P2.x, P1.x - P2.x, P1.x - 2 * P2.x, P1.x - P2.x ,P1.x + P2.x, P1.x + 2 * P2.x}, HexaY[6] = {P1.y - P2.y, P1.y - P2.y, P1.y, P1.y + P2.y,P1.y + P2.y,P1.y};*/
 
