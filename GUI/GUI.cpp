@@ -110,6 +110,7 @@ ActionType GUI::MapInputToActionType() const
 				}
 			case ITM_CHANGECDC: return CHNG_DRAW_CLR;
 			case ITM_CHANGECFC: return CHNG_FILL_CLR;
+			case ITM_BACKGROUND_CLR: return CHNG_BK_CLR;
 			case ITM_SQUR: return DRAW_SQUARE;
 			case ITM_ELPS: return DRAW_ELPS;
 			case ITM_Hexa: return DRAW_HEX;
@@ -246,6 +247,7 @@ void GUI::CreateDrawToolBar() const
 	MenuItemImages[ITM_PALETTE] = "images\\MenuItems\\Menu_Palette.jpg";
 	MenuItemImages[ITM_CHANGECDC] = "images\\MenuItems\\drawcolor.jpg";
 	MenuItemImages[ITM_CHANGECFC] = "images\\MenuItems\\Menu_FillColor.jpg";
+	MenuItemImages[ITM_BACKGROUND_CLR] = "images\\MenuItems\\Background_Color.jpg";
 	MenuItemImages[ITIM_UNDO] = "images\\MenuItems\\Undo.jpg";
 	MenuItemImages[ITIM_REDO] = "images\\MenuItems\\Redo.jpg";
 	MenuItemImages[ITIM_SwitchPlay] = "images\\MenuItems\\play.jpg";
@@ -366,6 +368,13 @@ void GUI::changeCrntFillColor(color SelectedColor)
 	UI.FillColor = SelectedColor;
 	
 }
+
+// change background color
+void GUI::setCrntBackgroundColor(color c) const
+{
+	UI.BkGrndColor = c;
+}
+
 color GUI::StringToColor(string colorStr)    //convert string to color type
 {
 	if (colorStr == "BLUE") return BLUE;

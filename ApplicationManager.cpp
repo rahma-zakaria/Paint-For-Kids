@@ -7,6 +7,7 @@
 #include "Actions\ActionLoad.h"
 #include "Actions\ChangeCFCAction.h"
 #include "Actions\ChangeCDCAction.h"
+#include "Actions\ActionChangeBgColor.h"
 #include "Actions\ExitAction.h"
 #include "Actions\RezizeAction.h"
 #include "Actions\SwitchToDraw.h"
@@ -170,6 +171,9 @@ Action* ApplicationManager::CreateAction(ActionType ActType)
 			newAct = playMode(TO_PLAY_SELECT_BY_BOTH);
 			if (newAct == NULL)
 				return newAct;
+			break;
+		case CHNG_BK_CLR:
+			newAct = new ActionChangeBgColor(this);
 			break;
 		case SEND_BACK:
 			newAct = new Send_To_Back(this);

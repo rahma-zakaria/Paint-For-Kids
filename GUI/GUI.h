@@ -50,6 +50,8 @@ public:
 
 	void changeCrntFillColor(color SelectedColor);
 
+	void setCrntBackgroundColor(color c) const;
+
 	color StringToColor(string colorStr); //convert string to color type
 	string ColorToString(color clr);     //convert color to string
 	bool isMatchedColors(color c1, color c2);        //check if two colors are the same
