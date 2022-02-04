@@ -31,6 +31,9 @@ public:
 
 	
 	virtual bool PointInShape(int x, int y) const = 0;
+	virtual float getArea() const = 0;
+	virtual float getPremiter() const = 0;
+
 
 	///The following functions should be supported by the figure class
 	///It should be overridden by each inherited figure
