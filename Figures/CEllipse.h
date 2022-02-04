@@ -17,6 +17,8 @@ public:
 	virtual void Load(ifstream& inFile, GUI* pGUI);
 
 	int getFigureData(POINT& p1, POINT& p2);
+	virtual float getArea() const;
+	virtual float getPremiter() const;
 	virtual bool PointInShape(int x, int y) const;
 	string getFigureName();
 	string getFigureColor();

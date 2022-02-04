@@ -10,7 +10,7 @@ AddHexaAction::AddHexaAction(ApplicationManager* pApp) :Action(pApp)
 	P1.y = 0;
 	P2.x = 0;
 	P2.y = 0;
-	radius = 0;
+	//radius = 0;
 }
 
 
@@ -67,7 +67,7 @@ void AddHexaAction::Execute()
 
 	pGUI->ClearStatusBar();
 	//Step 2 - Create a Ellipse with the parameters read from the user
-	CHexagon* H = new CHexagon(P1, P2, radius, HexapseGfxInfo);
+	CHexagon* H = new CHexagon(P1, P2, HexapseGfxInfo);
 
 	//Step 3 - Add the Ellipse to the list of figures
 	pManager->AddFigure(H);

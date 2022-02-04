@@ -1,7 +1,10 @@
+#define _USE_MATH_DEFINES
+
 #include "CEllipse.h"
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <cmath>
 
 CEllipse::CEllipse(Point P1, Point P2,double an1,double an2, GfxInfo FigureGfxInfo) :CFigure(FigureGfxInfo)
 {
@@ -81,6 +84,17 @@ string CEllipse::getFigureName() {
 
 string CEllipse::getFigureColor() {
 	return figColor;
+}
+
+float CEllipse::getArea() const {
+	float a = abs(((point1.x + point2.x) / 2) - point1.x);
+	float b = abs(((point1.y + point2.y) / 2) - point1.y);
+	return M_PI * a * b;
+}
+float CEllipse::getPremiter() const {
+	float a = abs(((point1.x + point2.x) / 2) - point1.x);
+	float b = abs(((point1.y + point2.y) / 2) - point1.y);
+	return M_PI*(3*(a+b)-sqrt((3*a+b)*(a+3*b)));
 }
 
 bool CEllipse::PointInShape(int x, int y) const {

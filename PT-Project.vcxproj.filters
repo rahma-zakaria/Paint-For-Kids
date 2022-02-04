@@ -346,6 +346,7 @@
     <ClInclude Include="Actions\SelectByColor.h">
       <Filter>Action Classes</Filter>
     </ClInclude>
+    <ClInclude Include="stdc++.h" />
     <ClInclude Include="Actions\SelectByBoth.h">
       <Filter>Action Classes</Filter>
     </ClInclude>

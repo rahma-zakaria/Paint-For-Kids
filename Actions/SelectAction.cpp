@@ -37,10 +37,26 @@ void SelectAction::Execute()
 		if (SelectedFig->IsSelected())
 			Unselect();
 		else if (GetKeyState(VK_CONTROL) & 0x8000)
+		{
 			Select();
+			//Get a Pointer to the Interface
+			GUI* pGUI = pManager->GetGUI();
+			string msg = "";
+			if (SelectedFig->getFigureColor() != "none")
+				msg += SelectedFig->getFigureColor()+" ";
+			msg += SelectedFig->getFigureName() + ", premiter: " + to_string(SelectedFig->getPremiter()) + ", Area: " + to_string(SelectedFig->getArea());
+			pGUI->PrintMessage(msg);
+		}
 		else {
 			pManager->ClearSelectedFigs();
 			Select();
+			//Get a Pointer to the Interface
+			GUI* pGUI = pManager->GetGUI();
+			string msg = "";
+			if (SelectedFig->getFigureColor() != "none")
+				msg += SelectedFig->getFigureColor() + " ";
+			msg += SelectedFig->getFigureName() + ", premiter: " + to_string(SelectedFig->getPremiter()) + ", Area: " + to_string(SelectedFig->getArea());
+			pGUI->PrintMessage(msg);
 		}
 			
 	}
