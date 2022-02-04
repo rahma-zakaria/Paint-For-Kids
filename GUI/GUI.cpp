@@ -448,7 +448,6 @@ void GUI::DrawElli(Point p1,Point p2,double startAngle,double  endAngle, GfxInfo
 	else
 		DrawingClr = elliGfxInfo.DrawClr;
 
-
 	pWind->SetPen(DrawingClr, elliGfxInfo.BorderWdth);	//Set Drawing color & width
 
 	drawstyle style;
@@ -460,10 +459,7 @@ void GUI::DrawElli(Point p1,Point p2,double startAngle,double  endAngle, GfxInfo
 	else
 		style = FRAME;
 
-
-	pWind->DrawEllipse(p1.x, p1.y, p2.x, p1.y, style);
-	pWind->DrawArc(p1.x, p1.y, p2.x, p2.y, startAngle, endAngle, style);
-
+	pWind->DrawEllipse(p1.x, p1.y, p2.x, p2.y, style);
 }
 
 void GUI::DrawHexa(Point P1, Point P2, GfxInfo hexaGfxInfo, bool selected) const
