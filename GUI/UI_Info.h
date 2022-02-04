@@ -20,25 +20,21 @@ enum DrawMenuItem //The items of the Draw menu (you should add more items)
 	//If you want to change the menu items order, change the order here
 	ITM_SQUR,		//Square item in menu
 	ITM_ELPS,		//Ellipse item in menu
-	
-	//TODO: Add more items names here
 	ITM_Hexa,       //Hexa item in menue
-	 
 	//ITM_Select,     //Select item in menu
-	ITM_Delete,		//Delete item in menu
-	ITM_Save,       //Save item in menue
-	ITM_Load,       //Load item in menue
-	ITIM_RESIZE,    //create resize menue 
 	ITM_PALETTE,
 	ITM_CHANGECDC,
 	ITM_CHANGECFC,
 	ITM_BACKGROUND_CLR,
-	ITIM_UNDO,    //undo item in menue
-	ITIM_REDO,    //redo item in menue 
+	ITM_Delete,		//Delete item in menu
+	ITIM_RESIZE,    //create resize menue 
 	ITIM_MOVE,    //Move item in menue 
-	ITIM_SwitchPlay,    //switch To play Mode 
 	ITM_SEND_TO_BACK,   //send to back item in menue
 	ITM_BRING_TO_FRONT, //bring to front in menue
+
+	ITM_Save,       //Save item in menue
+	ITM_Load,       //Load item in menue
+	ITIM_SwitchPlay,    //switch To play Mode 
 	ITM_EXIT,		//Exit item
 	
 	DRAW_ITM_COUNT		//no. of menu items ==> This should be the last line in this enum
@@ -51,11 +47,7 @@ enum sizeMenueItems //The items of the Draw menu (you should add more items)
 	//If you want to change the menu items order, change the order here
 	ITM_QUARTER,		//quarter item in menu
 	ITM_HALF,		//Halh item in menu
-
-
-	//TODO: Add more items names here
 	ITM_DOUBLE,       //Double item in menue
-	
 	ITM_QUADRUPLE, //Quadruple item in menue
 	ITM_BACK, // back item in menue
 
@@ -65,10 +57,10 @@ enum sizeMenueItems //The items of the Draw menu (you should add more items)
 
 enum PlayMenuItem //The items of the Play menu (you should add more items)
 {
-	ITIM_SwitchDraw,    //switch To Draw Mode 
 	ITIM_SelectByShape,
 	ITIM_SelectByColor,
 	ITIM_SelectByBoth,
+	ITIM_SwitchDraw,    //switch To Draw Mode 
 	//ITM_EXIT,		//Exit item
 
 	PLAY_ITM_COUNT		//no. of menu items ==> This should be the last line in this enum

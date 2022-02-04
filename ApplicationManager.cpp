@@ -140,12 +140,6 @@ Action* ApplicationManager::CreateAction(ActionType ActType)
 		case BACK: 
 			mode = 0;
 			break;
-		case UNDO:
-			
-			break;
-		case REDO:
-
-			break;
 		case DEL:
 			newAct = new DeleteAction(this);
 			break;
