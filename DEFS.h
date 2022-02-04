@@ -33,6 +33,7 @@ enum ActionType //The actions supported (you can add more if needed)
 	TO_DRAW,//Switch interface to Draw mode
 	TO_PLAY_SELECT_BY_SHAPE,
 	TO_PLAY_SELECT_BY_COLOR,
+	TO_PLAY_SELECT_BY_BOTH,
 	TO_PLAY,			//Switch interface to Play mode
 	
 	///TODO: Add more action types (if needed)

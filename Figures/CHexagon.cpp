@@ -7,11 +7,12 @@
 #include "../DEFS.h"
 
 
-CHexagon::CHexagon(Point c, Point p,GfxInfo FigureGfxInfo) :CFigure(FigureGfxInfo)
+CHexagon::CHexagon(Point c, Point p,int r,GfxInfo FigureGfxInfo) :CFigure(FigureGfxInfo)
 {
 	center = c;
 	point = p;
-	//radius = sqrt(pow((c.x - p.x), 2) + pow((c.y - p.y), 2));
+
+	radius = sqrt(pow((c.x - p.x), 2) + pow((c.y - p.y), 2));
 	
 	/*p.x = 50; p.y = 50;*/
 	type = "HEXA";
@@ -24,7 +25,7 @@ CHexagon::CHexagon() {
 void CHexagon::DrawMe(GUI* pGUI) const
 {
 	//Call Output::	
-	pGUI->DrawHexa(center, point, FigGfxInfo, Selected);
+	pGUI->DrawHexa(center, point, radius, FigGfxInfo, Selected);
 
 
 }
@@ -176,7 +177,9 @@ bool CHexagon::PointInShape(int x, int y) const {
 	//return (x <= max(c1.x, c4.x) && x >= min(c1.x, c4.x) && y <= max(c1.y, c4.y) && y >= min(c1.y, c4.y)) && (y >= c1.y && y<= c4.y );
 }
 void CHexagon::Resize(float size) {
-	if (FigGfxInfo.Resize_Factor == .5) FigGfxInfo.Resize_Factor = -1;
+
+	radius = radius * size;
+	/*if (FigGfxInfo.Resize_Factor == .5) FigGfxInfo.Resize_Factor = -1;
 	else if (FigGfxInfo.Resize_Factor == .25) FigGfxInfo.Resize_Factor = -(4.0 / 3);
 	
 	Point O;
@@ -201,5 +204,5 @@ void CHexagon::Resize(float size) {
 	if (point.y <= O.y)
 		point.y -= (O.y - point.y) * FigGfxInfo.Resize_Factor / 2;
 	else
-		point.y += (point.y - O.y) * FigGfxInfo.Resize_Factor / 2;
+		point.y += (point.y - O.y) * FigGfxInfo.Resize_Factor / 2;*/
 }

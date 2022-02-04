@@ -1,6 +1,7 @@
 #pragma once
 #include "Action.h"
 #include "..\Figures\CFigure.h"
+#include "SelectAction.h"
 class RezizeAction :public Action
 {
 	CFigure* Selected;

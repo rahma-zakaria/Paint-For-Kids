@@ -2,7 +2,12 @@
 #include "..\ApplicationManager.h"
 
 AddElliAction::AddElliAction(ApplicationManager* pApp) :Action(pApp)
-{}
+{
+	P1.x = 0;
+	P1.y = 0;
+	P2.x = 0;
+	P2.y = 0;
+}
 
 //Execute the action
 void AddElliAction::Execute()

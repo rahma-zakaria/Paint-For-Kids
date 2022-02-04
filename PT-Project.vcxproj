@@ -129,6 +129,7 @@
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Actions\ActionChangeBgColor.cpp" />
     <ClCompile Include="Actions\ActionLoad.cpp" />
     <ClCompile Include="Actions\ActionMove.cpp" />
     <ClCompile Include="Actions\ActionSave.cpp" />
@@ -140,6 +141,7 @@
     <ClCompile Include="Actions\ExitAction.cpp" />
     <ClCompile Include="Actions\RezizeAction.cpp" />
     <ClCompile Include="Actions\SelectAction.cpp" />
+    <ClCompile Include="Actions\SelectByBoth.cpp" />
     <ClCompile Include="Actions\SelectByColor.cpp" />
     <ClCompile Include="Actions\SelectByShape.cpp" />
     <ClCompile Include="Actions\Send_To_Back.cpp" />
@@ -190,6 +192,7 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Actions\ActionChangeBgColor.h" />
     <ClInclude Include="Actions\ActionLoad.h" />
     <ClInclude Include="Actions\ActionMove.h" />
     <ClInclude Include="Actions\ActionSave.h" />
@@ -201,6 +204,7 @@
     <ClInclude Include="Actions\Bring_to_front.h" />
     <ClInclude Include="Actions\RezizeAction.h" />
     <ClInclude Include="Actions\SelectAction.h" />
+    <ClInclude Include="Actions\SelectByBoth.h" />
     <ClInclude Include="Actions\SelectByColor.h" />
     <ClInclude Include="Actions\SelectByShape.h" />
     <ClInclude Include="Actions\Send_To_Back.h" />

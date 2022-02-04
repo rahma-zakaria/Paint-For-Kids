@@ -21,8 +21,8 @@ void ExitAction::Execute()
 	string userChoose = pGui->GetSrting();
 	if (userChoose == "Y" || userChoose == "y")
 	{
-		//Action* saveAct = new ActionSave(pManager);
-		//pManager->ExecuteAction(saveAct);
+		Action* saveAct = new ActionSave(pManager);
+		pManager->ExecuteAction(saveAct);
 	}
 	pManager->ClearAllFig();
 	ReadActionParameters();
