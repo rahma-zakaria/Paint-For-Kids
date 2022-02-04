@@ -12,7 +12,6 @@ ActionAddSquare::ActionAddSquare(ApplicationManager * pApp):Action(pApp)
 void ActionAddSquare::Execute() 
 {
 	Point P1,P2;
-
 	//Get a Pointer to the Interface
 	GUI* pGUI = pManager->GetGUI();
 
@@ -58,4 +57,12 @@ void ActionAddSquare::Execute()
 	pManager->AddFigure(R);
 
 	
+	
+
+
 }
+ActionAddSquare::~ActionAddSquare(){
+
+
+}
+	

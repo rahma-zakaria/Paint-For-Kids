@@ -176,6 +176,7 @@ bool CHexagon::PointInShape(int x, int y) const {
 	//cout << x << " " << y << "\n";
 	//return (x <= max(c1.x, c4.x) && x >= min(c1.x, c4.x) && y <= max(c1.y, c4.y) && y >= min(c1.y, c4.y)) && (y >= c1.y && y<= c4.y );
 }
+
 void CHexagon::Resize(float size) {
 
 	//radius = radius * size;

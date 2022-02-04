@@ -34,6 +34,7 @@ void SelectByShape::Execute()
 }
 SelectByShape::~SelectByShape()
 {
+	delete pGUI;
 	delete picky;
 	delete pGUI;
 }

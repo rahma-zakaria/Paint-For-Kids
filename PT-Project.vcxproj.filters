@@ -193,6 +193,9 @@
     <ClCompile Include="Actions\ActionMove.cpp">
       <Filter>Action Classes</Filter>
     </ClCompile>
+    <ClCompile Include="Actions\DeleteAction.cpp">
+      <Filter>Action Classes</Filter>
+    </ClCompile>
     <ClCompile Include="Actions\SelectByColor.cpp">
       <Filter>Action Classes</Filter>
     </ClCompile>
@@ -335,6 +338,9 @@
       <Filter>Action Classes</Filter>
     </ClInclude>
     <ClInclude Include="Actions\ActionMove.h">
+      <Filter>Action Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\DeleteAction.h">
       <Filter>Action Classes</Filter>
     </ClInclude>
     <ClInclude Include="Actions\SelectByColor.h">

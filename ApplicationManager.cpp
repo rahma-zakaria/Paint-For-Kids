@@ -20,7 +20,7 @@
 #include "Figures\CSquare.h"
 #include "Figures\CHexagon.h"
 #include "Figures\CEllipse.h"
-
+#include "Actions\DeleteAction.h"
 #include<iostream>
 #include <fstream>
 #include <string>
@@ -105,9 +105,9 @@ Action* ApplicationManager::CreateAction(ActionType ActType)
 			break;
 	
 			//case select Action
-		case SELECT:
+		/*case SELECT:
 			newAct = new SelectAction(this);
-			break;
+			break;*/
 		case DRAWING_AREA:
 			//if (mode == 2) {
 				return new SelectAction(this);
@@ -145,6 +145,9 @@ Action* ApplicationManager::CreateAction(ActionType ActType)
 			break;
 		case REDO:
 
+			break;
+		case DEL:
+			newAct = new DeleteAction(this);
 			break;
 		case MOVE:
 			newAct = new ActionMove(this);
@@ -292,6 +295,33 @@ void ApplicationManager::ClearSelectedFigs() {
 	}
 	selectedCount = 0;
 }
+
+//==================================================================================//
+//							 Delete Functions		            					//
+//==================================================================================//
+void ApplicationManager::DeleteMF() {
+
+	int tempListCounter = 0;
+	CFigure* templist[MaxFigCount]; //temp for array of pointers to the selected figures
+	for (int i = 0; i < FigCount; i++)
+	{
+		cout << FigList[i]->IsSelected();
+		if (!FigList[i]->IsSelected())
+		{
+
+			templist[tempListCounter] = FigList[i];
+			tempListCounter++;
+
+		}
+	}
+	for (int i = 0; i < tempListCounter; i++)
+	{
+		FigList[i] = templist[i];
+	}
+	FigCount = tempListCounter;
+	
+}
+
 
 //==================================================================================//
 //							Interface Management Functions							//
