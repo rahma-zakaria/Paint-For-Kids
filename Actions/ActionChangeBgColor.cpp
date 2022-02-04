@@ -22,39 +22,39 @@ void ActionChangeBgColor::ReadActionParameters()
 //Execute the action
 void ActionChangeBgColor::Execute()
 {
-    GUI* pOut = pManager->GetGUI();
+    GUI* pGui = pManager->GetGUI();
     ReadActionParameters();
 
-    pOut->PrintMessage("Select a Background color");
+    pGui->PrintMessage("Select a Background color");
 	if (SelectedColorIndex == COLOR_BLACK)
 	{
 		SelectedColor = BLACK;
-		if (SelectedFigure == NULL) pOut->PrintMessage("Background Color changed to BLACK");
+		if (SelectedFigure == NULL) pGui->PrintMessage("Background Color changed to BLACK");
 	}
 	else if (SelectedColorIndex == COLOR_WHITE)
 	{
 		SelectedColor = WHITE;
-		if (SelectedFigure == NULL) pOut->PrintMessage("Background Color changed to WHITE");
+		if (SelectedFigure == NULL) pGui->PrintMessage("Background Color changed to WHITE");
 	}
 	else if (SelectedColorIndex == COLOR_RED)
 	{
 		SelectedColor = RED;
-		if (SelectedFigure == NULL) pOut->PrintMessage("Background Color changed to RED");
+		if (SelectedFigure == NULL) pGui->PrintMessage("Background Color changed to RED");
 	}
 	else if (SelectedColorIndex == COLOR_GREEN)
 	{
 		SelectedColor = GREEN;
-		if (SelectedFigure == NULL) pOut->PrintMessage("Background Color changed to GREEN");
+		if (SelectedFigure == NULL) pGui->PrintMessage("Background Color changed to GREEN");
 	}
 	else if (SelectedColorIndex == COLOR_BLUE)
 	{
 		SelectedColor = BLUE;
-		if (SelectedFigure == NULL) pOut->PrintMessage("Background Color changed to BLUE");
+		if (SelectedFigure == NULL) pGui->PrintMessage("Background Color changed to BLUE");
 	}
 	else
 	{
-		pOut->PrintMessage("No Color has been selected");
+		pGui->PrintMessage("No Color has been selected");
 	}
 
-	pOut->setCrntBackgroundColor(SelectedColor);
+	pGui->setCrntBackgroundColor(SelectedColor);
 }

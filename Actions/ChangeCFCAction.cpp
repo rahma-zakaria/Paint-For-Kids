@@ -33,7 +33,7 @@ void ChangeCFCAction::ReadActionParameters()
 
 void ChangeCFCAction::Execute()
 {
-	GUI * pOut = pManager->GetGUI();
+	GUI * pGui = pManager->GetGUI();
 	ReadActionParameters();
 
 
@@ -41,42 +41,42 @@ void ChangeCFCAction::Execute()
 	{
 		SelectedColor = BLACK;
 		IsSelected = true;
-		if (SelectedFigure == NULL) pOut->PrintMessage("Fill Color changed to BLACK");
+		if (SelectedFigure == NULL) pGui->PrintMessage("Fill Color changed to BLACK");
 	}
 	else if (SelectedColorIndex == COLOR_WHITE)
 	{
 		SelectedColor = WHITE;
 		IsSelected = true;
-		if (SelectedFigure == NULL) pOut->PrintMessage("Fill Color changed to WHITE");
+		if (SelectedFigure == NULL) pGui->PrintMessage("Fill Color changed to WHITE");
 	}
 	else if (SelectedColorIndex == COLOR_RED)
 	{
 		SelectedColor = RED;
 		IsSelected = true;
-		if (SelectedFigure == NULL) pOut->PrintMessage("Fill Color changed to RED");
+		if (SelectedFigure == NULL) pGui->PrintMessage("Fill Color changed to RED");
 	}
 	else if (SelectedColorIndex == COLOR_GREEN)
 	{
 		SelectedColor = GREEN;
 		IsSelected = true;
-		if (SelectedFigure == NULL) pOut->PrintMessage("Fill Color changed to GREEN");
+		if (SelectedFigure == NULL) pGui->PrintMessage("Fill Color changed to GREEN");
 	}
 	else if (SelectedColorIndex == COLOR_BLUE)
 	{
 		SelectedColor = BLUE;
 		IsSelected = true;
-		if (SelectedFigure == NULL) pOut->PrintMessage("Fill Color changed to BLUE");
+		if (SelectedFigure == NULL) pGui->PrintMessage("Fill Color changed to BLUE");
 	}
 	else
 	{
-		pOut->PrintMessage("No Color has been selected");
+		pGui->PrintMessage("No Color has been selected");
 	}
 	if (SelectedFigure == NULL)
 	{
 		if (IsSelected)
 		{
 			pManager->ChangeCFillColor(SelectedColor);
-			if (!UI.FillFigures) pOut->PrintMessage("Current Fill Color changed to No Fill");
+			if (!UI.FillFigures) pGui->PrintMessage("Current Fill Color changed to No Fill");
 		}
 	}
 	else
