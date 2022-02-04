@@ -238,7 +238,7 @@ void GUI::CreateDrawToolBar() const
 	MenuItemImages[ITM_SQUR] = "images\\MenuItems\\Square.jpg";
 	MenuItemImages[ITM_ELPS] = "images\\MenuItems\\Elips.jpg";
 	MenuItemImages[ITM_Hexa] = "images\\MenuItems\\Hexa.jpg";
-	MenuItemImages[ITM_Select] = "images\\MenuItems\\select.jpg";
+	MenuItemImages[ITM_Select] = "images\\MenuItems\\Select.jpg";
 	//MenuItemImages[ITM_Delete] = "images\\MenuItems\\delete.jpg";
 	MenuItemImages[ITM_Save] = "images\\MenuItems\\Save.jpg";
 	MenuItemImages[ITM_Load] = "images\\MenuItems\\Load.jpg";
@@ -253,7 +253,7 @@ void GUI::CreateDrawToolBar() const
 	MenuItemImages[ITIM_SwitchPlay] = "images\\MenuItems\\play.jpg";
 	MenuItemImages[ITM_SEND_TO_BACK] = "images\\MenuItems\\Send_to_Back.jpg";
 	MenuItemImages[ITM_BRING_TO_FRONT] = "images\\MenuItems\\Bring_to_Front.jpg";
-	MenuItemImages[ITM_EXIT] = "images\\MenuItems\\Menu_Exit.jpg";
+	MenuItemImages[ITM_EXIT] = "images\\MenuItems\\Exit.jpg";
 	
 
 	//TODO: Prepare images for each menu item and add it to the list
@@ -279,15 +279,11 @@ void GUI::CreateSizeToolBar() const
 	//To control the order of these images in the menu, 
 	//reoder them in UI_Info.h ==> enum DrawMenuItem
 	string MenuItemImages[SIZE_ITM_COUNT];
-	MenuItemImages[ITM_QUARTER] = "images\\MenuItems\\circle-quarter.jpg";
-	MenuItemImages[ITM_HALF] = "images\\MenuItems\\LLduu.jpg";
-	MenuItemImages[ITM_DOUBLE] = "images\\MenuItems\\d-2.jpg";
-	MenuItemImages[ITM_QUADRUPLE] = "images\\MenuItems\\f.jpg";
-	MenuItemImages[ITM_BACK] = "images\\MenuItems\\Menu_Back_2.jpg";
-	/*MenuItemImages[ITM_QURT] = "images\\MenuItems\\Menu_Sqr.jpg";
-	MenuItemImages[ITM_HALF] = "images\\MenuItems\\Menu_Sqr.jpg";
-	/*MenuItemImages[ITM_DUBBLE] = "images\\MenuItems\\Menu_Sqr.jpg";
-	MenuItemImages[ITEM_FOURTH] = "images\\MenuItems\\Menu_Sqr.jpg";*/
+	MenuItemImages[ITM_QUARTER] = "images\\MenuItems\\Quarter.jpg";
+	MenuItemImages[ITM_HALF] = "images\\MenuItems\\Half.jpg";
+	MenuItemImages[ITM_DOUBLE] = "images\\MenuItems\\2.jpg";
+	MenuItemImages[ITM_QUADRUPLE] = "images\\MenuItems\\4.jpg";
+	MenuItemImages[ITM_BACK] = "images\\MenuItems\\Back.jpg";
 
 	//TODO: Prepare images for each menu item and add it to the list
 
@@ -353,6 +349,11 @@ color GUI::getCrntDrawColor() const	//get current drwawing color
 
 color GUI::getCrntFillColor() const	//get current filling color
 {	return UI.FillColor;	}
+//////////////////////////////////////////////////////////////////////////////////////////
+color GUI::getCrntBackgroundColor() const	//get current filling color
+{
+	return UI.BkGrndColor;
+}
 //////////////////////////////////////////////////////////////////////////////////////////
 	
 int GUI::getCrntPenWidth() const		//get current pen width

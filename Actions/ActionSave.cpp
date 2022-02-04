@@ -35,10 +35,13 @@ void ActionSave::Execute()
 
 	pGUI->PrintMessage("Save");
 	ReadActionParameters();
-	pGUI->PrintMessage("Save succesfull to " + filename);
+	if (!filename.empty()) {
+		pGUI->PrintMessage("Save succesfull to " + filename);
 
-	ofstream MyFile;
-	MyFile.open(filename, ios::out | ios::trunc);
-	pManager->SaveAll(MyFile);
-	MyFile.close();
+		ofstream MyFile;
+		MyFile.open(filename, ios::out | ios::trunc);
+		pManager->SaveAll(MyFile);
+		MyFile.close();
+	}
+	pGUI->PrintMessage("");
 }
