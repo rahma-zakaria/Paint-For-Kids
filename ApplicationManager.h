@@ -98,9 +98,14 @@ public:
 	//Move the selected figure. returns 1 if move is successful and 0 if not
 	bool MoveSelected(Point p, Point pMoveTo);
 	string getShapeInPlayMode();
+	string getColorInPlayMode();
+	CFigure* getColoredFigure();
 	int getMode();
 	void deleteSelectedFigure(CFigure* figure);
 	bool isFigureExists(string figureName);
+	bool isFigureColorExists(string figureColor);
+	bool isColoredFiguresExists(CFigure* figure);
+	Action* playMode(ActionType gameModeType);
 	void configureAllDrawModeData();
 	void configureAllPlayModeData();
 };

@@ -32,6 +32,7 @@ enum DrawMenuItem //The items of the Draw menu (you should add more items)
 	ITM_PALETTE,
 	ITM_CHANGECDC,
 	ITM_CHANGECFC,
+	ITM_BACKGROUND_CLR,
 	ITIM_UNDO,    //undo item in menue
 	ITIM_REDO,    //redo item in menue 
 	ITIM_MOVE,    //Move item in menue 
@@ -66,6 +67,8 @@ enum PlayMenuItem //The items of the Play menu (you should add more items)
 {
 	ITIM_SwitchDraw,    //switch To Draw Mode 
 	ITIM_SelectByShape,
+	ITIM_SelectByColor,
+	ITIM_SelectByBoth,
 	//ITM_EXIT,		//Exit item
 
 	PLAY_ITM_COUNT		//no. of menu items ==> This should be the last line in this enum

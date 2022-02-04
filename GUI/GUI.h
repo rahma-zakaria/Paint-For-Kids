@@ -37,18 +37,21 @@ public:
 	// -- Figures Drawing functions
 	void DrawSquare(Point P1, int length, GfxInfo RectGfxInfo, bool selected=false) const;  //Draw a Square
 	void GUI::DrawElli(Point p1, Point p2,double ang1,double ang2, GfxInfo elliGfxInfo, bool selected) const; //Draw ellipse
-	void GUI::DrawHexa(Point p1, Point p2, GfxInfo elliGfxInfo, bool selected) const;
+	void GUI::DrawHexa(Point p1, Point p2,int radius, GfxInfo elliGfxInfo, bool selected) const;
 	///TODO: Make similar functions for drawing all other figures.
 	
 	void PrintMessage(string msg) const;	//Print a message on Status bar
 
 	color getCrntDrawColor() const;	//get current drwawing color
 	color getCrntFillColor() const;	//get current filling color
+	color getCrntBackgroundColor() const;
 	int getCrntPenWidth() const;		//get current pen width
 
 	void changeCrntDrawColor(color SelectedColor);
 
 	void changeCrntFillColor(color SelectedColor);
+
+	void setCrntBackgroundColor(color c) const;
 
 	color StringToColor(string colorStr); //convert string to color type
 	string ColorToString(color clr);     //convert color to string

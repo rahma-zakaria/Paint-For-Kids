@@ -5,15 +5,18 @@
 #include "Actions\SelectAction.h"
 #include "Actions\ActionSave.h"
 #include "Actions\ActionLoad.h"
-#include "Actions/ChangeCFCAction.h"
+#include "Actions\ChangeCFCAction.h"
 #include "Actions\ChangeCDCAction.h"
-#include "Actions/ExitAction.h"
+#include "Actions\ActionChangeBgColor.h"
+#include "Actions\ExitAction.h"
 #include "Actions\RezizeAction.h"
 #include "Actions\SwitchToDraw.h"
 #include "Actions\SwitchToPlay.h"
 #include "Actions\Bring_to_front.h"
 #include "Actions\Send_To_Back.h"
 #include "Actions\SelectByShape.h"
+#include "Actions\SelectByColor.h"
+#include "Actions\SelectByBoth.h"
 #include "Figures\CSquare.h"
 #include "Figures\CHexagon.h"
 #include "Figures\CEllipse.h"
@@ -84,6 +87,7 @@ Action* ApplicationManager::CreateAction(ActionType ActType)
 {
 
 	Action* newAct = NULL;
+	bool isThereColoredFig = false;
 	
 	//According to Action Type, create the corresponding action object
 	switch (ActType)
@@ -157,7 +161,22 @@ Action* ApplicationManager::CreateAction(ActionType ActType)
 			newAct = new SwitchToDraw(this);
 			break;
 		case TO_PLAY_SELECT_BY_SHAPE:
-			newAct = new SelectByShape(this);
+			newAct = playMode(TO_PLAY_SELECT_BY_SHAPE);
+			if (newAct == NULL)
+				return newAct;
+			break;
+		case TO_PLAY_SELECT_BY_COLOR:
+			newAct = playMode(TO_PLAY_SELECT_BY_COLOR);
+			if (newAct == NULL)
+				return newAct;
+			break;
+		case TO_PLAY_SELECT_BY_BOTH:
+			newAct = playMode(TO_PLAY_SELECT_BY_BOTH);
+			if (newAct == NULL)
+				return newAct;
+			break;
+		case CHNG_BK_CLR:
+			newAct = new ActionChangeBgColor(this);
 			break;
 		case SEND_BACK:
 			newAct = new Send_To_Back(this);
@@ -361,7 +380,8 @@ ApplicationManager::~ApplicationManager()
 void ApplicationManager::SaveAll(ofstream& fileName)
 {
 	// DrawColor	FillColor	BkGrndColor
-	fileName << pGUI->ColorToString(pGUI->getCrntDrawColor()) << "\t" << pGUI->ColorToString(pGUI->getCrntFillColor()) << "\t" << "white" << endl;
+	fileName << pGUI->ColorToString(pGUI->getCrntDrawColor()) << "\t" <<
+		pGUI->ColorToString(pGUI->getCrntFillColor()) << "\t" << pGUI->ColorToString(pGUI->getCrntBackgroundColor()) << endl;
 	// FigCount
 	fileName << to_string(FigCount) << endl;
 
@@ -381,8 +401,12 @@ void ApplicationManager::LoadAll(ifstream& fileName)
 	CFigure* LoadedFig;
 
 	fileName >> draw >> fill >> back;
-	fileName >> FigNumbers;
 
+	UI.FillColor = pGUI->StringToColor(fill);
+	UI.DrawColor = pGUI->StringToColor(draw);
+	UI.BkGrndColor = pGUI->StringToColor(back);
+
+	fileName >> FigNumbers;
 	while (FigNumbers) {
 		fileName >> FigureType;
 		if (FigureType == "SQR") {
@@ -482,9 +506,42 @@ CFigure* ApplicationManager::getSelectedFig()
 	return SelectedFigs[0];
 }
 
+Action* ApplicationManager::playMode(ActionType gameModeType) {
+	configureAllDrawModeData();
+	configureAllPlayModeData();
+	if (FigCount == 0)
+		return NULL;
+	Action *action;
+	if (gameModeType == TO_PLAY_SELECT_BY_SHAPE) {
+		action=new SelectByShape(this);
+	}
+	else if (gameModeType == TO_PLAY_SELECT_BY_COLOR) {
+		action=new SelectByColor(this);
+	}
+	else{
+		action=new SelectByBoth(this);
+	}
+	return action;
+}
+
 string ApplicationManager::getShapeInPlayMode() {
 	int randomShape = rand() % FigCount;
 	return FigList[randomShape]->getFigureName();
+}
+
+string ApplicationManager::getColorInPlayMode() {
+	int randomShape = rand() % FigCount;
+	return FigList[randomShape]->getFigureColor();
+}
+
+CFigure* ApplicationManager::getColoredFigure() {
+	CFigure *result;
+	do
+	{
+		int randomShape = rand() % FigCount;
+		result=FigList[randomShape];
+	} while (result->getFigureColor() == "none");
+	return result;
 }
 
 void ApplicationManager::deleteSelectedFigure(CFigure* figure) {
@@ -537,6 +594,22 @@ int ApplicationManager::getMode() {
 bool ApplicationManager::isFigureExists(string figureName) {
 	for (int i = 0; i < FigCount; i++) {
 		if (FigList[i]->getFigureName() == figureName)
+			return true;
+	}
+	return false;
+}
+
+bool ApplicationManager::isFigureColorExists(string figureColor) {
+	for (int i = 0; i < FigCount; i++) {
+		if (FigList[i]->getFigureColor() == figureColor)
+			return true;
+	}
+	return false;
+}
+
+bool ApplicationManager::isColoredFiguresExists(CFigure* figure) {
+	for (int i = 0; i < FigCount; i++) {
+		if (FigList[i]->getFigureColor() == figure->getFigureColor()&&FigList[i]->getFigureName()==figure->getFigureName())
 			return true;
 	}
 	return false;

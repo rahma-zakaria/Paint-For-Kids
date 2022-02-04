@@ -110,6 +110,7 @@ ActionType GUI::MapInputToActionType() const
 				}
 			case ITM_CHANGECDC: return CHNG_DRAW_CLR;
 			case ITM_CHANGECFC: return CHNG_FILL_CLR;
+			case ITM_BACKGROUND_CLR: return CHNG_BK_CLR;
 			case ITM_SQUR: return DRAW_SQUARE;
 			case ITM_ELPS: return DRAW_ELPS;
 			case ITM_Hexa: return DRAW_HEX;
@@ -172,6 +173,8 @@ ActionType GUI::MapInputToActionType() const
 			{
 			case ITIM_SwitchDraw: return TO_DRAW;
 			case ITIM_SelectByShape: return TO_PLAY_SELECT_BY_SHAPE;
+			case ITIM_SelectByColor: return TO_PLAY_SELECT_BY_COLOR;
+			case ITIM_SelectByBoth:return TO_PLAY_SELECT_BY_BOTH;
 			default: return EMPTY;	//A click on empty place in desgin toolbar
 			}
 		}
@@ -238,6 +241,8 @@ void GUI::CreateDrawToolBar() const
 	MenuItemImages[ITM_Hexa] = "images\\MenuItems\\Hexa.jpg";
 	//MenuItemImages[ITM_Select] = "images\\MenuItems\\select.jpg";
 	MenuItemImages[ITM_Delete] = "images\\MenuItems\\delete.jpg";
+	//MenuItemImages[ITM_Select] = "images\\MenuItems\\Select.jpg";
+	//MenuItemImages[ITM_Delete] = "images\\MenuItems\\delete.jpg";
 	MenuItemImages[ITM_Save] = "images\\MenuItems\\Save.jpg";
 	MenuItemImages[ITM_Load] = "images\\MenuItems\\Load.jpg";
 	MenuItemImages[ITIM_MOVE] = "images\\MenuItems\\Move.jpg";
@@ -245,12 +250,13 @@ void GUI::CreateDrawToolBar() const
 	MenuItemImages[ITM_PALETTE] = "images\\MenuItems\\Menu_Palette.jpg";
 	MenuItemImages[ITM_CHANGECDC] = "images\\MenuItems\\drawcolor.jpg";
 	MenuItemImages[ITM_CHANGECFC] = "images\\MenuItems\\Menu_FillColor.jpg";
+	MenuItemImages[ITM_BACKGROUND_CLR] = "images\\MenuItems\\Background_Color.jpg";
 	MenuItemImages[ITIM_UNDO] = "images\\MenuItems\\Undo.jpg";
 	MenuItemImages[ITIM_REDO] = "images\\MenuItems\\Redo.jpg";
 	MenuItemImages[ITIM_SwitchPlay] = "images\\MenuItems\\play.jpg";
 	MenuItemImages[ITM_SEND_TO_BACK] = "images\\MenuItems\\Send_to_Back.jpg";
 	MenuItemImages[ITM_BRING_TO_FRONT] = "images\\MenuItems\\Bring_to_Front.jpg";
-	MenuItemImages[ITM_EXIT] = "images\\MenuItems\\Menu_Exit.jpg";
+	MenuItemImages[ITM_EXIT] = "images\\MenuItems\\Exit.jpg";
 	
 
 	//TODO: Prepare images for each menu item and add it to the list
@@ -276,15 +282,11 @@ void GUI::CreateSizeToolBar() const
 	//To control the order of these images in the menu, 
 	//reoder them in UI_Info.h ==> enum DrawMenuItem
 	string MenuItemImages[SIZE_ITM_COUNT];
-	MenuItemImages[ITM_QUARTER] = "images\\MenuItems\\circle-quarter.jpg";
-	MenuItemImages[ITM_HALF] = "images\\MenuItems\\LLduu.jpg";
-	MenuItemImages[ITM_DOUBLE] = "images\\MenuItems\\d-2.jpg";
-	MenuItemImages[ITM_QUADRUPLE] = "images\\MenuItems\\f.jpg";
-	MenuItemImages[ITM_BACK] = "images\\MenuItems\\Menu_Back_2.jpg";
-	/*MenuItemImages[ITM_QURT] = "images\\MenuItems\\Menu_Sqr.jpg";
-	MenuItemImages[ITM_HALF] = "images\\MenuItems\\Menu_Sqr.jpg";
-	/*MenuItemImages[ITM_DUBBLE] = "images\\MenuItems\\Menu_Sqr.jpg";
-	MenuItemImages[ITEM_FOURTH] = "images\\MenuItems\\Menu_Sqr.jpg";*/
+	MenuItemImages[ITM_QUARTER] = "images\\MenuItems\\Quarter.jpg";
+	MenuItemImages[ITM_HALF] = "images\\MenuItems\\Half.jpg";
+	MenuItemImages[ITM_DOUBLE] = "images\\MenuItems\\2.jpg";
+	MenuItemImages[ITM_QUADRUPLE] = "images\\MenuItems\\4.jpg";
+	MenuItemImages[ITM_BACK] = "images\\MenuItems\\Back.jpg";
 
 	//TODO: Prepare images for each menu item and add it to the list
 
@@ -308,7 +310,9 @@ void GUI::CreatePlayToolBar() const
 	///TODO: write code to create Play mode menu
 	string MenuItemImages[PLAY_ITM_COUNT];
 	MenuItemImages[ITIM_SwitchDraw] = "images\\MenuItems\\draw.jpg";
-	MenuItemImages[ITIM_SelectByShape] = "images\\MenuItems\\select.jpg";
+	MenuItemImages[ITIM_SelectByShape] = "images\\MenuItems\\select-shape-icon.jpg";
+	MenuItemImages[ITIM_SelectByColor] = "images\\MenuItems\\select-color-icon.jpg";
+	MenuItemImages[ITIM_SelectByBoth] = "images\\MenuItems\\select-coloredShape-icon.jpg";
 
 	//TODO: Prepare images for each menu item and add it to the list
 
@@ -349,6 +353,11 @@ color GUI::getCrntDrawColor() const	//get current drwawing color
 color GUI::getCrntFillColor() const	//get current filling color
 {	return UI.FillColor;	}
 //////////////////////////////////////////////////////////////////////////////////////////
+color GUI::getCrntBackgroundColor() const	//get current filling color
+{
+	return UI.BkGrndColor;
+}
+//////////////////////////////////////////////////////////////////////////////////////////
 	
 int GUI::getCrntPenWidth() const		//get current pen width
 {	return UI.PenWidth;	}
@@ -363,6 +372,13 @@ void GUI::changeCrntFillColor(color SelectedColor)
 	UI.FillColor = SelectedColor;
 	
 }
+
+// change background color
+void GUI::setCrntBackgroundColor(color c) const
+{
+	UI.BkGrndColor = c;
+}
+
 color GUI::StringToColor(string colorStr)    //convert string to color type
 {
 	if (colorStr == "BLUE") return BLUE;
@@ -454,9 +470,9 @@ void GUI::DrawElli(Point p1,Point p2,double startAngle,double  endAngle, GfxInfo
 
 }
 
-void GUI::DrawHexa(Point P1, Point P2, GfxInfo hexaGfxInfo, bool selected) const
+void GUI::DrawHexa(Point P1, Point P2,int radius, GfxInfo hexaGfxInfo, bool selected) const
 {
-	int r = (sqrt(pow((P1.x - P2.x), 2) + pow((P1.y - P2.y), 2))) / 2;
+	//radius = (sqrt(pow((P1.x - P2.x), 2) + pow((P1.y - P2.y), 2))) / 2;
 	color DrawingClr;
 	if (selected)
 		DrawingClr = UI.HighlightColor; //Figure should be drawn highlighted
@@ -474,12 +490,13 @@ void GUI::DrawHexa(Point P1, Point P2, GfxInfo hexaGfxInfo, bool selected) const
 		style = FRAME;
 
 	int n = 6;
-	int HexaX[6];
-	int HexaY[6];
+	int HexaX[6]{};
+	int HexaY[6]{};
+	
 
 	for (int i = 0; i < n; i++) {
-		HexaX[i] = ((P1.x + P2.x) / 2) + r * cos(2 * M_PI * i / n);
-		HexaY[i] = ((P1.y + P2.y) / 2) + r * sin(2 * M_PI * i / n);
+		HexaX[i] = ((static_cast<double>(P1.x) + P2.x) / 2) + radius * cos(2 * M_PI * i / n);
+		HexaY[i] = ((static_cast<double>(P1.y) + P2.y) / 2) + radius * sin(2 * M_PI * i / n);	
 	}
 	/*int HexaX[6] = {P1.x + P2.x, P1.x - P2.x, P1.x - 2 * P2.x, P1.x - P2.x ,P1.x + P2.x, P1.x + 2 * P2.x}, HexaY[6] = {P1.y - P2.y, P1.y - P2.y, P1.y, P1.y + P2.y,P1.y + P2.y,P1.y};*/
 

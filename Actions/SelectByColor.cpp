@@ -1,21 +1,27 @@
-#include "SelectByShape.h"
+#include "SelectByColor.h"
 
-SelectByShape::SelectByShape(ApplicationManager* pApp) :Action(pApp)
+#include <iostream>
+using namespace std;
+
+SelectByColor::SelectByColor(ApplicationManager* pApp) :Action(pApp)
 {
-	shapeName = pManager->getShapeInPlayMode();
+	do
+	{
+		shapeColor = pManager->getColorInPlayMode();
+	} while (shapeColor=="none");
 	pGUI = pManager->GetGUI();
 }
 
-void SelectByShape::ReadActionParameters()
+void SelectByColor::ReadActionParameters()
 {
 	SelectAction* select = new SelectAction(pManager);
-	pGUI->PrintMessage("Select All " + shapeName + " Shapes");
+	pGUI->PrintMessage("Select All " + shapeColor + " Shapes");
 	select->Execute();
 	picky = select->getSelectedFigure();
 	if (picky == NULL) {
 		return;
 	}
-	if (picky->getFigureName() == shapeName) {
+	if (picky->getFigureColor() == shapeColor) {
 		rightScore++;
 	}
 	else {
@@ -23,18 +29,16 @@ void SelectByShape::ReadActionParameters()
 	}
 	pManager->deleteSelectedFigure(picky);
 	pManager->UpdateInterface();
-	endGame = !pManager->isFigureExists(shapeName);
+	endGame = !pManager->isFigureColorExists(shapeColor);
 }
 
-void SelectByShape::Execute()
+void SelectByColor::Execute()
 {
 	while (endGame == false && pManager->GetFigCount() != 0)
 		ReadActionParameters();
 	pGUI->PrintMessage("Correct Answers: " + to_string(rightScore) + ", Wrong Answers: " + to_string(wrongScore));
 }
-SelectByShape::~SelectByShape()
+SelectByColor::~SelectByColor()
 {
-	delete pGUI;
 	delete picky;
-	delete pGUI;
 }
