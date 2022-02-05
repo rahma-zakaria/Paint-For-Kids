@@ -5,17 +5,18 @@
 
 class SelectByBoth : public Action
 {
+private:
 	CFigure* picky;
 	Point P;
 	int rightScore = 0, wrongScore = 0;
-	bool endGame = false;
+	bool endGame = false, isGameSwitched = false, isColoredShapeExists = true;
 	GUI* pGUI;
 	CFigure* shape;
 
+	void getUserAction();
+	void ReadActionParameters();
 public:
 	SelectByBoth(ApplicationManager*);
-
-	virtual void ReadActionParameters();
 	virtual void Execute();
 	~SelectByBoth();
 };

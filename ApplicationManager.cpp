@@ -88,7 +88,6 @@ Action* ApplicationManager::CreateAction(ActionType ActType)
 
 	Action* newAct = NULL;
 	bool isThereColoredFig = false;
-	
 	//According to Action Type, create the corresponding action object
 	switch (ActType)
 	{
@@ -136,11 +135,9 @@ Action* ApplicationManager::CreateAction(ActionType ActType)
 			break;
 		case TO_PLAY:
 			configureAllPlayModeData();
-			//newAct = new SwitchToPlay(this);
 			break;
 		case TO_DRAW:
 			configureAllDrawModeData();
-			//newAct = new SwitchToDraw(this);
 			break;
 		case TO_PLAY_SELECT_BY_SHAPE:
 			newAct = playMode(TO_PLAY_SELECT_BY_SHAPE);
@@ -347,8 +344,8 @@ GUI *ApplicationManager::GetGUI() const
 //Destructor
 ApplicationManager::~ApplicationManager()
 {
-	for(int i=0; i<FigCount; i++)
-		delete FigList[i];
+	delete[] FigList;
+	delete[] SelectedFigs;
 	delete pGUI;
 	
 }
@@ -526,7 +523,7 @@ CFigure* ApplicationManager::getColoredFigure() {
 	return result;
 }
 
-void ApplicationManager::deleteSelectedFigure(CFigure* figure) {
+void ApplicationManager::hideSelectedFigure(CFigure* figure) {
 	int index;
 	for (int i = 0; i < FigCount; i++) {
 		if (FigList[i]->getID() == figure->getID()) {
@@ -581,6 +578,14 @@ bool ApplicationManager::isFigureExists(string figureName) {
 	return false;
 }
 
+bool ApplicationManager::isThereAColoredShapes() {
+	for (int i = 0; i < FigCount; i++) {
+		if (FigList[i]->getFigureColor() != "none")
+			return true;
+	}
+	return false;
+}
+
 bool ApplicationManager::isFigureColorExists(string figureColor) {
 	for (int i = 0; i < FigCount; i++) {
 		if (FigList[i]->getFigureColor() == figureColor)
@@ -588,7 +593,7 @@ bool ApplicationManager::isFigureColorExists(string figureColor) {
 	}
 	return false;
 }
-
+//Funtion to check if Colored Figures Exists or not
 bool ApplicationManager::isColoredFiguresExists(CFigure* figure) {
 	for (int i = 0; i < FigCount; i++) {
 		if (FigList[i]->getFigureColor() == figure->getFigureColor()&&FigList[i]->getFigureName()==figure->getFigureName())
@@ -596,7 +601,11 @@ bool ApplicationManager::isColoredFiguresExists(CFigure* figure) {
 	}
 	return false;
 }
-
+/*
+Clear selected Changes that Happened in Draw Mode 
+and Make the current mode to Play Mode Also 
+checks if there's shapes to play with or not
+*/
 void ApplicationManager::configureAllPlayModeData() {
 	if (FigCount != 0)
 		pGUI->PrintMessage("Welcome To PlayMode");
@@ -609,6 +618,7 @@ void ApplicationManager::configureAllPlayModeData() {
 	}
 	mode = 2;
 }
+//Remove the Changes that Happened in Play Mode and Make the current mode to Draw Mode
 void ApplicationManager::configureAllDrawModeData() {
 	pGUI->PrintMessage("Back To DrawMode");
 	ClearSelectedFigs();

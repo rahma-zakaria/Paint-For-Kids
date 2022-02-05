@@ -101,13 +101,14 @@ public:
 	string getColorInPlayMode();
 	CFigure* getColoredFigure();
 	int getMode();
-	void deleteSelectedFigure(CFigure* figure);
+	void hideSelectedFigure(CFigure* figure);
 	bool isFigureExists(string figureName);
 	bool isFigureColorExists(string figureColor);
 	bool isColoredFiguresExists(CFigure* figure);
 	Action* playMode(ActionType gameModeType);
 	void configureAllDrawModeData();
 	void configureAllPlayModeData();
+	bool isThereAColoredShapes();
 };
 
 #endif
