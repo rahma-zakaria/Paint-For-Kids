@@ -12,8 +12,6 @@
 #include "Actions\ActionLoad.h"
 #include "Actions\ActionMove.h"
 #include "Actions\RezizeAction.h"
-#include "Actions\SwitchToDraw.h"
-#include "Actions\SwitchToPlay.h"
 #include "Figures\CSquare.h"
 #include "Figures\CHexagon.h"
 #include "Figures\CEllipse.h"

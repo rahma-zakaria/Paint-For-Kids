@@ -43,5 +43,8 @@ void ActionSave::Execute()
 		pManager->SaveAll(MyFile);
 		MyFile.close();
 	}
+	else {
+		pGUI->PrintMessage("No Name");
+	};
 	pGUI->PrintMessage("");
 }

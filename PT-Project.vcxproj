@@ -146,8 +146,6 @@
     <ClCompile Include="Actions\SelectByColor.cpp" />
     <ClCompile Include="Actions\SelectByShape.cpp" />
     <ClCompile Include="Actions\Send_To_Back.cpp" />
-    <ClCompile Include="Actions\SwitchToDraw.cpp" />
-    <ClCompile Include="Actions\SwitchToPlay.cpp" />
     <ClCompile Include="CMUgraphicsLib\auxil.cpp" />
     <ClCompile Include="CMUgraphicsLib\CMUgraphics.cpp" />
     <ClCompile Include="CMUgraphicsLib\image.cpp" />
@@ -210,8 +208,6 @@
     <ClInclude Include="Actions\SelectByColor.h" />
     <ClInclude Include="Actions\SelectByShape.h" />
     <ClInclude Include="Actions\Send_To_Back.h" />
-    <ClInclude Include="Actions\SwitchToDraw.h" />
-    <ClInclude Include="Actions\SwitchToPlay.h" />
     <ClInclude Include="CMUgraphicsLib\auxil.h" />
     <ClInclude Include="CMUgraphicsLib\CMUgraphics.h" />
     <ClInclude Include="CMUgraphicsLib\colors.h" />

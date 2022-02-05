@@ -1,9 +1,6 @@
 #include "ActionAddSquare.h"
-#include "..\Figures\CSquare.h"
-
 #include "..\ApplicationManager.h"
 
-#include "..\GUI\GUI.h"
 
 ActionAddSquare::ActionAddSquare(ApplicationManager * pApp):Action(pApp)
 {}
@@ -55,10 +52,6 @@ void ActionAddSquare::Execute()
 
 	//Step 4 - Add the Square to the list of figures
 	pManager->AddFigure(R);
-
-	
-	
-
 
 }
 ActionAddSquare::~ActionAddSquare(){

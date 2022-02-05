@@ -166,12 +166,6 @@
     <ClCompile Include="Actions\SelectAction.cpp">
       <Filter>Action Classes</Filter>
     </ClCompile>
-    <ClCompile Include="Actions\SwitchToDraw.cpp">
-      <Filter>Action Classes</Filter>
-    </ClCompile>
-    <ClCompile Include="Actions\SwitchToPlay.cpp">
-      <Filter>Action Classes</Filter>
-    </ClCompile>
     <ClCompile Include="Actions\Bring_to_front.cpp">
       <Filter>Action Classes</Filter>
     </ClCompile>
@@ -311,12 +305,6 @@
       <Filter>Action Classes</Filter>
     </ClInclude>
     <ClInclude Include="Actions\SelectAction.h">
-      <Filter>Action Classes</Filter>
-    </ClInclude>
-    <ClInclude Include="Actions\SwitchToDraw.h">
-      <Filter>Action Classes</Filter>
-    </ClInclude>
-    <ClInclude Include="Actions\SwitchToPlay.h">
       <Filter>Action Classes</Filter>
     </ClInclude>
     <ClInclude Include="Actions\Bring_to_front.h">

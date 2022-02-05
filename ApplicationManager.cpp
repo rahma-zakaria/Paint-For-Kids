@@ -10,8 +10,6 @@
 #include "Actions\ActionChangeBgColor.h"
 #include "Actions\ExitAction.h"
 #include "Actions\RezizeAction.h"
-#include "Actions\SwitchToDraw.h"
-#include "Actions\SwitchToPlay.h"
 #include "Actions\Bring_to_front.h"
 #include "Actions\Send_To_Back.h"
 #include "Actions\SelectByShape.h"
@@ -331,9 +329,6 @@ void ApplicationManager::updateMoveInterface() {
 	}
 	// Uses a whole picture to reduce lagging effect
 	pGUI->CreateDrawToolBar();
-	//pGUI->CreateSizeToolBar();
-	//pGUI->pWind->SetPen(RED, 3);
-	//pGUI->pWind->DrawLine(0, UI.ToolBarHeight, UI.width, UI.ToolBarHeight);
 
 }
 ////////////////////////////////////////////////////////////////////////////////////
